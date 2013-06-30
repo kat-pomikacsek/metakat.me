@@ -1,6 +1,7 @@
 /***************************** COLORS *****************************/
 
-$page-bg-color: #fcfcfc;
+$page-bg-color: #fbfbfb;
+//$header-footer-color: #ffffff;
 
 $heading-color: #333333;
 $plaincopy-color: #777777; 
@@ -9,9 +10,9 @@ $link-color: #FF6D12;
 $link-hover-color: #000000;
 $icon-color: #999999;
 
-$line-color: rgba(0, 0, 0, 0.3);
+$line-color: #ddd;
 
-$media-threshold-nav: "screen and (min-width: 570px)";
+$media-threshold-nav: "screen and (min-width: 550px)";
 $media-threshold-1: "screen and (min-width: 810px)";
 
 
@@ -20,6 +21,7 @@ $media-threshold-1: "screen and (min-width: 810px)";
 @import "normalize";
 
 /***************************** BASIC STYLES *****************************/
+
 
 body {
 	color: $plaincopy-color;
@@ -182,7 +184,6 @@ a:focus .profile-icon{
 }
 
 .header-box {
-	padding: 0em;
 }
 
 .footer-box {
@@ -199,17 +200,29 @@ a:focus .profile-icon{
 	border-top: 0;
 }
 
+.site {
+	//background-color: $page-bg-color;
+}
+
 /***************************** HEADER *****************************/
 
 .page-header {
 	padding-bottom: 1em;
+	border-bottom: 1px solid $line-color;
+	//background-color: $header-footer-color;	
 }
 
 .header-box{
 	position: relative;
+	padding: 0 6% 0 5%;
+	
+	@media #{$media-threshold-nav} {
+		padding: 0 5%;
+	}	
 }
 
 .header-branding { 
+	padding-top: 1em;
  
 }
 
@@ -219,12 +232,14 @@ a:focus .profile-icon{
 	
 	//float: left;
 	img {
-		padding: 1.5em 0.5em 1em 0.5em;
-		background-color: black;
+		// padding: 1.5em 0 0 0;
+		// background-color: $page-bg-color;
+		// border: 1px solid $line-color;
 		width: 4em;
 		display: block;
 	}
 }
+
 .secondary_nav {
 	width: 66%;
 	float:right;
@@ -241,13 +256,9 @@ a:focus .profile-icon{
 	}
 }
 
-
-.main_nav {
-	//padding-top: 1.4em;
-	margin-top: 1em;
+.main-nav {
 
 	a {
-		//font-weight: 600;
 		color:$heading-color;
 	}
 
@@ -256,34 +267,93 @@ a:focus .profile-icon{
 		color: $link-color;
 		text-decoration:none;
 	}
+
 	@media #{$media-threshold-nav} {
 		position: absolute;
 		bottom: 0;
-		right: 0;
-		line-height: 0.7em;
+		right: 4%;
+		line-height: 0.8em;
 	}
 }
+
+
+
+.nav-toggle {
+	display: none;
+	font-size: 1.2em;
+	padding: 0.35em 0 0.3em 0.3em;
+
+	.js & {
+		display: block;
+		position: absolute;
+		right: 6%;
+		top: 0.6em;
+
+	}
+
+	@media #{$media-threshold-nav} {
+		.js & {
+			display: none;
+		}
+	}
+}
+
+
 
 
 .nav-list {
 	display: block;
 	margin: 0;
-	font-weight: 400;
-	//font-size: 90%;
-	text-align: center;
+	padding: 0;
 	list-style: none;
+	width: 100%;
+
+	.js & {
+		clip: rect(0 0 0 0);
+		max-height: 0;
+		position: absolute;
+		display: block;
+		overflow: hidden;
+		zoom: 1;
+		border-top: 1px solid $line-color;
+		padding-top: 0.5em;
+		margin-top: 1em;
+		margin-bottom: -0.5em;
+	}
+
+	&.opened {
+  		max-height: 9999px;
+	}
 
 	li {
-		display: inline-block;
-		padding-left: 2em;
-		margin: 0;
+  		display: block;
 		text-align: right;
+		margin: 0;
 	}
-	li:nth-child(1){
-		padding-left:0;
-	}
+
+	
 	@media #{$media-threshold-nav} {
-		text-align: left;
+		text-align: right;
+		
+		.js & {
+			position: relative;
+			border-top: none;
+		}
+
+		.js &.closed {
+			max-height: none;
+		}
+
+		li {
+			display: inline-block;
+			width: auto;
+			padding-left: 2em;
+		}
+		
+		li:nth-child(1){
+			padding-left:0;
+
+		}		
 	}
 }
 
@@ -302,7 +372,7 @@ a:focus .profile-icon{
 	line-height: 1.25;
 	font-weight: 400;
 	display: block;
-	padding: 2em 1em;
+	padding: 2em 1em 2.5em;
 	border-bottom: 1px solid $line-color;
 	
 	p {
@@ -373,6 +443,10 @@ a:focus .profile-icon{
 .copyright {
 	font-size: 80%;
 }
+
+/***************************** ICON FONTS *****************************/
+
+@import "fontawesome/font-awesome";
 
 /***************************** MEDIA QUERY 1 *****************************/
 /* skills split into 2 columns*/
@@ -450,7 +524,5 @@ a:focus .profile-icon{
 }
 */
 
-/***************************** ICON FONTS *****************************/
 
 
-@import "fontawesome/font-awesome";

@@ -1,1 +1,1 @@
-//= require_tree .
+//= require "responsive-nav.js"
