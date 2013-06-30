@@ -1,0 +1,456 @@
+/***************************** COLORS *****************************/
+
+$page-bg-color: #fcfcfc;
+
+$heading-color: #333333;
+$plaincopy-color: #777777; 
+
+$link-color: #FF6D12;
+$link-hover-color: #000000;
+$icon-color: #999999;
+
+$line-color: rgba(0, 0, 0, 0.3);
+
+$media-threshold-nav: "screen and (min-width: 570px)";
+$media-threshold-1: "screen and (min-width: 810px)";
+
+
+/***************************** NORMALIZE STYLES *****************************/
+
+@import "normalize";
+
+/***************************** BASIC STYLES *****************************/
+
+body {
+	color: $plaincopy-color;
+	//font: 300 130%/1.75 'Source Sans Pro',Arial, sans-serif;
+	font: 400 125%/1.6 'Open Sans',Arial, sans-serif; 
+	text-rendering:optimizeLegibility;
+	background: $page-bg-color; 
+}
+
+h1, h2 , #tagline{
+	color: $heading-color;
+	font-family:'Open Sans',Arial, sans-serif;
+    //font-family:'Source Sans Pro',Arial, sans-serif;
+    //font-family:'Bitter',Georgia,serif;  
+}
+
+h1 {
+	font-size:2.4em;
+	line-height: 1;
+	font-weight: 400; 
+	margin:1.5em 0 1em; 
+}
+
+h2 {
+	font-size: 1.6em;
+	line-height: 1.25;
+	font-weight: 400; 
+	margin:2em 0 1em; 
+}
+
+p, pre, ol, ul, dl, figure, figcaption, table, fieldset {
+	margin: 0.8em 0; 
+}
+
+a {
+	color: $link-color;
+	font-size:100%;
+	font-weight: 400;
+	text-decoration:none;
+	//background:url(../images/link_bg.png) repeat-x bottom;
+}
+
+a:hover,
+a:focus {
+	color: $link-hover-color;
+	text-decoration:underline;
+	background: none;
+}
+
+/*______________________ ? ______________________*/
+img {
+	width: 100%;
+}
+/*_*/
+
+ul {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+strong {
+	font-weight: 600;
+	color:$heading-color;
+}
+
+.project-links {
+	margin: 1.6em 0 0 0;
+}
+
+/***************************** NAVIGATION  *****************************/
+/*
+.language-switch {
+	display: block;
+	a {
+		color: $plaincopy-color;
+		font-size: 80%;
+	}
+	a:hover,
+	a:focus {
+		color: $link-color;
+		text-decoration:none;
+	}
+}
+*/
+.profiles-list {
+	list-style: none;
+	display: block;
+	margin-top: 0;
+	li {
+		padding-left: 2em;
+		margin: 0;
+		display: block;
+		float:left;
+	}
+	li:nth-child(1) {
+		padding-left: 0;
+	}
+}
+
+.profile-icon {
+	display: block;
+	float:left;
+	color: $icon-color;
+	display: inline-block;
+}
+
+.icon-text {
+	display: block;
+	float:left;
+	padding-left: 0.5em;
+}
+
+a:hover .profile-icon,
+a:focus .profile-icon{
+	color: $link-hover-color;	
+	text-decoration: none;
+}
+
+/*** tweaking icon sizes and alignment ***/
+
+.profile-icon, 
+.icon-text {
+	margin-top: 0.3em;
+}
+
+.linkedin-icon {
+	//margin-top: 0.78em;
+}
+
+.xing-icon {
+	font-size: 1.2em;
+	margin-top: 0.3em;
+}
+
+.twitter-icon {
+	font-size: 1.2em;
+	margin-top: 0.15em;
+}
+
+/***************************** CLEARFIX *****************************/
+
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+} 
+.group:after {
+	clear: both;
+}
+
+.group {
+	zoom: 1;
+}
+
+/***************************** GENERAL CONTAINER SIZES *****************************/
+
+.content-container {
+	margin: 0 auto;
+	padding: 0 5%; 
+}
+
+.header-box {
+	padding: 0em;
+}
+
+.footer-box {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.section-about {
+	margin-bottom: 4em;
+	border-top: 1px solid $line-color;
+}
+
+.section-about:first-child {
+	border-top: 0;
+}
+
+/***************************** HEADER *****************************/
+
+.page-header {
+	padding-bottom: 1em;
+}
+
+.header-box{
+	position: relative;
+}
+
+.header-branding { 
+ 
+}
+
+#logo {
+	//width: 33%;
+	margin: 0;
+	
+	//float: left;
+	img {
+		padding: 1.5em 0.5em 1em 0.5em;
+		background-color: black;
+		width: 4em;
+		display: block;
+	}
+}
+.secondary_nav {
+	width: 66%;
+	float:right;
+
+	.language-switch {
+		padding-left: 3.5em;
+		float:right;
+		margin-top: 0.35em;
+	}
+	.profiles-list {
+		margin: 0;
+		padding: 0;
+		float:right;
+	}
+}
+
+
+.main_nav {
+	//padding-top: 1.4em;
+	margin-top: 1em;
+
+	a {
+		//font-weight: 600;
+		color:$heading-color;
+	}
+
+	a:hover,
+	a:focus {
+		color: $link-color;
+		text-decoration:none;
+	}
+	@media #{$media-threshold-nav} {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		line-height: 0.7em;
+	}
+}
+
+
+.nav-list {
+	display: block;
+	margin: 0;
+	font-weight: 400;
+	//font-size: 90%;
+	text-align: center;
+	list-style: none;
+
+	li {
+		display: inline-block;
+		padding-left: 2em;
+		margin: 0;
+		text-align: right;
+	}
+	li:nth-child(1){
+		padding-left:0;
+	}
+	@media #{$media-threshold-nav} {
+		text-align: left;
+	}
+}
+
+.nav-list li a {
+	text-decoration:none;
+	background: none;
+}
+
+
+
+/***************************** TAGLINE *****************************/
+
+#tagline{
+	color: $plaincopy-color;
+	font-size: 2.4em;
+	line-height: 1.25;
+	font-weight: 400;
+	display: block;
+	padding: 2em 1em;
+	border-bottom: 1px solid $line-color;
+	
+	p {
+		margin: 0;
+	}
+}
+
+/***************************** SKILLS *****************************/
+
+.skill-list {
+	padding:0 1em;
+	li {
+		color: $link-color;
+		margin-bottom: 0.8em;
+	}
+	li p {
+		color: $plaincopy-color;
+		margin: 0;
+	}
+}
+
+/***************************** WORK *****************************/
+
+.projectcontainer {
+	margin: 4em 0 0;
+}
+
+.date {
+	font-size: 1em;
+	color: $plaincopy-color;
+	line-height: 1;
+	margin: 1 0 0.5em;
+}
+
+.projectheadline {
+	margin: 0 0 1em;
+}
+
+.screenshot {
+	margin: 0 auto 1.6em;
+	max-width: 350px;
+	padding: 0 1em;
+	/*
+	.browser{  
+		border-right: 2px  solid rgba(0, 0, 0, 0.15);
+	}
+	.phone{  
+		border-bottom: 2px  solid rgba(0, 0, 0, 0.15);
+	}
+	*/
+}
+
+.category-tag {
+	color: $heading-color;
+}
+
+/***************************** CONTACT *****************************/
+
+
+
+/***************************** FOOTER *****************************/
+
+.page-footer {
+	border-top: 1px solid $line-color;
+
+}
+
+.copyright {
+	font-size: 80%;
+}
+
+/***************************** MEDIA QUERY 1 *****************************/
+/* skills split into 2 columns*/
+/* work split into 2 columns*/
+
+@media #{$media-threshold-1} {
+	
+	/*
+	.nav-list li {
+		padding-left: 2em;
+		margin: 0;
+		display: inline-block;
+	}
+	*/
+
+	.content-container {
+		max-width: 50em;
+		//padding: 1em 7%;
+	}	
+	.skill-block {
+		width: 45%;
+		float: left;
+		padding-right: 10%;
+	}
+
+	.skill-block:nth-child(even) {
+		padding-right: 0;
+	}
+
+	.projecthead {
+		width:45%;
+		margin:0;
+		float: left;
+		h2 {
+			margin-bottom:1em;
+		}
+	}
+
+	.screenshot {
+		width:45%;
+		max-width: 100%;
+		margin:0;
+		padding: 0 0 0 5%;
+		float:right;
+	}
+
+	.projectdetails {
+		width:50%;
+		margin:0;
+		float: left;
+	}
+}
+
+/***************************** MEDIA QUERY 2 *****************************/
+/* contact moves into 3rd column*/
+/*
+@media screen and (min-width: 1235px) {
+	
+	.content-container {
+		max-width: 70em;
+	}	
+	
+	.leftboundcontainer {
+		width:66%;
+		margin:0;
+		float:left;
+	}
+
+	.rightboundcontainer {
+		width:30%;
+		margin:0;
+		float:right;
+		border: 0;
+	}
+}
+*/
+
+/***************************** ICON FONTS *****************************/
+
+
+@import "fontawesome/font-awesome";
