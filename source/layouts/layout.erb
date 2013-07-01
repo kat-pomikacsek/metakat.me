@@ -15,16 +15,19 @@
 
     <%= stylesheet_link_tag "styles" %>
     
+    <script type="text/javascript" src="//use.typekit.net/hfa8ply.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
   </head>
 
   <body class="<%= page_classes %>">
     <%= partial "partials/header" %>
 
-    <div class="site group content-container" role="main">
+    <section class="site group content-container" role="main">
       <%= partial "partials/tagline" %>
       
       <%= yield %>
-    </div>
+    </section>
     <%= partial "partials/footer" %>
 
     <%= javascript_include_tag  "all" %>
@@ -36,5 +39,6 @@
         customToggle: '#nav-toggle'
       });
     </script>
+
   </body>
 </html>

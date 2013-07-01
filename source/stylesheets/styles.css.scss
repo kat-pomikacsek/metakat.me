@@ -11,8 +11,9 @@ $link-hover-color: #000000;
 $icon-color: #999999;
 
 $line-color: #ddd;
+$major-line-color: #ccc;
 
-$media-threshold-nav: "screen and (min-width: 550px)";
+$media-threshold-nav: "screen and (min-width: 720px)";
 $media-threshold-1: "screen and (min-width: 810px)";
 
 
@@ -26,30 +27,38 @@ $media-threshold-1: "screen and (min-width: 810px)";
 body {
 	color: $plaincopy-color;
 	//font: 300 130%/1.75 'Source Sans Pro',Arial, sans-serif;
-	font: 400 125%/1.6 'Open Sans',Arial, sans-serif; 
+	font: 400 125%/1.6 "freight-sans-pro",sans-serif; 
 	text-rendering:optimizeLegibility;
 	background: $page-bg-color; 
 }
 
 h1, h2 , #tagline{
 	color: $heading-color;
-	font-family:'Open Sans',Arial, sans-serif;
+	font-family:"freight-sans-pro",sans-serif;
     //font-family:'Source Sans Pro',Arial, sans-serif;
     //font-family:'Bitter',Georgia,serif;  
 }
 
 h1 {
-	font-size:2.4em;
+	font-size: 1.7em;
 	line-height: 1;
-	font-weight: 400; 
+	font-weight: 500; 
 	margin:1.5em 0 1em; 
+	@media #{$media-threshold-nav} {
+		font-size: 2.4em;
+		font-weight: 400;
+	}	
 }
 
 h2 {
-	font-size: 1.6em;
+	font-size: 1.2em;
 	line-height: 1.25;
-	font-weight: 400; 
-	margin:2em 0 1em; 
+	font-weight: 500; 
+	margin: 2em 0 1em;
+	@media #{$media-threshold-nav} {
+		font-size: 1.6em;
+		font-weight: 400;
+	}	 
 }
 
 p, pre, ol, ul, dl, figure, figcaption, table, fieldset {
@@ -83,7 +92,7 @@ ul {
 }
 
 strong {
-	font-weight: 600;
+	font-weight: 500;
 	color:$heading-color;
 }
 
@@ -110,56 +119,58 @@ strong {
 	list-style: none;
 	display: block;
 	margin-top: 0;
+	//margin-bottom: 0;
 	li {
-		padding-left: 2em;
 		margin: 0;
 		display: block;
-		float:left;
+		padding-bottom:  0.8em;
+
+		@media screen and (min-width: 25em) {
+			padding: 0 2em 0 0;
+			float:left;
+		}		
 	}
-	li:nth-child(1) {
-		padding-left: 0;
+	:last-child {
+		padding-right: 0;
 	}
+	text-align: center;
 }
 
 .profile-icon {
-	display: block;
-	float:left;
 	color: $icon-color;
-	display: inline-block;
 }
 
-.icon-text {
-	display: block;
-	float:left;
+.icon-text-rightside{
 	padding-left: 0.5em;
 }
 
+
 a:hover .profile-icon,
-a:focus .profile-icon{
+a:focus .profile-icon {
 	color: $link-hover-color;	
 	text-decoration: none;
 }
 
 /*** tweaking icon sizes and alignment ***/
 
-.profile-icon, 
-.icon-text {
-	margin-top: 0.3em;
-}
 
 .linkedin-icon {
-	//margin-top: 0.78em;
+	font-size: 1em;
+	line-height: 0.8em;
 }
 
 .xing-icon {
 	font-size: 1.2em;
-	margin-top: 0.3em;
+	line-height: 0.3em;
 }
 
 .twitter-icon {
 	font-size: 1.2em;
-	margin-top: 0.15em;
+	line-height: 0.5em;
 }
+
+
+
 
 /***************************** CLEARFIX *****************************/
 
@@ -196,16 +207,16 @@ a:focus .profile-icon{
 }
 
 .section-about {
-	margin-bottom: 4em;
+	margin-bottom: 2em;
 	border-top: 1px solid $line-color;
+
+	@media #{$media-threshold-nav} {
+		margin-bottom: 4em;
+	}	
 }
 
 .section-about:first-child {
 	border-top: 0;
-}
-
-.site {
-	//background-color: $page-bg-color;
 }
 
 /***************************** HEADER *****************************/
@@ -231,16 +242,17 @@ a:focus .profile-icon{
 }
 
 #logo {
-	//width: 33%;
 	margin: 0;
-	
-	//float: left;
+
 	img {
-		// padding: 1.5em 0 0 0;
-		// background-color: $page-bg-color;
-		// border: 1px solid $line-color;
-		width: 4em;
+		width: 3.5em;
 		display: block;
+	}
+
+	@media #{$media-threshold-nav} {
+		img {
+			width: 4em;
+		}
 	}
 }
 
@@ -291,7 +303,7 @@ a:focus .profile-icon{
 		display: block;
 		position: absolute;
 		right: 6%;
-		top: 0.6em;
+		top: 0.5em;
 
 	}
 
@@ -308,7 +320,7 @@ a:focus .profile-icon{
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	width: 100%;
+	//width: 100%;
 
 	.js & {
 		clip: rect(0 0 0 0);
@@ -372,22 +384,35 @@ a:focus .profile-icon{
 
 #tagline{
 	color: $plaincopy-color;
-	font-size: 2.4em;
+	font-size: 1.7em;
 	line-height: 1.25;
-	font-weight: 400;
+	font-weight: 500;
+	text-align: center;
 	display: block;
-	padding: 2em 1em 2.5em;
+	color: $link-color;
+	padding: 1em 0.6em 1.5em;
 	border-bottom: 1px solid $line-color;
-	
+
 	p {
 		margin: 0;
+	}
+
+	@media #{$media-threshold-nav} {
+		font-size: 2.4em;
+		padding: 1em 1em 1.5em;
+		font-weight: 400;
+
+	}
+
+	@media #{$media-threshold-1} {
+		padding: 1.5em 1em 2em;
 	}
 }
 
 /***************************** SKILLS *****************************/
 
 .skill-list {
-	padding:0 1em;
+	padding: 0 1em;
 	li {
 		color: $link-color;
 		margin-bottom: 0.8em;
@@ -401,7 +426,11 @@ a:focus .profile-icon{
 /***************************** WORK *****************************/
 
 .projectcontainer {
-	margin: 4em 0 0;
+	margin: 2em 0 0;
+	
+	@media #{$media-threshold-nav} {
+		margin: 4em 0 0;
+	}
 }
 
 .date {
@@ -445,8 +474,43 @@ a:focus .profile-icon{
 }
 
 .copyright {
-	font-size: 80%;
+	text-align: center;
+	
 }
+
+.to-top {
+	text-align: center;
+	line-height: 1em;
+	margin-bottom: 1.6em;
+
+	a {
+		color:$heading-color;
+	}
+
+	a:hover,
+	a:focus {
+		color: $link-color;
+		text-decoration:none;
+	}
+}
+
+.top-icon {
+	//padding-left: 0.5em;
+	font-size: 1.5em;
+	//line-height: 0.3em;
+}
+
+.to-top-label{
+	display: block;
+	//float:left;
+	//padding-top: 0.7em;
+}
+
+.copyright {
+	font-size: 80%;
+	//float: left;
+}
+
 
 /***************************** ICON FONTS *****************************/
 
@@ -467,9 +531,10 @@ a:focus .profile-icon{
 	*/
 
 	.content-container {
-		max-width: 50em;
+		max-width: 48em;
 		//padding: 1em 7%;
-	}	
+	}
+
 	.skill-block {
 		width: 45%;
 		float: left;
