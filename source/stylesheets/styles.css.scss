@@ -16,6 +16,8 @@ $major-line-color: #ccc;
 $media-threshold-nav: "screen and (min-width: 720px)";
 $media-threshold-1: "screen and (min-width: 810px)";
 
+$header-height: 6em;
+
 
 /***************************** NORMALIZE STYLES *****************************/
 
@@ -80,12 +82,6 @@ a:focus {
 	background: none;
 }
 
-/*______________________ ? ______________________*/
-img {
-	width: 100%;
-}
-/*_*/
-
 ul {
 	margin-left: 0;
 	padding-left: 0;
@@ -96,11 +92,18 @@ strong {
 	color:$heading-color;
 }
 
-.project-links {
-	margin: 1.6em 0 0 0;
+img {
+	width: 100%;
 }
 
+/***************************** ICON FONTS *****************************/
+
+@import "fontawesome/font-awesome";
+
+
+
 /***************************** NAVIGATION  *****************************/
+
 /*
 .language-switch {
 	display: block;
@@ -115,6 +118,7 @@ strong {
 	}
 }
 */
+
 .profiles-list {
 	list-style: none;
 	display: block;
@@ -206,17 +210,44 @@ a:focus .profile-icon {
 	padding-bottom: 1em;
 }
 
+.site {
+	@media #{$media-threshold-nav} {
+		padding-top: $header-height;
+	}
+}
+
 .section-about {
 	margin-bottom: 2em;
 	border-top: 1px solid $line-color;
 
 	@media #{$media-threshold-nav} {
 		margin-bottom: 4em;
+
+		// fix offset when sticky nav is active:
+		// see http://nicolasgallagher.com/jump-links-and-viewport-positioning/demo/
+		
+		position:relative; 
+		border-top: $header-height solid transparent; 
+		margin-top: -$header-height;
+		-webkit-background-clip: padding-box;
+		-moz-background-clip: padding;
+		background-clip: padding-box;
+
+		&:before {
+			content: ""; 
+			position: absolute; 
+			top: 0em; 
+			left: 0; 
+			right: 0; 
+			border-top: 1px solid $line-color;
+		}
 	}	
 }
 
 .section-about:first-child {
-	border-top: 0;
+	&:before {
+		border-top: 1px solid transparent;
+	}
 }
 
 /***************************** HEADER *****************************/
@@ -224,7 +255,15 @@ a:focus .profile-icon {
 .page-header {
 	padding-bottom: 1em;
 	border-bottom: 1px solid $line-color;
-	//background-color: $header-footer-color;	
+	//background-color: $header-footer-color;
+	// make header sticky on bigger screen sizes
+	@media #{$media-threshold-nav} {
+		position: fixed;
+		left: 0;
+		right: 0;
+		background-color: $page-bg-color;
+		z-index: 100;
+	}
 }
 
 .header-box{
@@ -444,6 +483,10 @@ a:focus .profile-icon {
 	margin: 0 0 1em;
 }
 
+.project-links {
+	margin: 1.6em 0 0 0;
+}
+
 .screenshot {
 	margin: 0 auto 1.6em;
 	max-width: 350px;
@@ -492,6 +535,10 @@ a:focus .profile-icon {
 		color: $link-color;
 		text-decoration:none;
 	}
+
+	@media #{$media-threshold-nav} {
+		display: none;
+	}
 }
 
 .top-icon {
@@ -512,9 +559,7 @@ a:focus .profile-icon {
 }
 
 
-/***************************** ICON FONTS *****************************/
 
-@import "fontawesome/font-awesome";
 
 /***************************** MEDIA QUERY 1 *****************************/
 /* skills split into 2 columns*/
