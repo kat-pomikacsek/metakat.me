@@ -241,7 +241,12 @@ a:focus .profile-icon {
 			right: 0; 
 			border-top: 1px solid $line-color;
 		}
-	}	
+	}
+
+	> h1 {
+		text-align: center;
+	}
+
 }
 
 .section-about:first-child {
@@ -277,6 +282,7 @@ a:focus .profile-icon {
 
 .header-branding { 
 	padding-top: 1em;
+	width: 50%
  
 }
 
@@ -522,17 +528,26 @@ a:focus .profile-icon {
 }
 
 .to-top {
+	display: none;
 	text-align: center;
 	line-height: 1em;
-	margin-bottom: 1.6em;
+	//margin-bottom: 1.6em;
+	position: fixed;
+	bottom: 1.5em;
+	right: 1em;
 
 	a {
-		color:$heading-color;
+		display: block;
+		background: rgba(#ccc, 0.8);
+		padding: 0.5em 0.6em;
+		border-radius: 6px;	
+		//color:$heading-color;
+		color: #fff;
 	}
 
 	a:hover,
 	a:focus {
-		color: $link-color;
+		background: rgba($link-color, 0.8);
 		text-decoration:none;
 	}
 
@@ -549,6 +564,7 @@ a:focus .profile-icon {
 
 .to-top-label{
 	display: block;
+	font-size: 80%;
 	//float:left;
 	//padding-top: 0.7em;
 }
@@ -576,7 +592,7 @@ a:focus .profile-icon {
 	*/
 
 	.content-container {
-		max-width: 48em;
+		max-width: 42em;
 		//padding: 1em 7%;
 	}
 
