@@ -31,7 +31,11 @@ body {
 	//font: 300 130%/1.75 'Source Sans Pro',Arial, sans-serif;
 	font: 400 125%/1.6 "freight-sans-pro",sans-serif; 
 	text-rendering:optimizeLegibility;
-	background: $page-bg-color; 
+	background: $page-bg-color;
+
+	@media print {
+		background: white;
+	}
 }
 
 h1, h2 , #tagline{
@@ -335,6 +339,10 @@ a:focus .profile-icon {
 		right: 1.6em;
 		line-height: 0.8em;
 	}
+
+	@media print {
+		display: none
+	}	
 }
 
 
@@ -357,6 +365,7 @@ a:focus .profile-icon {
 			display: none;
 		}
 	}
+
 }
 
 
