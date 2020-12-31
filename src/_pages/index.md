@@ -1,16 +1,18 @@
 ---
-
 title: Katalin Pomikacsek – User Experience Research
-
+layout: layout.ejs
 ---
-
 
 <section class="group">
 	<!-- intro section -->
-	<%= partial "partials/about/intro" %>
+    <%- include ../_includes/about/_intro.ejs %>
 	<!-- skills section -->
-	<%= partial "partials/about/skills" %>
+	<%- include ../_includes/about/_skills.ejs %>
 	<!-- contact section -->
-	<%= partial "partials/about/contact" %>
+	<%- include ../_includes/about/_contact.ejs %>
 </section>
+
+
+
+
 

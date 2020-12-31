@@ -108,20 +108,6 @@ img {
 
 /***************************** NAVIGATION  *****************************/
 
-/*
-.language-switch {
-	display: block;
-	a {
-		color: $plaincopy-color;
-		font-size: 80%;
-	}
-	a:hover,
-	a:focus {
-		color: $link-color;
-		text-decoration:none;
-	}
-}
-*/
 
 .profiles-list {
 	list-style: none;
@@ -205,9 +191,6 @@ a:focus .profile-icon {
 	@media #{$media-threshold-nav} {
 		padding: 0 1.6em;
 	}	
-}
-
-.header-box {
 }
 
 .footer-box {
@@ -503,19 +486,6 @@ a:focus .profile-icon {
 	margin: 1.6em 0 0 0;
 }
 
-.screenshot {
-	margin: 0 auto 1.6em;
-	max-width: 350px;
-	padding: 0 1em;
-	/*
-	.browser{  
-		border-right: 2px  solid rgba(0, 0, 0, 0.15);
-	}
-	.phone{  
-		border-bottom: 2px  solid rgba(0, 0, 0, 0.15);
-	}
-	*/
-}
 
 .category-tag {
 	color: $heading-color;
@@ -567,24 +537,17 @@ a:focus .profile-icon {
 }
 
 .top-icon {
-	//padding-left: 0.5em;
 	font-size: 1.5em;
-	//line-height: 0.3em;
 }
 
 .to-top-label{
 	display: block;
 	font-size: 80%;
-	//float:left;
-	//padding-top: 0.7em;
 }
 
 .copyright {
 	font-size: 80%;
-	//float: left;
 }
-
-
 
 
 /***************************** MEDIA QUERY 1 *****************************/
@@ -592,14 +555,6 @@ a:focus .profile-icon {
 /* work split into 2 columns*/
 
 @media #{$media-threshold-1} {
-	
-	/*
-	.nav-list li {
-		padding-left: 2em;
-		margin: 0;
-		display: inline-block;
-	}
-	*/
 
 	.content-container {
 		max-width: 42em;
@@ -639,30 +594,4 @@ a:focus .profile-icon {
 		float: left;
 	}
 }
-
-/***************************** MEDIA QUERY 2 *****************************/
-/* contact moves into 3rd column*/
-/*
-@media screen and (min-width: 1235px) {
-	
-	.content-container {
-		max-width: 70em;
-	}	
-	
-	.leftboundcontainer {
-		width:66%;
-		margin:0;
-		float:left;
-	}
-
-	.rightboundcontainer {
-		width:30%;
-		margin:0;
-		float:right;
-		border: 0;
-	}
-}
-*/
-
-
 
