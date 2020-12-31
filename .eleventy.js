@@ -9,11 +9,11 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addWatchTarget('./src/compiled-assets/vendor.js');
 
   // Copy src/compiled-assets to /assets
-  eleventyConfig.addPassthroughCopy({ 'src/compiled-assets': 'assets' });
+  eleventyConfig.addPassthroughCopy({ './src/compiled-assets': 'assets' });
   // Copy all images
-  eleventyConfig.addPassthroughCopy('src/images');
+  eleventyConfig.addPassthroughCopy('./src/images');
   // Copy all fonts
-  eleventyConfig.addPassthroughCopy('src/font');
+  eleventyConfig.addPassthroughCopy('./src/font');
 
   if (process.env.ELEVENTY_ENV === 'production') {
     eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
