@@ -1,8 +1,9 @@
 ---
-title: Katalin Pomikacsek – User Experience Research
+title: About me – Katalin Pomikacsek
+description: Portfolio of Katalin Pomikacsek - Product Designer based in Berlin
 layout: layout.ejs
 ---
-
+<%- include ../_includes/_tagline.ejs %>
 <section class="group">
 	<!-- intro section -->
     <%- include ../_includes/about/_intro.ejs %>
@@ -11,8 +12,3 @@ layout: layout.ejs
 	<!-- contact section -->
 	<%- include ../_includes/about/_contact.ejs %>
 </section>
-
-
-
-
-

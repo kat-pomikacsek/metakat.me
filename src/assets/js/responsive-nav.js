@@ -414,3 +414,5 @@ var responsiveNav = (function (window, document) {
 
   return rn;
 })(window, document);
+
+export default responsiveNav;

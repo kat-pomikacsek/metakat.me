@@ -1,4 +1,14 @@
-import '../css/index.scss';
+import responsiveNav from './responsive-nav';
+
+// responsive navigation
+
+var navigation = responsiveNav("#nav", { 
+	transition: 400,
+	label: '',
+	insert: "before",
+	customToggle: '#nav-toggle'
+  });
+
 
 var $topLink = $('.to-top');
 
@@ -10,6 +20,7 @@ function hideTopLink(){
 	$topLink.fadeOut(250);
 }
 
+// top link
 
 function initTopLink() {
 	$(window).on('scroll', function (event) {
