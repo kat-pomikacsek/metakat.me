@@ -20,6 +20,12 @@ module.exports = function(eleventyConfig) {
     return manifest[name];
   });
 
+  //Shortcode to output current year in footer
+  eleventyConfig.addShortcode("currentYear", function() {
+    const year = new Date().getFullYear();
+    return `<span class="current-year">${year}</span>`;
+  });
+
   // Reload the page every time the JS/CSS are changed.
   eleventyConfig.setBrowserSyncConfig({ files: [manifestPath] });
 
