@@ -24,9 +24,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setBrowserSyncConfig({ files: [manifestPath] });
 
   // Copy all images
-  eleventyConfig.addPassthroughCopy('./src/images');
+  eleventyConfig.addPassthroughCopy('./src/images', "images");
   // Copy all fonts
-  eleventyConfig.addPassthroughCopy('./src/font');
+  eleventyConfig.addPassthroughCopy('./src/font', "font");
 
   if (process.env.ELEVENTY_ENV === 'production') {
     eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
