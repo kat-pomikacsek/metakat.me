@@ -1,14 +1,14 @@
 ---
 title: About me – Katalin Pomikacsek
 description: Portfolio of Katalin Pomikacsek - Product Designer based in Berlin
-layout: layout.ejs
+layout: default
 ---
-<%- include ../_includes/_tagline.ejs %>
+{% include "_tagline.njk" %}
 <section class="group">
 	<!-- intro section -->
-    <%- include ../_includes/about/_intro.ejs %>
+    {% include "about/_intro.njk" %}
 	<!-- skills section -->
-	<%- include ../_includes/about/_skills.ejs %>
+	{% include "about/_skills.njk" %}
 	<!-- contact section -->
-	<%- include ../_includes/about/_contact.ejs %>
+	{% include "about/_contact.njk" %}
 </section>

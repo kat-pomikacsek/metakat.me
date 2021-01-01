@@ -8,7 +8,9 @@ const manifest = JSON.parse(
 );
 
 module.exports = function(eleventyConfig) {
-
+  // Layout aliases make templates more portable.
+  eleventyConfig.addLayoutAlias("default", "layouts/default.njk");
+  
   // Adds a universal shortcode to return the URL to a webpack asset. In Nunjack templates:
   // {% webpackAsset 'main.js' %} or {% webpackAsset 'main.css' %}
   eleventyConfig.addShortcode("webpackAsset", function(name) {
@@ -47,13 +49,13 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       includes: '_includes',
-      input: 'src',
-      layouts: '_includes',
+      input: 'src/site',
       output: 'dist',
     },
-    markdownTemplateEngine: 'ejs',
+    htmlTemplateEngine: "njk",
+    markdownTemplateEngine: 'njk',
     templateFormats: [
-      'ejs',
+      'njk',
       'md',
     ],
     passthroughFileCopy: true,
