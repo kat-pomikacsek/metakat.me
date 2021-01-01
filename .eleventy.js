@@ -1,15 +1,26 @@
 const htmlmin = require('html-minifier');
+const fs = require("fs");
+const path = require("path");
+
+const manifestPath = path.resolve(__dirname, "dist", "assets", "manifest.json");
+const manifest = JSON.parse(
+  fs.readFileSync(manifestPath, { encoding: "utf8" })
+);
 
 module.exports = function(eleventyConfig) {
-  eleventyConfig.setUseGitIgnore(false);
 
-  // Watch our compiled assets for changes
-  eleventyConfig.addWatchTarget('./src/compiled-assets/main.css');
-  eleventyConfig.addWatchTarget('./src/compiled-assets/main.js');
-  eleventyConfig.addWatchTarget('./src/compiled-assets/vendor.js');
+  // Adds a universal shortcode to return the URL to a webpack asset. In Nunjack templates:
+  // {% webpackAsset 'main.js' %} or {% webpackAsset 'main.css' %}
+  eleventyConfig.addShortcode("webpackAsset", function(name) {
+    if (!manifest[name]) {
+      throw new Error(`The asset ${name} does not exist in ${manifestPath}`);
+    }
+    return manifest[name];
+  });
 
-  // Copy src/compiled-assets to /assets
-  eleventyConfig.addPassthroughCopy({ './src/compiled-assets': 'assets' });
+  // Reload the page every time the JS/CSS are changed.
+  eleventyConfig.setBrowserSyncConfig({ files: [manifestPath] });
+
   // Copy all images
   eleventyConfig.addPassthroughCopy('./src/images');
   // Copy all fonts
@@ -45,5 +56,6 @@ module.exports = function(eleventyConfig) {
       'ejs',
       'md',
     ],
+    passthroughFileCopy: true,
   };
 };

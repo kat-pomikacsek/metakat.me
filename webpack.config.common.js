@@ -1,16 +1,24 @@
 // Makes Sass faster!
 const Fiber = require('fibers');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const path = require('path');
+
+const isDev = process.env.NODE_ENV === "development";
+
+const baseFilename = isDev ? "index" : "index.[contenthash]";
 
 module.exports = {
   // Our "entry" point
-  entry: './src/assets/js/index.js',
+  entry: [
+    path.resolve(__dirname, "src", "assets", "js", "index.js"),
+    path.resolve(__dirname, "src", "assets", "css", "index.scss"),
+  ],
   output: {
     // The global variable name any `exports` from `index.js` will be available at
     library: 'SITE',
-    // Where webpack will compile the assets
-    path: path.resolve(__dirname, 'src/compiled-assets'),
+    path: path.resolve(__dirname, "dist", "assets"),
+    filename: `${baseFilename}.js`,
   },
   module: {
     rules: [
@@ -65,7 +73,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: `${baseFilename}.css`,
     }),
+    new WebpackManifestPlugin({ publicPath: "/assets/" }),
   ],
 };
