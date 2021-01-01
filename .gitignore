@@ -9,10 +9,14 @@
 
 # Ignore the build directory
 /build
+/dist/
 
 # Ignore Sass' cache
 /.sass-cache
 
-workfiles/
+
+/node_modules/
+/src/compiled-assets/
 
 .DS_Store
+Thumbs.db
