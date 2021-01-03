@@ -1,16 +1,27 @@
+require('dotenv').config();
 const htmlmin = require('html-minifier');
 const fs = require("fs");
 const path = require("path");
+const shortCodes = require('./src/lib/shortcodes');
 
 const manifestPath = path.resolve(__dirname, "dist", "assets", "manifest.json");
 const manifest = JSON.parse(
   fs.readFileSync(manifestPath, { encoding: "utf8" })
 );
 
+const {
+  documentToHtmlString
+} = require('@contentful/rich-text-html-renderer');
+
+
 module.exports = function(eleventyConfig) {
   // Layout aliases make templates more portable.
   eleventyConfig.addLayoutAlias("default", "layouts/default.njk");
   
+  eleventyConfig.addShortcode('documentToHtmlString', documentToHtmlString);
+  eleventyConfig.addShortcode("imageProcessing", shortCodes.imageProcessing);
+  eleventyConfig.addShortcode('renderCaseStudyBody', shortCodes.renderCaseStudyBody);
+
   // Adds a universal shortcode to return the URL to a webpack asset. In Nunjack templates:
   // {% webpackAsset 'main.js' %} or {% webpackAsset 'main.css' %}
   eleventyConfig.addShortcode("webpackAsset", function(name) {

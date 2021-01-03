@@ -1,0 +1,27 @@
+---
+pagination:
+    data: casestudies
+    size: 1
+    alias: page
+    addAllPagesToCollections: true
+permalink: "/portfolio/{{ page.slug | slug }}/"
+tags: "casestudy"
+layout: default
+eleventyComputed:
+  title: "{{ page.title}}"
+---
+
+<h1>{{ page.title}}</h1>
+{% imageProcessing page.featuredImage %}
+{%- for section in page.sections -%}
+<section>
+    {% if section.fields.title  %}
+    <h2>{{section.fields.title}}</h2>
+    {% endif %}
+    {% if section.fields.body  %}
+
+        {% renderCaseStudyBody section.fields.body %}
+
+    {% endif %}    
+</section>
+{% endfor %}

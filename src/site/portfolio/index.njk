@@ -1,0 +1,15 @@
+---
+title: Portfolio | Katalin Pomikacsek
+description: 
+layout: default
+---
+
+<h1>Work</h1>
+
+<ul class="links">
+{% for caseStudy in casestudies %}
+    <li>
+        <a href="/portfolio/{{ caseStudy.slug }}">{{caseStudy.title}}</a>
+    </li>
+{% endfor %}
+</ul>
