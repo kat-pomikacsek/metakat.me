@@ -4,10 +4,15 @@ const fs = require("fs");
 const path = require("path");
 const shortCodes = require('./src/lib/shortcodes');
 
+const isDev = process.env.ELEVENTY_ENV === "development";
+
 const manifestPath = path.resolve(__dirname, "dist", "assets", "manifest.json");
-const manifest = JSON.parse(
-  fs.readFileSync(manifestPath, { encoding: "utf8" })
-);
+const manifest = !isDev
+  ? {
+      "main.js": "/assets/index.js",
+      "main.css": "/assets/index.css",
+    }
+  : JSON.parse(fs.readFileSync(manifestPath, { encoding: "utf8" }));
 
 const {
   documentToHtmlString
@@ -37,8 +42,12 @@ module.exports = function(eleventyConfig) {
     return `<span class="current-year">${year}</span>`;
   });
 
+
   // Reload the page every time the JS/CSS are changed.
   eleventyConfig.setBrowserSyncConfig({ files: [manifestPath] });
+
+  // Copy static files directly to output.
+  eleventyConfig.addPassthroughCopy({ "src/static": "static" });
 
   // Copy all images
   eleventyConfig.addPassthroughCopy({'src/images': 'images'});
@@ -65,9 +74,9 @@ module.exports = function(eleventyConfig) {
 
   return {
     dir: {
-      includes: '_includes',
-      input: 'src/site',
+      input: 'src',
       output: 'dist',
+      includes: '_includes',
     },
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: 'njk',

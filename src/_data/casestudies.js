@@ -1,4 +1,4 @@
-const client = require('../../lib/contentful');
+const client = require('../lib/contentful');
 
 module.exports = async () => {
     return client.getEntries({ 

@@ -1,0 +1,55 @@
+/* purgecss start ignore */
+@tailwind  base;
+@tailwind  components;
+/* purgecss end ignore */
+@tailwind  utilities;
+
+body {
+	color: #777777;
+	font: 400 125%/1.6 "freight-sans-pro",sans-serif; 
+	text-rendering: optimizeLegibility;
+	background: #fbfbfb;
+}
+
+@media print {
+    body {
+        background: white;
+    } 
+}
+
+h1, h2 , #tagline{
+	color: #333333;
+	font-family: "freight-sans-pro",sans-serif;
+}
+
+h1 {
+	font-size: 1.7em;
+	line-height: 1;
+	font-weight: 500; 
+	margin:1.5em 0 1em; 
+}
+
+h2 {
+	font-size: 1.2em;
+	line-height: 1.25;
+	font-weight: 500; 
+	margin: 2em 0 1em;	 
+}
+
+p, pre, ol, ul, dl, figure, figcaption, table, fieldset {
+	margin: 0.8em 0; 
+}
+
+a {
+    color: #FF6D12;
+    font-size:100%;
+    font-weight: 400;
+    text-decoration:none;
+}
+
+a:hover,
+a:focus {
+    color: #000000;
+    text-decoration:underline;
+    background: none;
+}
