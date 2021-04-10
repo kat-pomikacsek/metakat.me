@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 
-const isDev = process.env.APP_ENV === 'development';
+const isDev = process.env.ELEVENTY_ENV === 'development';
 
 const baseFilename = isDev ? 'index' : 'index.[contenthash]';
 

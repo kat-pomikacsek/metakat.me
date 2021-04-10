@@ -5,6 +5,9 @@ const isDev = process.env.ELEVENTY_ENV === "development";
 
 const plugins = [
   tailwindcss('tailwind.config.js'),
+  require('postcss-nested'),
+  require('postcss-custom-properties'),
+  require('postcss-custom-media'),  
   autoprefixer,
 ];
 
@@ -15,7 +18,8 @@ if (!isDev) {
   [].push.apply(plugins, [
     purgecss({
       content: ['src/**/*.njk', 'src/**/*.md', 'src/**/*.js'],
-      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+      safelist: [/sky|peach|mango|petrol|gray/]
     }),
     cssnano({
       preset: 'default',
