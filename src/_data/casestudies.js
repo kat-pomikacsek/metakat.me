@@ -3,7 +3,7 @@ const client = require('../lib/contentful');
 module.exports = async () => {
     return client.getEntries({ 
             content_type: 'caseStudy', 
-            order: 'sys.createdAt',
+            order: 'fields.startDate',
             include: 10
         }).then(function (response) {
         const caseStudy = response.items

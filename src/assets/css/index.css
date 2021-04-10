@@ -4,12 +4,28 @@
 /* purgecss end ignore */
 @tailwind  utilities;
 
-body {
-	color: #777777;
-	font: 400 125%/1.6 "freight-sans-pro",sans-serif; 
-	text-rendering: optimizeLegibility;
-	background: #fbfbfb;
+:root {
+    --page-bg-color: #ffffff;
+    
+    --heading-color: #333333;
+    --plaincopy-color: #333333; 
+    
+    --link-color: #FF6D12;
+    --link-hover-color: #000000;
+    --icon-color: #999999;
+    
+    --line-color: #ddd;
+    --major-line-color: #ccc;
+    
+    --media-threshold-nav: "screen and (min-width: 720px)";
+    
+    --header-height: 6em;
 }
+
+@custom-media --threshold-nav screen and (min-width: 720px);
+
+
+
 
 @media print {
     body {
@@ -17,24 +33,46 @@ body {
     } 
 }
 
-h1, h2 , #tagline{
-	color: #333333;
-	font-family: "freight-sans-pro",sans-serif;
-}
+@layer base {
+    body {
+        color: var(--plaincopy-color);
+        font: 400 125%/1.6 "Source Sans Pro",sans-serif; 
+        text-rendering: optimizeLegibility;
+        background: var(--page-bg-color);
+    }
 
-h1 {
-	font-size: 1.7em;
-	line-height: 1;
-	font-weight: 500; 
-	margin:1.5em 0 1em; 
-}
+    h1 {
+        @apply text-gray-dark;
+        @apply text-5xl;
+        @apply font-normal;
+        @apply leading-none;
+        @apply mt-12;
+        @apply mb-12;
+    }
+    
+    h2 {
+        @apply text-gray-dark;
+        @apply text-3xl;
+        @apply leading-8;
+        @apply font-normal;
+        @apply mt-8;
+        @apply mb-8;
+    }
+    h3 {
+        @apply text-gray-dark;
+        @apply text-2xl;
+        @apply leading-8;
+        @apply font-normal;
+        @apply mt-4;
+        @apply mb-4;
+    }
 
-h2 {
-	font-size: 1.2em;
-	line-height: 1.25;
-	font-weight: 500; 
-	margin: 2em 0 1em;	 
-}
+    strong {
+        @apply font-medium;
+    }
+  }
+
+
 
 p, pre, ol, ul, dl, figure, figcaption, table, fieldset {
 	margin: 0.8em 0; 
@@ -52,4 +90,114 @@ a:focus {
     color: #000000;
     text-decoration:underline;
     background: none;
+}
+
+#logo {
+	margin: 0;
+
+	img {
+		width: 2.25em;
+		display: block;
+	}
+}
+
+.main-nav {
+
+	a {
+		color: var(--heading-color);
+	}
+
+	a:hover,
+	a:focus {
+		color: var(--link-color);
+		text-decoration: none;
+	}
+
+	@media print {
+		display: none
+	}	
+}
+
+.nav-list {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+    li {
+        display: inline-block;
+        width: auto;
+        padding-left: 2em;
+    }
+    
+    li:nth-child(1){
+        padding-left:0;
+    }	
+}
+
+.nav-list li a {
+	text-decoration:none;
+	background: none;
+}
+
+/***************************** SKILLS *****************************/
+
+.skill-list {
+	
+    @apply list-disc;
+    @apply px-4;
+	
+    li {
+		@apply text-orange;
+        @apply mb-3;
+	}
+	li strong {
+        @apply text-gray-dark;
+	}
+
+    li p {
+        color: var(--plaincopy-color);
+        @apply m-0;
+	}
+}
+
+figcaption {
+    @apply text-center;
+}
+
+
+.theme-petrol {
+    .prose a {
+        @apply text-petrol-dark;
+    }
+}
+
+.theme-sky {
+    .prose a {
+        @apply text-sky-dark;
+    }
+}
+
+.theme-mango {
+    .prose a {
+        @apply text-mango-dark;
+    }
+}
+
+.theme-peach {
+    .prose a {
+        @apply text-peach-dark;
+    }
+}
+
+.block-image--image {
+    @apply mb-4;
+}
+
+.block-image--image:last-of-type {
+    @apply mb-0;
+}
+
+.block-image--image:last-of-type {
+    @apply mb-0;
 }

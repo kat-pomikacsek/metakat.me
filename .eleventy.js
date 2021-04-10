@@ -7,7 +7,7 @@ const shortCodes = require('./src/lib/shortcodes');
 const isDev = process.env.ELEVENTY_ENV === "development";
 
 const manifestPath = path.resolve(__dirname, "dist", "assets", "manifest.json");
-const manifest = !isDev
+const manifest = isDev
   ? {
       "main.js": "/assets/index.js",
       "main.css": "/assets/index.css",
@@ -23,9 +23,16 @@ module.exports = function(eleventyConfig) {
   // Layout aliases make templates more portable.
   eleventyConfig.addLayoutAlias("default", "layouts/default.njk");
   
+  //custom shortcodes
+  eleventyConfig.addShortcode('formatDate', shortCodes.formatDate);
   eleventyConfig.addShortcode('documentToHtmlString', documentToHtmlString);
-  eleventyConfig.addShortcode("imageProcessing", shortCodes.imageProcessing);
+  eleventyConfig.addShortcode("renderImage", shortCodes.renderImage);
+  eleventyConfig.addShortcode("renderImageBlock", shortCodes.renderImageBlock);
+  eleventyConfig.addShortcode("renderImageBlocks", shortCodes.renderImageBlocks);
   eleventyConfig.addShortcode('renderCaseStudyBody', shortCodes.renderCaseStudyBody);
+  eleventyConfig.addShortcode('renderCaseStudyDate', shortCodes.renderCaseStudyDate);
+  eleventyConfig.addShortcode("renderMethods", shortCodes.renderMethods);
+
 
   // Adds a universal shortcode to return the URL to a webpack asset. In Nunjack templates:
   // {% webpackAsset 'main.js' %} or {% webpackAsset 'main.css' %}

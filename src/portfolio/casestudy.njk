@@ -8,20 +8,80 @@ permalink: "/portfolio/{{ page.slug | slug }}/"
 tags: "casestudy"
 layout: default
 eleventyComputed:
-  title: "{{ page.title}}"
+  title: "{{ page.title }}"
 ---
 
-<h1>{{ page.title}}</h1>
-{% imageProcessing page.featuredImage %}
-{%- for section in page.sections -%}
-<section>
-    {% if section.fields.title  %}
-    <h2>{{section.fields.title}}</h2>
-    {% endif %}
-    {% if section.fields.body  %}
+<div class="case-study theme-{{ page.theme }}">
+    
+    <section class="case-study-header bg-{{ page.theme }}">
+        <div class="container mx-auto max-w-screen-md py-12 md:py-20">
+            <div class="max-w-2xl mx-12">
+                <h1 class="text-2xl sm:text-4xl md:text-6xl text-center mt-0 mb-0 mx-5">{{ page.title}}</h1>
+                <p class="casestudy-date text-center mt-5 mb-12 text-sm md:text-base">
+                    {% renderCaseStudyDate page %}
+                </p>
+                <div class="max-w-screen-sm">
+                    {% renderImage page.featuredImage %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container mx-auto max-w-screen-md py-12 md:py-20">
+            <div class="max-w-2xl mx-12 sm:grid sm:grid-cols-2 sm:gap-8">
+                <div class="methods mb-8 sm:mb-0">
+                    <h3 class="mb-0">My Role</h3>
+                    <p class="">{% renderMethods page %}</p>
+                </div>
+                <div class="team">
+                    <h3 class="mb-0">Team &amp; Partners</h3>
+                    <p>{{ page.partners }}</p>
+                </div>
+            </div>
+        </div>    
+    </section>
+    {%- for section in page.sections -%}
+        {% if section.sys.contentType.sys.id === 'caseStudySection' %}
+            <!-- text section -->
+            <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %}" >
+                <div class="container mx-auto max-w-screen-md py-8 md:py-20">
+                    <div class="max-w-2xl mx-12">
+                    {% if section.fields.titleIcons  %}
+                        <div class="flex">
+                        {%- for icon in section.fields.titleIcons -%}
+                        <img class="pr-5 mb-5 max-h-20" src="https:{{icon.fields.file.url}}" alt="{{icon.fields.title}}" />
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if section.fields.title  %}
+                    <h2 class="mt-0">{{section.fields.title}}</h2>
+                    {% endif %}
+                    {% if section.fields.body  %}
+                    <div class="prose">
+                        {% renderCaseStudyBody section.fields.body %}
+                    </div>
+                    {% endif %}
+                    </div>
+                </div>
+            </section>
 
-        {% renderCaseStudyBody section.fields.body %}
-
-    {% endif %}    
-</section>
-{% endfor %}
+            <!-- text section end -->
+        {% endif %}
+        {% if section.sys.contentType.sys.id === 'caseStudyImages' %}
+            <!-- image section -->
+            <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %}" >
+                <div class="container mx-auto max-w-screen-md py-4 md:py-10">
+                    <div class="max-w-2xl mx-12">
+                    {% if section.fields.title  %}
+                    <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
+                    {% endif %}
+                    {% if section.fields.imageBlocks  %}
+                        {% renderImageBlocks section.fields.imageBlocks %}
+                    {% endif %}
+                    </div>
+                </div>
+            </section>
+            <!-- image section end -->
+        {% endif %}        
+    {% endfor %}
+</div>
