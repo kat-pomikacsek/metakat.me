@@ -82,6 +82,51 @@ eleventyComputed:
                 </div>
             </section>
             <!-- image section end -->
-        {% endif %}        
+        {% endif %}
+        {% if section.sys.contentType.sys.id === 'caseStudyScreens' %}
+            <!-- screens section -->
+            <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %}" >
+                <div class="container mx-auto max-w-6xl pt-4 md:pt-10">
+                    <div class=" mx-4">
+                        {% if section.fields.title  %}
+                        <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
+                        {% endif %}
+                        <div class="sm:grid sm:grid-cols-4 gap-14 items-stretch">
+                            {% if section.fields.desktopImage %}
+                            <div class="col-span-3 mb-8 sm:mb-0">
+                                <div class="shadow-xl">
+                                    {% renderImage section.fields.desktopImage %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if section.fields.mobileImage %}
+                            <div class="mobile-viewport shadow-xl overflow-y-auto overscroll-contain">
+                                {% renderImage section.fields.mobileImage %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>            
+            <!-- screens section end -->
+        {% endif %}     
     {% endfor %}
+    <!-- next project teaser begin -->
+    {% if page.relatedCaseStudy %}
+    <section class="{% if page.relatedCaseStudy.fields.theme %}bg-{{ page.relatedCaseStudy.fields.theme }} {% endif %}" >
+        <div class="container mx-auto max-w-screen-md py-8">
+            <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block">
+                <div class="max-w-xl mx-12 grid grid-cols-3 gap-14 items-center">
+                    <div class="teaser-image">
+                        {% renderImage page.relatedCaseStudy.fields.featuredImage %}
+                    </div>
+                    <div class="teaser-text col-span-2">
+                        <p class="my-0">Next project</p>
+                        <h2 class="my-0">{{page.relatedCaseStudy.fields.title}}</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+    {% endif %}  
 </div>

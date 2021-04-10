@@ -4,12 +4,24 @@ description:
 layout: default
 ---
 
-<h1>Work</h1>
+<div class="container mx-auto max-w-screen-md py-8">
+    <h1 class="text-center">Case Studies</h1>
+</div>
 
-<ul class="links">
 {% for caseStudy in casestudies %}
-    <li>
-        <a href="/portfolio/{{ caseStudy.slug }}">{{caseStudy.title}}</a>
-    </li>
+    <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
+        <div class="container mx-auto max-w-screen-md py-8">
+            <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
+                <div class="max-w-xl mx-12 grid grid-cols-3 gap-14 items-center">
+                    <div class="teaser-image">
+                        {% renderImage caseStudy.featuredImage %}
+                    </div>
+                    <div class="teaser-text col-span-2">
+                        <h2 class="my-0">{{caseStudy.title}}</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
 {% endfor %}
 </ul>

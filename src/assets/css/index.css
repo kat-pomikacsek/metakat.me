@@ -201,3 +201,7 @@ figcaption {
 .block-image--image:last-of-type {
     @apply mb-0;
 }
+
+.mobile-viewport {
+    max-height: 800px;
+}
