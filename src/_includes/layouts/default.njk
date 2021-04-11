@@ -5,27 +5,27 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{{ description }}" />
+    <meta name="description" content="{{ description if description else site.description }}" />
 
     <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://metakat.me/">
+    <meta property="og:url" content="{{ site.url }}">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Work">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="/images/logo.png">
+    <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}{{ site.title }}">
+    <meta property="og:description" content="{{ description if description else site.description }}">
+    <meta property="og:image" content="{{ site.url }}/images/logo.png">
     
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="metakat.me">
-    <meta property="twitter:url" content="https://metakat.me/">
-    <meta name="twitter:title" content="{{ title }}">
+    <meta property="twitter:url" content="{{ site.url }}">
+    <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}{{ site.title }}">
     <meta name="twitter:description" content="{{ description }}">
-    <meta name="twitter:image" content="/images/logo.png">
+    <meta name="twitter:image" content="{{ site.url }}/images/logo.png">
 
     <link rel="icon" type="image/png" href="/images/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bitter:400,700|Open+Sans:400,600|Source+Sans+Pro:200,300,400,600,700">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% webpackAsset 'main.css' %}">
-    <link rel="stylesheet" href="https://use.typekit.net/hfa8ply.css">
 
   </head>
 
@@ -37,10 +37,5 @@
     </section>
     
     {% include "_footer.njk" %}
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="{% webpackAsset 'main.js' %}"></script>
   </body>
 </html>
