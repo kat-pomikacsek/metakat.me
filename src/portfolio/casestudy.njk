@@ -14,22 +14,22 @@ eleventyComputed:
 <div class="case-study theme-{{ page.theme }}">
     
     <section class="case-study-header bg-{{ page.theme }}">
-        <div class="container mx-auto max-w-screen-md py-12 md:py-20">
-            <div class="max-w-2xl mx-12">
-                <h1 class="text-2xl sm:text-4xl md:text-6xl text-center mt-0 mb-0 mx-5">{{ page.title}}</h1>
-                <p class="casestudy-date text-center mt-5 mb-12 text-sm md:text-base">
+        <div class="container mx-auto max-w-header py-12 md:py-20">
+            <div class="mx-12 md:mx-0">
+                <h1 class="text-xl sm:text-4xl md:text-6xl text-center mt-0 mb-0 mx-5">{{ page.title}}</h1>
+                <p class="casestudy-date text-center mt-5 mb-12 text-base md:text-xl">
                     {% renderCaseStudyDate page %}
                 </p>
-                <div class="max-w-screen-sm">
+                <div class="max-w-header">
                     {% renderImage page.featuredImage %}
                 </div>
             </div>
         </div>
     </section>
     <section>
-        <div class="container mx-auto max-w-screen-md py-12 md:py-20">
-            <div class="max-w-2xl mx-12 sm:grid sm:grid-cols-2 sm:gap-8">
-                <div class="methods mb-8 sm:mb-0">
+        <div class="container mx-auto max-w-section py-12 md:py-20">
+            <div class="mx-8 md:mx-0 sm:grid sm:grid-cols-2 sm:gap-8">
+                <div class="methods mb-8 md:mb-0">
                     <h3 class="mb-0">My Role</h3>
                     <p class="">{% renderMethods page %}</p>
                 </div>
@@ -44,8 +44,8 @@ eleventyComputed:
         {% if section.sys.contentType.sys.id === 'caseStudySection' %}
             <!-- text section -->
             <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %}" >
-                <div class="container mx-auto max-w-screen-md py-8 md:py-20">
-                    <div class="max-w-2xl mx-12">
+                <div class="container mx-auto max-w-section py-8 md:py-20">
+                    <div class="mx-8 md:mx-0">
                     {% if section.fields.titleIcons  %}
                         <div class="flex">
                         {%- for icon in section.fields.titleIcons -%}
@@ -70,14 +70,14 @@ eleventyComputed:
         {% if section.sys.contentType.sys.id === 'caseStudyImages' %}
             <!-- image section -->
             <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %}" >
-                <div class="container mx-auto max-w-screen-md py-4 md:py-10">
-                    <div class="max-w-2xl mx-12">
-                    {% if section.fields.title  %}
-                    <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
-                    {% endif %}
-                    {% if section.fields.imageBlocks  %}
+                <div class="container mx-auto max-w-7xl py-4 md:py-10">
+                    <div class="mx-8 md:mx-0">
+                        {% if section.fields.title  %}
+                        <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
+                        {% endif %}
+                        {% if section.fields.imageBlocks  %}
                         {% renderImageBlocks section.fields.imageBlocks %}
-                    {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </section>
@@ -85,13 +85,13 @@ eleventyComputed:
         {% endif %}
         {% if section.sys.contentType.sys.id === 'caseStudyScreens' %}
             <!-- screens section -->
-            <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %}" >
-                <div class="container mx-auto max-w-6xl pt-4 md:pt-10">
-                    <div class=" mx-4">
+            <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %} overflow-hidden" >
+                <div class="container mx-auto max-w-7xl pt-4 md:pt-10">
+                    <div class="mx-8">
                         {% if section.fields.title  %}
                         <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
                         {% endif %}
-                        <div class="sm:grid sm:grid-cols-4 gap-14 items-stretch">
+                        <div class="sm:grid sm:grid-cols-4 gap-8 md:gap-14 items-stretch">
                             {% if section.fields.desktopImage %}
                             <div class="col-span-3 mb-8 sm:mb-0">
                                 <div class="shadow-xl">
@@ -114,13 +114,13 @@ eleventyComputed:
     <!-- next project teaser begin -->
     {% if page.relatedCaseStudy %}
     <section class="{% if page.relatedCaseStudy.fields.theme %}bg-{{ page.relatedCaseStudy.fields.theme }} {% endif %}" >
-        <div class="container mx-auto max-w-screen-md py-8">
+        <div class="container mx-auto max-w-section py-8">
             <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block">
-                <div class="max-w-xl mx-12 grid grid-cols-3 gap-14 items-center">
+                <div class="mx-12 md:mx-0 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-14 items-center">
                     <div class="teaser-image">
                         {% renderImage page.relatedCaseStudy.fields.featuredImage %}
                     </div>
-                    <div class="teaser-text col-span-2">
+                    <div class="teaser-text md:col-span-2">
                         <p class="my-0">Next project</p>
                         <h2 class="my-0">{{page.relatedCaseStudy.fields.title}}</h2>
                     </div>

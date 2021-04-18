@@ -145,7 +145,7 @@ a:focus {
 .skill-list {
 	
     @apply list-disc;
-    @apply px-4;
+    @apply pl-4;
 	
     li {
 		@apply text-orange;
@@ -153,6 +153,7 @@ a:focus {
 	}
 	li strong {
         @apply text-gray-dark;
+        @apply font-semibold;
 	}
 
     li p {

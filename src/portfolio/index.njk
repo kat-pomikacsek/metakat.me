@@ -4,24 +4,50 @@ description:
 layout: default
 ---
 
-<div class="container mx-auto max-w-screen-md py-8">
-    <h1 class="text-center">Case Studies</h1>
-</div>
-
 {% for caseStudy in casestudies %}
+   {% if loop.last %}
     <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
         <div class="container mx-auto max-w-screen-md py-8">
             <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
-                <div class="max-w-xl mx-12 grid grid-cols-3 gap-14 items-center">
+                <div class="mx-8 md:mx-0 grid grid-cols-2 gap-14 items-center">
+                    <div class="teaser-text">
+                        <p class="casestudy-date m-0 text-base md:text-xl">
+                            {% renderCaseStudyDate caseStudy %}
+                        </p>
+                        <h2 class="my-0">{{caseStudy.title}}</h2>
+                    </div>
                     <div class="teaser-image">
                         {% renderImage caseStudy.featuredImage %}
                     </div>
-                    <div class="teaser-text col-span-2">
+                </div>
+            </a>
+        </div>
+    </section>
+    {% endif %}
+{% endfor %}
+
+<div class="container mx-auto max-w-screen-md py-8">
+    <h1 class="text-center">Case Studies</h1>
+</div>
+{% for caseStudy in casestudies %}
+    {% if loop.last === false %}
+    <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
+        <div class="container mx-auto max-w-screen-md py-8">
+            <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
+                <div class="mx-8 md:mx-0 grid grid-cols-2 gap-14 items-center">
+                    <div class="teaser-image">
+                        {% renderImage caseStudy.featuredImage %}
+                    </div>
+                    <div class="teaser-text">
+                        <p class="casestudy-date m-0 text-base md:text-xl">
+                            {% renderCaseStudyDate caseStudy %}
+                        </p>                    
                         <h2 class="my-0">{{caseStudy.title}}</h2>
                     </div>
                 </div>
             </a>
         </div>
     </section>
+    {% endif %}
 {% endfor %}
 </ul>

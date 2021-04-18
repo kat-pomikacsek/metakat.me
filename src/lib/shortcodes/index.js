@@ -21,8 +21,8 @@ function formatDate(date, dateFormat) {
 
 function renderPicture(image, layout = LAYOUT_FULL_WIDTH) {
     return `<img class="image-responsive ${layout}"
-            srcset="https:${image.fields.file.url}?w=480&fm=webp&q=80&fit=fill&f=faces 480w,
-            https:${image.fields.file.url}?w=800&fm=webp&q=80&fit=fill&f=faces 800w" sizes="(max-width: 600px) 480px,800px"
+            srcset="https:${image.fields.file.url}?w=480&fm=webp&q=100&fit=fill&f=faces 480w,
+            https:${image.fields.file.url}?w=1200&fm=webp&q=100&fit=fill&f=faces 820w" sizes="(max-width: 600px) 480px,820px"
             src="https:${image.fields.file.url}?w=480&fit=fill&f=faces"
             alt="${image.fields.title}" loading="lazy">`;
 }
@@ -104,7 +104,6 @@ const renderEntryLink = function (node, children) {
     switch (contentType) {
         case 'caseStudy':
             return `<a href="/portfolio/${target.fields.slug}">${children(node.content)}</a>`
-            break;
         default:
             console.log('Unsupported content type in Rich Text link: ', contentType);
             return '';

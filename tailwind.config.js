@@ -49,7 +49,12 @@ module.exports = {
     fontFamily: {
       sans: ['Source Sans Pro', 'sans-serif']
     },
-    extend: {},
+    extend: {
+      maxWidth: {
+        'section': '720px',
+        'header': '820px'
+      }
+    },
   },
   variants: {
     extend: {},
