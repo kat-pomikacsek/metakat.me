@@ -34,3 +34,5 @@ ready(() =>{
         showNav();
     }
 });
+
+// ScrollReveal().reveal('.casestudy-section', { delay: 250 });

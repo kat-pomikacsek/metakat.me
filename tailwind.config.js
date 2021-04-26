@@ -45,15 +45,27 @@ module.exports = {
         light: '#FBFBFB',
         lightest: '#FBFBFB'
       }
-    },    
+    },
     fontFamily: {
       sans: ['Source Sans Pro', 'sans-serif']
     },
     extend: {
       maxWidth: {
         'section': '720px',
-        'header': '820px'
-      }
+        'header': '820px',
+        'overview': '976px',
+        'teaser-mobile': '60vw'
+      },
+      screens: {
+        'sm': '640px',  
+        'md': '832px', // 52rem 
+        'lg': '976px', // 61rem
+        'xl': '1280px',  
+        '2xl': '1536px',
+      },
+      fontSize: {
+        '3xl': ['2rem', '2.5rem']
+      },
     },
   },
   variants: {

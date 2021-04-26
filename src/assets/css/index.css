@@ -53,7 +53,6 @@
     h2 {
         @apply text-gray-dark;
         @apply text-3xl;
-        @apply leading-8;
         @apply font-normal;
         @apply mt-8;
         @apply mb-8;

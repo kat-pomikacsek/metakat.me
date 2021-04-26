@@ -1,4 +1,6 @@
 const format = require('date-fns/format');
+const queryString = require('query-string');
+const _ = require('lodash');
 
 const {
     documentToHtmlString
@@ -14,17 +16,42 @@ const IMAGE_JPEG = 'image/jpeg';
 // constants for image layouts
 const LAYOUT_FULL_WIDTH = 'full-width';
 const LAYOUT_INLINE = 'inline';
+// default params for Contentful Images API
+const IMAGE_PARAMS = {
+    fm: 'webp',
+    q: 100,
+    fit: 'fill',
+    f: 'faces'
+}
 
 function formatDate(date, dateFormat) {
     return format(date, dateFormat);
 }
 
-function renderPicture(image, layout = LAYOUT_FULL_WIDTH) {
+function getImageUrl (image, params) {
+    const imageUrl = `https:${image.fields.file.url}`; 
+    const imageQuery = queryString.stringify(params);
+    return `${imageUrl}?${imageQuery}`;    
+}
+
+function renderResponsiveImage(image, layout = LAYOUT_FULL_WIDTH, mobileWidth = 480, desktopWidth = 1200) {
+    const mobileParams = _.extend({
+        w: mobileWidth
+    }, IMAGE_PARAMS);
+    const desktopParams = _.extend({
+        w: desktopWidth
+    }, IMAGE_PARAMS);
+    const imageUrl = `https:${image.fields.file.url}`;
+    const altText = image.fields.title;
+    const mobileUrl =  getImageUrl(image, mobileParams);
+    const desktopUrl = getImageUrl(image, desktopParams);;
+    
     return `<img class="image-responsive ${layout}"
-            srcset="https:${image.fields.file.url}?w=480&fm=webp&q=100&fit=fill&f=faces 480w,
-            https:${image.fields.file.url}?w=1200&fm=webp&q=100&fit=fill&f=faces 820w" sizes="(max-width: 600px) 480px,820px"
-            src="https:${image.fields.file.url}?w=480&fit=fill&f=faces"
-            alt="${image.fields.title}" loading="lazy">`;
+                srcset="${mobileUrl} ${mobileWidth}w,
+                ${desktopUrl} ${desktopWidth}w" 
+                sizes="(max-width: 61rem) ${mobileWidth}px,${desktopWidth}px"
+                src="${imageUrl}?w=${mobileWidth}&fit=fill&f=faces"
+                alt="${altText}" loading="lazy">`;
 }
 
 function renderSvg(image, layout = LAYOUT_FULL_WIDTH) {
@@ -39,7 +66,7 @@ function renderImage(image, layout = LAYOUT_FULL_WIDTH) {
         case IMAGE_SVG:
             return renderSvg(image, layout);
         default:
-            return renderPicture(image, layout);
+            return renderResponsiveImage(image, layout);
     }
 }
 
@@ -77,10 +104,12 @@ const renderImageBlocks = function(imageBlocks) {
         return renderImageBlock(imageBlock)
     });
     const hasInlineImages = imageBlocks.filter(imageBlock => imageBlock.fields.layout === LAYOUT_INLINE).length > 0;
-    const wrapperClass = hasInlineImages ? 'sm:grid sm:grid-cols-2 sm:gap-8' : '';
+    const wrapperClass = hasInlineImages ? 'sm:grid sm:grid-cols-2 sm:gap-8 sm:max-w-2xl' : '';
     return `
-        <div class="images-wrapper ${wrapperClass}">
-            ${renderedBlocks.join('')}
+        <div class="flex items-center justify-center">
+            <div class="images-wrapper ${wrapperClass}">
+                ${renderedBlocks.join('')}
+            </div>
         </div>
     `;
 }
@@ -141,6 +170,29 @@ const renderCaseStudyDate = function (caseStudy) {
     return `${startDateString} – ${endDateString}`;
 }
 
+function renderTeaserImage(imageMobile, imageDesktop, mobileWidth = 320, desktopWidth = 448) {
+    const mobileParams = _.extend({
+        w: mobileWidth
+    }, IMAGE_PARAMS);
+    const desktopParams = _.extend({
+        w: desktopWidth
+    }, IMAGE_PARAMS);
+    const imageUrl = `https:${imageMobile.fields.file.url}`;
+    const altText = imageDesktop.fields.title;
+    const mobileUrl =  getImageUrl(imageMobile, mobileParams);
+    const tabletUrl = getImageUrl(imageMobile, desktopParams);
+    const desktopUrl = getImageUrl(imageDesktop, desktopParams);
+    
+    return `
+    <picture class="teaser-picture">
+        <source srcset="${desktopUrl}" media="(min-width: 61rem)" />
+        <source srcset="${tabletUrl}" media"(min-width: 28rem)" /> 
+        <source srcset="${mobileUrl}" /> 
+        <img src="${imageUrl}?w=${mobileWidth}&fit=fill&f=faces" alt="${altText}" loading="lazy" />
+    </picture>
+    `;
+}
+
 
 const renderMethods = function (caseStudy) {
     const methods = caseStudy.methods || [];
@@ -155,4 +207,5 @@ module.exports = {
     renderImageBlocks: renderImageBlocks,
     renderImage: renderImage,
     renderMethods: renderMethods,
+    renderTeaserImage: renderTeaserImage
 };
