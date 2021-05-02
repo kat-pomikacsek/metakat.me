@@ -4,45 +4,24 @@
 /* purgecss end ignore */
 @tailwind  utilities;
 
-:root {
-    --page-bg-color: #ffffff;
-    
-    --heading-color: #333333;
-    --plaincopy-color: #333333; 
-    
-    --link-color: #FF6D12;
-    --link-hover-color: #000000;
-    --icon-color: #999999;
-    
-    --line-color: #ddd;
-    --major-line-color: #ccc;
-    
-    --media-threshold-nav: "screen and (min-width: 720px)";
-    
-    --header-height: 6em;
-}
-
-@custom-media --threshold-nav screen and (min-width: 720px);
-
-
-
 
 @media print {
     body {
-        background: white;
+        @apply bg-white;
     } 
 }
 
 @layer base {
     body {
-        color: var(--plaincopy-color);
-        font: 400 125%/1.6 "Source Sans Pro",sans-serif; 
+        @apply font-sans;
+        @apply text-gray-dark;
+        @apply text-xl;
+        @apply leading-8;
+        @apply bg-white;
         text-rendering: optimizeLegibility;
-        background: var(--page-bg-color);
     }
 
     h1 {
-        @apply text-gray-dark;
         @apply text-5xl;
         @apply font-normal;
         @apply leading-none;
@@ -51,14 +30,12 @@
     }
     
     h2 {
-        @apply text-gray-dark;
         @apply text-3xl;
         @apply font-normal;
         @apply mt-8;
         @apply mb-8;
     }
     h3 {
-        @apply text-gray-dark;
         @apply text-2xl;
         @apply leading-8;
         @apply font-normal;
@@ -66,50 +43,45 @@
         @apply mb-4;
     }
 
-    strong {
+    strong, b {
         @apply font-medium;
     }
-  }
 
+    p {
+        @apply mb-5;
+    }
 
+    a {
+        @apply text-gray-dark;
+        @apply font-normal;
+        @apply no-underline;
+    }
+    
+    a:hover,
+    a:focus {
+        background: none;
+    }
 
-p, pre, ol, ul, dl, figure, figcaption, table, fieldset {
-	margin: 0.8em 0; 
+    figcaption {
+        @apply text-center;
+        @apply mt-4;
+    }
 }
 
-a {
-    color: #FF6D12;
-    font-size:100%;
-    font-weight: 400;
-    text-decoration:none;
-}
 
-a:hover,
-a:focus {
-    color: #000000;
-    text-decoration:underline;
-    background: none;
-}
+/***************************** Header *****************************/
 
-#logo {
-	margin: 0;
-
-	img {
-		width: 2.25em;
-		display: block;
-	}
-}
 
 .main-nav {
 
 	a {
-		color: var(--heading-color);
+        @apply text-gray-dark;
 	}
 
 	a:hover,
 	a:focus {
-		color: var(--link-color);
-		text-decoration: none;
+		@apply text-orange;
+		@apply no-underline;
 	}
 
 	@media print {
@@ -126,7 +98,7 @@ a:focus {
     li {
         display: inline-block;
         width: auto;
-        padding-left: 2em;
+        @apply pl-12;
     }
     
     li:nth-child(1){
@@ -156,14 +128,14 @@ a:focus {
 	}
 
     li p {
-        color: var(--plaincopy-color);
+        @apply text-gray-dark;
         @apply m-0;
 	}
 }
 
-figcaption {
-    @apply text-center;
-}
+
+
+/***************************** Themes *****************************/
 
 
 .theme-petrol {
@@ -181,13 +153,20 @@ figcaption {
 .theme-mango {
     .prose a {
         @apply text-mango-dark;
-    }
+    }   
 }
 
 .theme-peach {
     .prose a {
         @apply text-peach-dark;
     }
+}
+
+
+/***************************** Case studies *****************************/
+
+.prose p:last-of-type {
+    @apply mb-0;
 }
 
 .block-image--image {

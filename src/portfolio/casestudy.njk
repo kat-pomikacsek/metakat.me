@@ -6,6 +6,7 @@ pagination:
     addAllPagesToCollections: true
 permalink: "/portfolio/{{ page.slug | slug }}/"
 tags: "casestudy"
+robots: "noindex, nofollow"
 layout: default
 eleventyComputed:
   title: "{{ page.title }}"
@@ -16,11 +17,11 @@ eleventyComputed:
     <section class="case-study-header bg-{{ page.theme }}">
         <div class="container mx-auto max-w-header py-12 md:py-20">
             <div class="mx-12 md:mx-0">
-                <h1 class="text-xl sm:text-4xl md:text-6xl text-center mt-0 mb-0 mx-5">{{ page.title}}</h1>
-                <p class="casestudy-date text-center mt-5 mb-12 text-base md:text-xl">
+                <h1 class="text-4xl md:text-6xl text-center mt-0 mb-0 mx-5">{{ page.title}}</h1>
+                <p class="casestudy-date text-center mb-13 mt-2">
                     {% renderCaseStudyDate page %}
                 </p>
-                <div class="max-w-header">
+                <div class="max-w-header flex justify-center items-start">
                     {% renderImage page.featuredImage %}
                 </div>
             </div>
@@ -70,7 +71,7 @@ eleventyComputed:
         {% if section.sys.contentType.sys.id === 'caseStudyImages' %}
             <!-- image section -->
             <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %}" >
-                <div class="container mx-auto max-w-7xl py-4 lg:py-10">
+                <div class="container mx-auto max-w-7xl py-13">
                     <div class="mx-8 lg:mx-0">
                         {% if section.fields.title  %}
                         <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
@@ -86,22 +87,24 @@ eleventyComputed:
         {% if section.sys.contentType.sys.id === 'caseStudyScreens' %}
             <!-- screens section -->
             <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %} overflow-hidden" >
-                <div class="container mx-auto max-w-7xl pt-4 lg:pt-10">
+                <div class="container mx-auto max-w-6xl pt-13 pb-13 md:pb-0">
                     <div class="mx-8">
                         {% if section.fields.title  %}
                         <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
                         {% endif %}
-                        <div class="sm:grid sm:grid-cols-4 gap-8 lg:gap-14 items-stretch">
+                        <div class="md:grid md:grid-cols-4 md:gap-13">
                             {% if section.fields.desktopImage %}
-                            <div class="col-span-3 mb-8 sm:mb-0">
+                            <div class="md:col-span-3 pb-13 md:pb-0">
                                 <div class="shadow-xl">
                                     {% renderImage section.fields.desktopImage %}
                                 </div>
                             </div>
                             {% endif %}
                             {% if section.fields.mobileImage %}
-                            <div class="mobile-viewport shadow-xl overflow-y-auto overscroll-contain">
+                            <div class="flex justify-center md:justify-start">
+                                <div class="max-h-80 md:max-h-screen-mobile overflow-y-auto overscroll-contain shadow-xl max-w-screen-mobile">
                                 {% renderImage section.fields.mobileImage %}
+                                </div>
                             </div>
                             {% endif %}
                         </div>
@@ -113,19 +116,22 @@ eleventyComputed:
     {% endfor %}
     <!-- next project teaser begin -->
     {% if page.relatedCaseStudy %}
-    <section class="{% if page.relatedCaseStudy.fields.theme %}bg-{{ page.relatedCaseStudy.fields.theme }} {% endif %}" >
+    <section class="{% if page.relatedCaseStudy.fields.theme %}theme-{{ page.relatedCaseStudy.fields.theme }} bg-{{ page.relatedCaseStudy.fields.theme }} {% endif %}" >
         <div class="container mx-auto max-w-section py-8">
-            <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block">
-                <div class="mx-12 lg:mx-0 grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-14 items-center">
-                    <div class="teaser-image">
-                        {% renderImage page.relatedCaseStudy.fields.teaserImageLeft %}
-                    </div>
-                    <div class="teaser-text lg:col-span-2">
+            <div class="mx-12 lg:mx-0 flex flex-col items-center md:flex-none md:grid md:grid-cols-5 md:gap-12">
+
+                <div class="teaser-image w-48 md:w-auto mb-6 md:mb-0 justify-center md:justify-self-end md:col-span-2">
+                    <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block lg:max-w-md ">
+                    {% renderTeaserImage page.relatedCaseStudy.fields.featuredImage, page.relatedCaseStudy.fields.teaserImageLeft, '52rem' %}
+                    </a>
+                </div>
+                <div class="teaser-text text-center md:text-left md:col-span-3">
+                    <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="teaser-link text-current hover:text-{{ page.relatedCaseStudy.fields.theme }}-dark block">
                         <p class="my-0">Next project</p>
                         <h2 class="my-0">{{page.relatedCaseStudy.fields.title}}</h2>
-                    </div>
+                    </a>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
     {% endif %}

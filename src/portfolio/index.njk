@@ -1,6 +1,7 @@
 ---
 title: Portfolio
 description: Current work and case studies
+robots: "noindex, nofollow"
 layout: default
 ---
 
@@ -10,7 +11,7 @@ layout: default
             <div class="py-8 container mx-auto max-w-overview">
                 <div class="flex flex-col lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
                     <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-end">
-                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block lg:max-w-xs ">
+                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
                             <span class="casestudy-date m-0 text-base md:text-xl">{% renderCaseStudyDate caseStudy %}</span>
                             <h2 class="my-0">{{caseStudy.title}}</h2>
                         </a>
@@ -41,7 +42,7 @@ layout: default
                         </a>
                     </div>
                     <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-start">
-                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block lg:max-w-xs ">
+                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
                             <span class="casestudy-date m-0 text-base md:text-xl">{% renderCaseStudyDate caseStudy %}</span>
                             <h2 class="my-0">{{caseStudy.title}}</h2>
                         </a>
@@ -52,3 +53,5 @@ layout: default
     {% endif %}
 {% endfor %}
 </ul>
+<!-- footer section -->
+{% include "_footer.njk" %}

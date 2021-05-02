@@ -155,7 +155,6 @@ const renderCaseStudyBody = function (body) {
 const renderCaseStudyDate = function (caseStudy) {
     const startDate = caseStudy && caseStudy.startDate || '';
     const endDate = caseStudy && caseStudy.endDate || '';
-    console.log(startDate, endDate);
     if (!startDate && !endDate) {
         return '';
     }
@@ -170,7 +169,7 @@ const renderCaseStudyDate = function (caseStudy) {
     return `${startDateString} – ${endDateString}`;
 }
 
-function renderTeaserImage(imageMobile, imageDesktop, mobileWidth = 320, desktopWidth = 448) {
+function renderTeaserImage(imageMobile, imageDesktop, breakPoint = '61rem', mobileWidth = 320, desktopWidth = 448) {
     const mobileParams = _.extend({
         w: mobileWidth
     }, IMAGE_PARAMS);
@@ -178,14 +177,14 @@ function renderTeaserImage(imageMobile, imageDesktop, mobileWidth = 320, desktop
         w: desktopWidth
     }, IMAGE_PARAMS);
     const imageUrl = `https:${imageMobile.fields.file.url}`;
-    const altText = imageDesktop.fields.title;
+    const altText = imageMobile.fields.title;
     const mobileUrl =  getImageUrl(imageMobile, mobileParams);
     const tabletUrl = getImageUrl(imageMobile, desktopParams);
     const desktopUrl = getImageUrl(imageDesktop, desktopParams);
     
     return `
     <picture class="teaser-picture">
-        <source srcset="${desktopUrl}" media="(min-width: 61rem)" />
+        <source srcset="${desktopUrl}" media="(min-width: ${breakPoint})" />
         <source srcset="${tabletUrl}" media"(min-width: 28rem)" /> 
         <source srcset="${mobileUrl}" /> 
         <img src="${imageUrl}?w=${mobileWidth}&fit=fill&f=faces" alt="${altText}" loading="lazy" />

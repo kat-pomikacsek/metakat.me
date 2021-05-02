@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ description if description else site.description }}" />
+    {% if robots %}<meta name="robots" content="{{robots}}" />{% endif %}
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="{{ site.url }}">
@@ -37,8 +38,6 @@
     <section class="section-main pt-16" role="main">      
       {{ content | safe }}
     </section>
-    
-    {% include "_footer.njk" %}
     <script src="{% webpackAsset 'main.js' %}"></script>
   </body>
 </html>

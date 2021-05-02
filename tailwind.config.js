@@ -15,7 +15,7 @@ module.exports = {
         light: '#ECF7F8',
         lightest: '#ECF7F8',
         DEFAULT: '#ADDFE2',
-        dark: '#1C959C',
+        dark: '#198B92',
         gray: '#FBFBFB'
       },
       sky: {
@@ -29,20 +29,20 @@ module.exports = {
         light: '#FFFAE9',
         lightest: '#FFFAE9',
         DEFAULT: '#FFEAB6',
-        dark: '#D69A00',
+        dark: '#D49A01',
         gray: '#FBFBFB'
       },
       peach: {
         light: '#FFD3B8',
         lightest: '#FFF0E8',
         DEFAULT: '#FFC09C',
-        dark: '#FF5C00',
+        dark: '#E05101',
         gray: '#FBFBFB'
       },
       gray: {
-        DEFAULT: '#FBFBFB',
+        DEFAULT: '#333333',
         dark: '#333333',
-        light: '#FBFBFB',
+        light: '#7C7979',
         lightest: '#FBFBFB'
       }
     },
@@ -54,7 +54,10 @@ module.exports = {
         'section': '720px',
         'header': '820px',
         'overview': '976px',
-        'teaser-mobile': '60vw'
+        'screen-mobile': '9.5rem'
+      },
+      maxHeight: {
+        'screen-mobile': '50rem'
       },
       screens: {
         'sm': '640px',  
@@ -66,6 +69,15 @@ module.exports = {
       fontSize: {
         '3xl': ['2rem', '2.5rem']
       },
+      padding: {
+        '13': '3.25rem' // 52px
+      },
+      margin: {
+        '13': '3.25rem' // 52px
+      },
+      gap: {
+        '13': '3.25rem' // 52px
+       }      
     },
   },
   variants: {
