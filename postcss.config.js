@@ -19,7 +19,7 @@ if (!isDev) {
     purgecss({
       content: ['src/**/*.njk', 'src/**/*.md', 'src/**/*.js'],
       defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
-      safelist: [/sky|peach|mango|petrol|gray/]
+      safelist: [/sky|peach|mango|petrol|gray|screen\-mobile/]
     }),
     cssnano({
       preset: 'default',
