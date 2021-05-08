@@ -71,7 +71,7 @@ eleventyComputed:
         {% if section.sys.contentType.sys.id === 'caseStudyImages' %}
             <!-- image section -->
             <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %}" >
-                <div class="container mx-auto max-w-7xl py-13">
+                <div class="container mx-auto max-w-screens py-13">
                     <div class="mx-8 lg:mx-0">
                         {% if section.fields.title  %}
                         <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
@@ -87,23 +87,23 @@ eleventyComputed:
         {% if section.sys.contentType.sys.id === 'caseStudyScreens' %}
             <!-- screens section -->
             <section class="{% if section.fields.theme %}bg-{{ page.theme }}-{{section.fields.theme}} {% endif %} overflow-hidden" >
-                <div class="container mx-auto max-w-6xl pt-13 pb-13 md:pb-0">
-                    <div class="mx-8">
+                <div class="container mx-auto max-w-screens pt-13 pb-13 md:pb-0">
+                    <div class="mx-8 md:mx-0">
                         {% if section.fields.title  %}
                         <h2 class="mt-0 text-center">{{section.fields.title}}</h2>
                         {% endif %}
-                        <div class="md:grid md:grid-cols-4 md:gap-13">
+                        <div class="md:flex md:justify-center">
                             {% if section.fields.desktopImage %}
-                            <div class="md:col-span-3 pb-13 md:pb-0">
-                                <div class="shadow-xl">
+                            <div class="flex md:block justify-center md:justify-start pb-13 md:mr-13">
+                                <div class="shadow-lg max-w-screen-desktop">
                                     {% renderImage section.fields.desktopImage %}
                                 </div>
                             </div>
                             {% endif %}
                             {% if section.fields.mobileImage %}
                             <div class="flex justify-center md:justify-start">
-                                <div class="max-h-80 md:max-h-screen-mobile overflow-y-auto overscroll-contain shadow-xl max-w-screen-mobile">
-                                {% renderImage section.fields.mobileImage %}
+                                <div class="max-h-80 md:max-h-screen-mobile-{{section.fields.mobileScreenSize}} overflow-y-auto overscroll-contain max-w-screen-mobile shadow-lg">
+                                {% renderPicture section.fields.mobileImage, '52rem', 152, 152 %}
                                 </div>
                             </div>
                             {% endif %}

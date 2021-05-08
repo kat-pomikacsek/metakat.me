@@ -1,6 +1,13 @@
 const format = require('date-fns/format');
-const queryString = require('query-string');
 const _ = require('lodash');
+const imageHelpers = require('./images');
+const renderImage = imageHelpers.renderImage;
+const renderTeaserImage = imageHelpers.renderTeaserImage;
+const renderPicture = imageHelpers.renderPicture;
+
+// constants for image layouts
+const LAYOUT_FULL_WIDTH = 'full-width';
+const LAYOUT_INLINE = 'inline';
 
 const {
     documentToHtmlString
@@ -8,68 +15,10 @@ const {
 const RichTextTypes = require('@contentful/rich-text-types');
 const BLOCKS = RichTextTypes.BLOCKS;
 const INLINES = RichTextTypes.INLINES;
-// constants for image mime types
-const IMAGE_SVG = 'image/svg+xml';
-const IMAGE_PNG = 'image/png';
-const IMAGE_WEBP = 'image/webp';
-const IMAGE_JPEG = 'image/jpeg';
-// constants for image layouts
-const LAYOUT_FULL_WIDTH = 'full-width';
-const LAYOUT_INLINE = 'inline';
-// default params for Contentful Images API
-const IMAGE_PARAMS = {
-    fm: 'webp',
-    q: 100,
-    fit: 'fill',
-    f: 'faces'
-}
 
 function formatDate(date, dateFormat) {
     return format(date, dateFormat);
 }
-
-function getImageUrl (image, params) {
-    const imageUrl = `https:${image.fields.file.url}`; 
-    const imageQuery = queryString.stringify(params);
-    return `${imageUrl}?${imageQuery}`;    
-}
-
-function renderResponsiveImage(image, layout = LAYOUT_FULL_WIDTH, mobileWidth = 480, desktopWidth = 1200) {
-    const mobileParams = _.extend({
-        w: mobileWidth
-    }, IMAGE_PARAMS);
-    const desktopParams = _.extend({
-        w: desktopWidth
-    }, IMAGE_PARAMS);
-    const imageUrl = `https:${image.fields.file.url}`;
-    const altText = image.fields.title;
-    const mobileUrl =  getImageUrl(image, mobileParams);
-    const desktopUrl = getImageUrl(image, desktopParams);;
-    
-    return `<img class="image-responsive ${layout}"
-                srcset="${mobileUrl} ${mobileWidth}w,
-                ${desktopUrl} ${desktopWidth}w" 
-                sizes="(max-width: 61rem) ${mobileWidth}px,${desktopWidth}px"
-                src="${imageUrl}?w=${mobileWidth}&fit=fill&f=faces"
-                alt="${altText}" loading="lazy">`;
-}
-
-function renderSvg(image, layout = LAYOUT_FULL_WIDTH) {
-    return `<img class="image-svg ${layout}"
-    src="https:${image.fields.file.url}"
-    alt="${image.fields.title}" loading="lazy">`;
-}
-
-function renderImage(image, layout = LAYOUT_FULL_WIDTH) {
-    const file = image.fields.file;
-    switch(file.contentType) {
-        case IMAGE_SVG:
-            return renderSvg(image, layout);
-        default:
-            return renderResponsiveImage(image, layout);
-    }
-}
-
 
 const renderImageBlock = function (entry) {
     const theme = entry.fields && entry.fields.theme || '';
@@ -169,29 +118,6 @@ const renderCaseStudyDate = function (caseStudy) {
     return `${startDateString} – ${endDateString}`;
 }
 
-function renderTeaserImage(imageMobile, imageDesktop, breakPoint = '61rem', mobileWidth = 320, desktopWidth = 448) {
-    const mobileParams = _.extend({
-        w: mobileWidth
-    }, IMAGE_PARAMS);
-    const desktopParams = _.extend({
-        w: desktopWidth
-    }, IMAGE_PARAMS);
-    const imageUrl = `https:${imageMobile.fields.file.url}`;
-    const altText = imageMobile.fields.title;
-    const mobileUrl =  getImageUrl(imageMobile, mobileParams);
-    const tabletUrl = getImageUrl(imageMobile, desktopParams);
-    const desktopUrl = getImageUrl(imageDesktop, desktopParams);
-    
-    return `
-    <picture class="teaser-picture">
-        <source srcset="${desktopUrl}" media="(min-width: ${breakPoint})" />
-        <source srcset="${tabletUrl}" media"(min-width: 28rem)" /> 
-        <source srcset="${mobileUrl}" /> 
-        <img src="${imageUrl}?w=${mobileWidth}&fit=fill&f=faces" alt="${altText}" loading="lazy" />
-    </picture>
-    `;
-}
-
 
 const renderMethods = function (caseStudy) {
     const methods = caseStudy.methods || [];
@@ -204,7 +130,8 @@ module.exports = {
     renderCaseStudyDate: renderCaseStudyDate,
     renderImageBlock: renderImageBlock,
     renderImageBlocks: renderImageBlocks,
-    renderImage: renderImage,
     renderMethods: renderMethods,
-    renderTeaserImage: renderTeaserImage
+    renderImage: renderImage,
+    renderTeaserImage: renderTeaserImage,
+    renderPicture: renderPicture
 };

@@ -54,10 +54,16 @@ module.exports = {
         'section': '720px',
         'header': '820px',
         'overview': '976px',
-        'screen-mobile': '9.5rem'
+        'screen-desktop': '38.5rem', //616px
+        'screen-mobile': '9.5rem', //152px
+        'screens': '820px'
       },
       maxHeight: {
-        'screen-mobile': '50rem'
+        'screen-mobile': '36rem',
+        'screen-mobile-short': '40rem',
+        'screen-mobile-normal': '45rem',
+        'screen-mobile-tall': '50rem',
+
       },
       screens: {
         'sm': '640px',  
