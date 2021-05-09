@@ -1,0 +1,57 @@
+---
+title: Portfolio
+description: Current work and case studies
+robots: "noindex, nofollow"
+layout: default
+---
+
+{% for caseStudy in casestudies %}
+    {% if loop.last %}
+        <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
+            <div class="py-8 container mx-auto max-w-overview">
+                <div class="flex flex-col lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
+                    <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-end">
+                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
+                            <span class="casestudy-date m-0 text-base md:text-xl">{% renderCaseStudyDate caseStudy %}</span>
+                            <h2 class="my-0">{{caseStudy.title}}</h2>
+                        </a>
+                    </div>
+                    <div class="teaser-image max-w-xs sm:max-w-md lg:max-w-md mt-6 lg:mt:0 lg:justify-self-start">
+                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
+                            {% renderTeaserImage caseStudy.featuredImage, caseStudy.teaserImageRight %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endfor %}
+
+<div class="container mx-auto max-w-screen-md py-8">
+    <h1 class="text-center">Case Studies</h1>
+</div>
+{% for caseStudy in casestudies %}
+    {% if loop.last === false %}
+        <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
+            <div class="py-8 container mx-auto max-w-overview">
+                <div class="flex flex-col-reverse lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
+                    <div class="teaser-image max-w-xs sm:max-w-md lg:max-w-md mt-6 lg:mt:0 lg:justify-self-end">
+                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
+                            {% renderTeaserImage caseStudy.featuredImage,
+                            caseStudy.teaserImageLeft %}
+                        </a>
+                    </div>
+                    <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-start">
+                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
+                            <span class="casestudy-date m-0 text-base md:text-xl">{% renderCaseStudyDate caseStudy %}</span>
+                            <h2 class="my-0">{{caseStudy.title}}</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endfor %}
+</ul>
+<!-- footer section -->
+{% include "_footer.njk" %}

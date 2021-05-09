@@ -1,0 +1,187 @@
+/* purgecss start ignore */
+@tailwind  base;
+@tailwind  components;
+/* purgecss end ignore */
+@tailwind  utilities;
+
+
+@media print {
+    body {
+        @apply bg-white;
+    } 
+}
+
+@layer base {
+    body {
+        @apply font-sans;
+        @apply text-gray-dark;
+        @apply text-xl;
+        @apply leading-8;
+        @apply bg-white;
+        text-rendering: optimizeLegibility;
+    }
+
+    h1 {
+        @apply text-5xl;
+        @apply font-normal;
+        @apply leading-none;
+        @apply mt-12;
+        @apply mb-12;
+    }
+    
+    h2 {
+        @apply text-3xl;
+        @apply font-normal;
+        @apply mt-8;
+        @apply mb-8;
+    }
+    h3 {
+        @apply text-2xl;
+        @apply leading-8;
+        @apply font-normal;
+        @apply mt-4;
+        @apply mb-4;
+    }
+
+    strong, b {
+        @apply font-medium;
+    }
+
+    p {
+        @apply mb-5;
+    }
+
+    a {
+        @apply text-gray-dark;
+        @apply font-normal;
+        @apply no-underline;
+    }
+    
+    a:hover,
+    a:focus {
+        background: none;
+    }
+
+    figcaption {
+        @apply text-base;
+        @apply text-center;
+        @apply mt-4;
+    }
+}
+
+
+/***************************** Header *****************************/
+
+
+.main-nav {
+
+	a {
+        @apply text-gray-dark;
+	}
+
+	a:hover,
+	a:focus {
+		@apply text-orange;
+		@apply no-underline;
+	}
+
+	@media print {
+		display: none
+	}	
+}
+
+.nav-list {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+    li {
+        display: inline-block;
+        width: auto;
+        @apply pl-12;
+    }
+    
+    li:nth-child(1){
+        padding-left:0;
+    }	
+}
+
+.nav-list li a {
+	text-decoration:none;
+	background: none;
+}
+
+/***************************** SKILLS *****************************/
+
+.skill-list {
+	
+    @apply list-disc;
+    @apply pl-4;
+	
+    li {
+		@apply text-orange;
+        @apply mb-3;
+	}
+	li strong {
+        @apply text-gray-dark;
+        @apply font-semibold;
+	}
+
+    li p {
+        @apply text-gray-dark;
+        @apply m-0;
+	}
+}
+
+
+
+/***************************** Themes *****************************/
+
+
+.theme-petrol {
+    .prose a {
+        @apply text-petrol-dark;
+    }
+}
+
+.theme-sky {
+    .prose a {
+        @apply text-sky-dark;
+    }
+}
+
+.theme-mango {
+    .prose a {
+        @apply text-mango-dark;
+    }   
+}
+
+.theme-peach {
+    .prose a {
+        @apply text-peach-dark;
+    }
+}
+
+
+/***************************** Case studies *****************************/
+
+.prose p:last-of-type {
+    @apply mb-0;
+}
+
+.block-image--image {
+    @apply mb-4;
+}
+
+.block-image--image:last-of-type {
+    @apply mb-0;
+}
+
+.block-image--image:last-of-type {
+    @apply mb-0;
+}
+
+.mobile-viewport {
+    max-height: 800px;
+}

@@ -1,40 +1,38 @@
-import responsiveNav from './responsive-nav';
-
-// responsive navigation
-
-var navigation = responsiveNav("#nav", { 
-	transition: 400,
-	label: '',
-	insert: "before",
-	customToggle: '#nav-toggle'
-  });
-
-
-var $topLink = $('.to-top');
-
-function showTopLink(){
-	$topLink.fadeIn(250);
+function hasPortfolio() {
+    return JSON.parse(localStorage.getItem("portfolioSeen"));
 }
 
-function hideTopLink(){
-	$topLink.fadeOut(250);
+function checkPortfolio() {
+    const isViewingPortfolio = document.location.pathname.match(/^\/portfolio\/?/) !== null;
+    if (isViewingPortfolio) {
+        localStorage.setItem('portfolioSeen', 'true');
+    }
 }
 
-// top link
-
-function initTopLink() {
-	$(window).on('scroll', function (event) {
-		var $win = $(this);
-		var scrollThreshold = $('#tagline').offset().top;
-		
-		if($win.scrollTop() > scrollThreshold) {
-			showTopLink();
-		} else {
-			hideTopLink();
-		}
-	});	
+function createPortfolioLink(){
+    const navEl = document.getElementById('nav');
+    const linkItem = document.createElement('li');
+    linkItem.innerHTML = '<a href="/portfolio" class="" id="portfolio-link">Work</a>';
+    navEl.insertBefore(linkItem, navEl.firstChild);
 }
 
-if($(window).width() < 720) {
-	initTopLink();
+function showNav() {
+    const el = document.getElementById('main-nav');
+    el.classList.remove('hidden');
 }
+
+// helper function to wait for DOM load
+var ready = (callback) =>{
+    if (document.readyState != "loading") callback();
+    else document.addEventListener("DOMContentLoaded", callback);
+}
+
+ready(() =>{ 
+    checkPortfolio();
+    if(hasPortfolio()){
+        createPortfolioLink();
+        showNav();
+    }
+});
+
+// ScrollReveal().reveal('.casestudy-section', { delay: 250 });
