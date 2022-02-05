@@ -7,8 +7,8 @@ layout: default
 
 {% for caseStudy in casestudies %}
     {% if loop.last %}
-        <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
-            <div class="py-8 container mx-auto max-w-overview">
+        <section class="pt-16" >
+            <div class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %} rounded-xl py-8 container mx-auto max-w-overview">
                 <div class="flex flex-col lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
                     <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-end">
                         <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
@@ -32,8 +32,8 @@ layout: default
 </div>
 {% for caseStudy in casestudies %}
     {% if loop.last === false %}
-        <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
-            <div class="py-8 container mx-auto max-w-overview">
+        <section class="" >
+            <div class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %} rounded-xl mb-8 py-8 container mx-auto max-w-overview">
                 <div class="flex flex-col-reverse lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
                     <div class="teaser-image max-w-xs sm:max-w-md lg:max-w-md mt-6 lg:mt:0 lg:justify-self-end">
                         <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
