@@ -8,17 +8,26 @@ layout: default
 {% for caseStudy in casestudies %}
     {% if loop.last %}
         <section class="pt-16" >
-            <div class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %} rounded-xl py-8 container mx-auto max-w-overview">
-                <div class="flex flex-col lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
-                    <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-end">
+            <div class="py-8 container mx-auto max-w-overview">
+                <div class="mx-8 2xl:mx-0 flex flex-col-reverse lg:flex-none lg:grid lg:grid-cols-2 items-center">
+                    <div class="teaser-text mt-1/10 mx-8 lg:mx-36 text-center lg:text-left lg:justify-self-end">
                         <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
                             <span class="casestudy-date m-0 text-base md:text-xl">{% renderCaseStudyDate caseStudy %}</span>
-                            <h2 class="my-0">{{caseStudy.title}}</h2>
+                            <h2 class="my-0 text-3xl md:text:4xl xl:text-6xl">{{caseStudy.title}}</h2>
                         </a>
+                        <div class="mt-2">
+                            {% renderOrganizations caseStudy %}
+                            {% if caseStudy.isCaseStudy%}
+                            <span class="badge badge--casestudy">
+                            Case study
+                            </span>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="teaser-image max-w-xs sm:max-w-md lg:max-w-md mt-6 lg:mt:0 lg:justify-self-start">
+                    <div class="teaser-image relative mt-6 lg:mt:0 lg:justify-center pt-4 {% if caseStudy.theme %}bg-split-{{ caseStudy.theme }}-white {% endif %}">
                         <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
-                            {% renderTeaserImage caseStudy.featuredImage, caseStudy.teaserImageRight %}
+                            {# {% renderTeaserImage caseStudy.featuredImage, caseStudy.teaserImageRight %} #}
+                            {% renderImage caseStudy.featuredImage %}
                         </a>
                     </div>
                 </div>
@@ -27,25 +36,34 @@ layout: default
     {% endif %}
 {% endfor %}
 
-<div class="container mx-auto max-w-screen-md py-8">
+
+{# <div class="container mx-auto max-w-screen-md py-8">
     <h1 class="text-center">Case Studies</h1>
-</div>
+</div> #}
 {% for caseStudy in casestudies %}
     {% if loop.last === false %}
-        <section class="" >
-            <div class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %} rounded-xl mb-8 py-8 container mx-auto max-w-overview">
-                <div class="flex flex-col-reverse lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
-                    <div class="teaser-image max-w-xs sm:max-w-md lg:max-w-md mt-6 lg:mt:0 lg:justify-self-end">
+        <section class="casestudy-teaser" >
+            <div class="mb-8 py-8 container mx-auto max-w-overview">
+                <div class="mx-8 2xl:mx-0 flex flex-col-reverse lg:flex-none lg:grid lg:grid-cols-2 items-center">
+                    <div class="teaser-image lg:justify-center pb-8 split-white-transparent {% if caseStudy.theme %}bg-split-white-{{ caseStudy.theme }} {% endif %}">
                         <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
-                            {% renderTeaserImage caseStudy.featuredImage,
-                            caseStudy.teaserImageLeft %}
+                            <!-- teaser image -->
+                            {% renderImage caseStudy.featuredImage %}
                         </a>
                     </div>
-                    <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-start">
-                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
+                    <div class="teaser-text mt-1/10 mx-8 lg:mx-36 text-center lg:text-left lg:justify-self-start">
+                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block ">
                             <span class="casestudy-date m-0 text-base md:text-xl">{% renderCaseStudyDate caseStudy %}</span>
-                            <h2 class="my-0">{{caseStudy.title}}</h2>
+                            <h2 class="my-0 text-3xl md:text:4xl xl:text-6xl">{{caseStudy.title}}</h2>
                         </a>
+                        <div class="mt-2">
+                            {% renderOrganizations caseStudy %}
+                            {% if caseStudy.isCaseStudy%}
+                            <span class="badge badge--casestudy">
+                            Case study
+                            </span>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

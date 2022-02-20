@@ -112,9 +112,9 @@ const renderCaseStudyDate = function (caseStudy) {
         (startDate && endDate) &&
             (new Date(startDate).getUTCFullYear() === new Date(endDate).getUTCFullYear())
             ? true : false;
-    const startDateFormat = sameYear ? "MMMM" : "MMMM yyyy";
+    const startDateFormat = sameYear ? "MMM" : "MMM yyyy";
     const startDateString = formatDate(new Date(startDate), startDateFormat);
-    const endDateString = endDate ? formatDate(new Date(endDate), "MMMM yyyy") : 'Present';
+    const endDateString = endDate ? formatDate(new Date(endDate), "MMM yyyy") : 'Present';
     return `${startDateString} – ${endDateString}`;
 }
 
@@ -124,6 +124,20 @@ const renderMethods = function (caseStudy) {
     return methods.map(method => method.fields.title).join(", ");
 }
 
+
+const renderOrganizations = function (caseStudy) {
+    const orgs = caseStudy.organizations || [];
+    const allOrgs = orgs.map(org => org.fields.name).join(", ");
+    if (!allOrgs) {
+        return '';
+    }
+    return `
+        <span class="badge badge--org">
+            ${allOrgs}
+        </span>
+    `;
+}
+
 module.exports = {
     formatDate: formatDate,
     renderCaseStudyBody: renderCaseStudyBody,
@@ -131,6 +145,7 @@ module.exports = {
     renderImageBlock: renderImageBlock,
     renderImageBlocks: renderImageBlocks,
     renderMethods: renderMethods,
+    renderOrganizations: renderOrganizations,
     renderImage: renderImage,
     renderTeaserImage: renderTeaserImage,
     renderPicture: renderPicture

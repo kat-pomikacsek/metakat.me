@@ -46,6 +46,17 @@ module.exports = {
         lightest: '#FBFBFB'
       }
     },
+    backgroundImage: {
+      'split-white-petrol': "linear-gradient(to bottom, white 20%, #ADDFE2 20%);",
+      // 'split-white-sky': "linear-gradient(to bottom, white 20%, #C7E3F0 20%);",
+      'split-white-sky': "linear-gradient(to bottom, white 20%, rgba(255,255,255,0) 20%), radial-gradient(40% 100% at 70% 26.94%, rgba(112, 212, 255, 0.357) 0%, rgba(112, 212, 255, 0.7) 100%);",
+      'split-white-mango': "linear-gradient(to bottom, white 20%, #FFEAB6 20%);",
+      'split-white-peach': "linear-gradient(to bottom, white 20%, #FFC09C 20%);",
+      'split-petrol-white': "linear-gradient(to bottom, #ADDFE2 80%, white 80%);",
+      'split-sky-white': "linear-gradient(to bottom, #C7E3F0 80%, white 80%);",
+      'split-mango-white': "linear-gradient(to bottom, #FFEAB6 80%, white 80%);",
+      'split-mango-white': "linear-gradient(to bottom, #FFC09C 80%, white 80%);"
+    },
     fontFamily: {
       sans: ['Overpass', 'sans-serif']
     },
@@ -53,7 +64,7 @@ module.exports = {
       maxWidth: {
         'section': '720px',
         'header': '820px',
-        'overview': '976px',
+        'overview': '1728px',
         'screen-desktop': '38.5rem', //616px
         'screen-mobile': '9.5rem', //152px
         'screens': '820px'
@@ -67,19 +78,25 @@ module.exports = {
       },
       screens: {
         'sm': '640px',  
-        'md': '832px', // 52rem 
-        'lg': '976px', // 61rem
+        'md': '768px', // 48rem 
+        'lg': '1024px', // 64rem
         'xl': '1280px',  
-        '2xl': '1536px',
+        '2xl': '1728px',
       },
       fontSize: {
-        '3xl': ['2rem', '2.5rem']
+        'xl': ['1.25rem', '2rem'],
+        '2xl': ['1.563rem', '2rem'],
+        '3xl': ['2rem', '2.7rem'],
+        '4xl': ['2.5rem', '3.375rem'],
+        '6xl': ['3.75rem', '4.5rem'],
+
       },
       padding: {
         '13': '3.25rem' // 52px
       },
       margin: {
-        '13': '3.25rem' // 52px
+        '13': '3.25rem', // 52px
+        '1/10': '10%',
       },
       gap: {
         '13': '3.25rem' // 52px

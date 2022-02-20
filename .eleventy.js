@@ -32,6 +32,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addShortcode('renderCaseStudyBody', shortCodes.renderCaseStudyBody);
   eleventyConfig.addShortcode('renderCaseStudyDate', shortCodes.renderCaseStudyDate);
   eleventyConfig.addShortcode("renderMethods", shortCodes.renderMethods);
+  eleventyConfig.addShortcode("renderOrganizations", shortCodes.renderOrganizations);
   eleventyConfig.addShortcode("renderTeaserImage", shortCodes.renderTeaserImage);
   eleventyConfig.addShortcode("renderPicture", shortCodes.renderPicture);
 
