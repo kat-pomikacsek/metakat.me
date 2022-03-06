@@ -15,8 +15,8 @@
     body {
         @apply font-sans;
         @apply text-gray-dark;
-        @apply text-xl;
-        @apply leading-8;
+        @apply text-base;
+        @apply sm:text-xl;
         @apply bg-white;
         /* text-rendering: optimizeLegibility; */
     }
@@ -31,18 +31,22 @@
     }
     
     h2 {
-        @apply text-4xl;
+        @apply text-2xl;
+        @apply sm:text-3xl;
+        @apply md:text-4xl;
         @apply font-medium;
         @apply tracking-tight;
         @apply mt-8;
         @apply mb-8;
     }
+
     h3 {
-        @apply text-xl;
+        @apply text-base;
+        @apply md:text-xl;
         @apply leading-8;
         @apply uppercase;
-        @apply font-extrabold;
-        @apply tracking-tight;
+        @apply font-bold;
+        @apply tracking-normal;
         @apply mt-4;
         @apply mb-4;
     }
@@ -67,7 +71,9 @@
     }
 
     figcaption {
-        @apply text-base;
+        @apply text-sm;
+        @apply sm:text-base;
+
         @apply text-center;
         @apply mt-4;
     }
@@ -119,7 +125,7 @@
 /***************************** About page *****************************/
 
 .tagline-bg {
-    background: radial-gradient(60.1% 205.21% at 81.05% 0%, rgba(255, 255, 255, 0.282) 0%, rgba(255, 255, 255, 0.282) 19.27%, rgba(255, 255, 255, 0) 59.38%), radial-gradient(33.71% 62.19% at 32% 11.99%, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.94) 79.8%, rgba(255, 255, 255, 0) 100%), radial-gradient(56.02% 146.6% at 44.62% 79.45%, rgba(255, 255, 255, 0.94) 0%, #FFFFFF 47.92%, rgba(255, 255, 255, 0) 100%), radial-gradient(38.89% 186.5% at 12.85% -82.75%, #FFE07B 0%, rgba(255, 224, 123, 0) 96.87%), radial-gradient(43.5% 139.53% at 86.75% -33.33%, #FFE07B 60.1%, rgba(255, 224, 123, 0) 96.87%), radial-gradient(43.32% 88.37% at 66.17% 75.12%, rgba(255, 136, 38, 0.9) 19.79%, rgba(255, 185, 128, 0) 100%), radial-gradient(33.51% 84.12% at 75.14% -9.66%, #FFFFFF 0%, rgba(255, 255, 255, 0) 98.96%), radial-gradient(66.12% 141.15% at -8.91% 72.07%, rgba(40, 190, 255, 0.4) 15.1%, rgba(144, 220, 253, 0) 89.96%);
+    background: radial-gradient(60.1% 205.21% at 81.05% 0%, rgba(255, 255, 255, 0.282) 0%, rgba(255, 255, 255, 0.282) 19.27%, rgba(255, 255, 255, 0) 59.38%), radial-gradient(32.49% 59.7% at 32.63% -18.03%, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.94) 79.8%, rgba(255, 255, 255, 0) 100%), radial-gradient(56.02% 146.6% at 44.62% 79.45%, rgba(255, 255, 255, 0.94) 0%, #FFFFFF 47.92%, rgba(255, 255, 255, 0) 100%), radial-gradient(30.8% 99.22% at 86.75% -33.33%, #FFE07B 60.1%, rgba(255, 224, 123, 0) 96.87%), radial-gradient(27.84% 68.03% at 78.26% 23.24%, rgba(255, 136, 38, 0.9) 19.79%, rgba(255, 185, 128, 0) 86.61%), radial-gradient(33.51% 84.12% at 75.14% -9.66%, #FFFFFF 0%, rgba(255, 255, 255, 0) 98.96%), radial-gradient(134.18% 156.59% at -5.64% -56.59%, rgba(255, 255, 255, 0) 74.27%, #FFFFFF 100%), radial-gradient(38.89% 186.5% at 12.85% -82.75%, #FFE07B 0%, rgba(255, 224, 123, 0) 96.87%), radial-gradient(53.66% 114.62% at -2.62% 55.57%, rgba(40, 190, 255, 0.4) 15.1%, rgba(144, 220, 253, 0) 89.96%);
 }
 
 
@@ -134,7 +140,7 @@
 	}
 	li strong {
         @apply text-gray-dark;
-        @apply font-semibold;
+        @apply font-bold;
 	}
 
     li p {
@@ -196,7 +202,8 @@
 }
 
 .casestudy-date {
-    @apply uppercase;
+    /* @apply uppercase; */
+    @apply font-medium;
 }
 
 
@@ -206,43 +213,32 @@
     @apply justify-center; 
     @apply rounded-full; 
     @apply px-2;
-    @apply pt-1;
+    @apply pt-[3px];
     @apply mr-2; 
     @apply leading-none;
-    @apply text-sm;
-    @apply uppercase;
-    @apply leading-none;
-    
-    @screen lg {
-        @apply text-base;
-    }
+    @apply text-base;
+    @apply font-medium;
+/*     
+    @apply xl:text-xl */
 }
 
 
 .badge--org {
-    @apply border-2;
+    @apply border;
+    @apply xl:border-2;
     @apply border-gray-dark; 
     @apply text-gray-dark;
 }
 
 .badge--casestudy {
-    @apply border-2;
+    @apply border;
+    @apply xl:border-2;
     @apply border-gray-dark;     
     @apply bg-gray-dark;
     @apply bg-opacity-10;
     @apply border-opacity-0;
     @apply text-gray-dark;
 }
-
-/* .teaser-image::before {
-    @apply absolute;
-    @apply block;
-    @apply top-1/4;
-    @apply w-full;
-    @apply h-4/5;
-    content: '';
-    background: radial-gradient(37.15% 159.88% at 67.29% 0%, rgba(112, 212, 255, 0.357) 0%, rgba(112, 212, 255, 0.7) 100%), #DCEFF8;
-} */
 
 .teaser-text {
 
