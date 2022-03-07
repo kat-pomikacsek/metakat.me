@@ -7,45 +7,79 @@ layout: default
 
 {% for caseStudy in casestudies %}
     {% if loop.last %}
-        <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
-            <div class="py-8 container mx-auto max-w-overview">
-                <div class="flex flex-col lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
-                    <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-end">
-                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
-                            <span class="casestudy-date m-0 text-base md:text-xl">{% renderCaseStudyDate caseStudy %}</span>
-                            <h2 class="my-0">{{caseStudy.title}}</h2>
-                        </a>
+        <section class="casestudy-teaser mt-24 mb-20 xl:mb-28 md:mx-8 2xl:mx-0" >
+            <div class="container mx-auto max-w-overview md:{% caseStudyBackgroundClass caseStudy %}">
+                <div class="flex flex-col md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
+
+                    <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:ml-8 xl:ml-16 md:bg-white md:px-8 xl:px-20 md:pb-[8%]">
+                        <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center" >
+                            <div class="">
+                                <div class="casestudy-date m-0 text-base">{% renderCaseStudyDate caseStudy %}</div>
+                                <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block underline decoration-transparent hover:decoration-{{ caseStudy.theme }}-bright transition ease-in duration-300 ">
+                                    <h2 class="my-0 text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl">{{caseStudy.title}}</h2>
+                                </a>
+                                <div class="mt-2">
+                                    {% renderOrganizations caseStudy %}
+                                    {% if caseStudy.isCaseStudy%}
+                                    <span class="badge badge--casestudy">
+                                    Case study
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="teaser-image max-w-xs sm:max-w-md lg:max-w-md mt-6 lg:mt:0 lg:justify-self-start">
-                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
-                            {% renderTeaserImage caseStudy.featuredImage, caseStudy.teaserImageRight %}
-                        </a>
+
+                    <div class="teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none {% caseStudyBackgroundClass caseStudy %}">
+                        <div class="teaser-image pt-4 xl:pt-8">
+                            <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block hover:scale-105 transition-transform">
+                                <!-- teaser image -->
+                                {% renderImage caseStudy.featuredImage %}
+                            </a>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
     {% endif %}
 {% endfor %}
 
-<div class="container mx-auto max-w-screen-md py-8">
+
+{# <div class="container mx-auto max-w-screen-md py-8">
     <h1 class="text-center">Case Studies</h1>
-</div>
+</div> #}
 {% for caseStudy in casestudies %}
     {% if loop.last === false %}
-        <section class="{% if caseStudy.theme %}bg-{{ caseStudy.theme }} {% endif %}" >
-            <div class="py-8 container mx-auto max-w-overview">
-                <div class="flex flex-col-reverse lg:flex-none lg:grid lg:grid-cols-2 lg:gap-20 items-center">
-                    <div class="teaser-image max-w-xs sm:max-w-md lg:max-w-md mt-6 lg:mt:0 lg:justify-self-end">
-                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block">
-                            {% renderTeaserImage caseStudy.featuredImage,
-                            caseStudy.teaserImageLeft %}
-                        </a>
+        <section class="casestudy-teaser mb-20 xl:mb-28 md:mx-8 2xl:mx-0" >
+            <div class="container mx-auto max-w-overview md:{% caseStudyBackgroundClass caseStudy %}">
+                <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
+
+                    <div class="teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none {% caseStudyBackgroundClass caseStudy %}">
+                        <div class="teaser-image pb-4 xl:pb-8">
+                            <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block hover:scale-105 transition-transform">
+                                <!-- teaser image -->
+                                {% renderImage caseStudy.featuredImage %}
+                            </a>
+                        </div>
                     </div>
-                    <div class="teaser-text mx-8 lg:mx-0 text-center lg:text-left max-w-section lg:justify-self-start">
-                        <a href="/portfolio/{{ caseStudy.slug }}" class="text-current hover:text-{{ caseStudy.theme }}-dark block lg:max-w-xs ">
-                            <span class="casestudy-date m-0 text-base md:text-xl">{% renderCaseStudyDate caseStudy %}</span>
-                            <h2 class="my-0">{{caseStudy.title}}</h2>
-                        </a>
+                    <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:mr-8 xl:mr-16 md:bg-white md:px-8 xl:px-20 md:pt-[8%]">
+                        <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center" >
+                            <div class="">
+                                <div class="casestudy-date m-0 text-base">{% renderCaseStudyDate caseStudy %}</div>
+                                <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block underline decoration-transparent hover:decoration-{{ caseStudy.theme }}-bright transition ease-in duration-300 ">
+                                    <h2 class="my-0 text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl">{{caseStudy.title}}</h2>
+                                </a>
+                                <div class="mt-2">
+                                    {% renderOrganizations caseStudy %}
+                                    {% if caseStudy.isCaseStudy%}
+                                    <span class="badge badge--casestudy">
+                                    Case study
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -32,8 +32,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addShortcode('renderCaseStudyBody', shortCodes.renderCaseStudyBody);
   eleventyConfig.addShortcode('renderCaseStudyDate', shortCodes.renderCaseStudyDate);
   eleventyConfig.addShortcode("renderMethods", shortCodes.renderMethods);
+  eleventyConfig.addShortcode("renderOrganizations", shortCodes.renderOrganizations);
   eleventyConfig.addShortcode("renderTeaserImage", shortCodes.renderTeaserImage);
   eleventyConfig.addShortcode("renderPicture", shortCodes.renderPicture);
+  eleventyConfig.addShortcode("caseStudyBackgroundClass", shortCodes.caseStudyBackgroundClass);
 
 
   // Adds a universal shortcode to return the URL to a webpack asset. In Nunjack templates:
