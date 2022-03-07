@@ -45,7 +45,7 @@
         @apply md:text-xl;
         @apply leading-8;
         @apply uppercase;
-        @apply font-bold;
+        @apply font-semibold;
         @apply tracking-normal;
         @apply mt-4;
         @apply mb-4;

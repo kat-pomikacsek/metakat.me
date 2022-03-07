@@ -82,7 +82,7 @@ module.exports = {
     extend: {
       maxWidth: {
         'section': '720px',
-        'header': '820px',
+        'header': '640px',
         'overview': '1536px',
         'screen-desktop': '38.5rem', //616px
         'screen-mobile': '9.5rem', //152px
