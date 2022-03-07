@@ -20,6 +20,11 @@ module.exports = {
       pattern: /split-(petrol|sky|mango|peach)-white/,
       variants: ['sm', 'md', 'lg', 'hover']
     },
+    {
+      pattern: /max-h-screen-mobile-(short|normal|tall)/,
+      variants: ['md']
+    },
+    
   ]
   ,
   theme: {

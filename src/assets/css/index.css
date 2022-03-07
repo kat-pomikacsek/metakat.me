@@ -87,12 +87,16 @@
 
 	a {
         @apply text-gray-dark;
+        @apply font-medium;
 	}
 
 	a:hover,
 	a:focus {
-		@apply text-orange;
-		@apply no-underline;
+		/* @apply text-orange; */
+        @apply underline;
+        @apply decoration-orange;
+        @apply underline-offset-2;
+		/* @apply no-underline; */
 	}
 
 	@media print {

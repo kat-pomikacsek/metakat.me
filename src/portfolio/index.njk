@@ -7,7 +7,7 @@ layout: default
 
 {% for caseStudy in casestudies %}
     {% if loop.last %}
-        <section class="casestudy-teaser my-16 md:mx-8 xl:mx-0" >
+        <section class="casestudy-teaser mt-24 mb-20 xl:mb-28 md:mx-8 2xl:mx-0" >
             <div class="container mx-auto max-w-overview md:{% caseStudyBackgroundClass caseStudy %}">
                 <div class="flex flex-col md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
 
@@ -51,7 +51,7 @@ layout: default
 </div> #}
 {% for caseStudy in casestudies %}
     {% if loop.last === false %}
-        <section class="casestudy-teaser mb-24 md:mx-8 xl:mx-0" >
+        <section class="casestudy-teaser mb-20 xl:mb-28 md:mx-8 2xl:mx-0" >
             <div class="container mx-auto max-w-overview md:{% caseStudyBackgroundClass caseStudy %}">
                 <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
 

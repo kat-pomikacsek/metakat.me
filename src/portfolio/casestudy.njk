@@ -141,7 +141,7 @@ eleventyComputed:
                 <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 {% if page.relatedCaseStudy.fields.imageVerticalAlign === "top" %}md:pt-[8%]{% else %}md:pb-[8%]{% endif %}">
                     <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center" >
                         <div class="">
-                            <p class="mb-1 text-base">Next {% if page.relatedCaseStudy.fields.isCaseStudy %}case study{% endif %}</p>
+                            <p class="mb-1 text-base">Next {% if page.relatedCaseStudy.fields.isCaseStudy %}Case Study{% endif %}</p>
                             <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block underline decoration-transparent hover:decoration-{{ page.relatedCaseStudy.fields.theme }}-bright transition ease-in duration-300 ">
                                 <h2 class="my-0 text-2xl sm:text-3xl md:text-3xl ">{{page.relatedCaseStudy.fields.title}}</h2>
                             </a>
