@@ -18,9 +18,9 @@ eleventyComputed:
     <section class="case-study-header pt-12 md:pt-16">
         <div class="container mx-auto max-w-header">
             <div class="mx-12 md:mx-0 text-center ">
-                <div class="casestudy-date mb-4 text-base">{% renderCaseStudyDate page %}</div>
+                <div class="casestudy-date mb-0 text-base">{% renderCaseStudyDate page %}</div>
                 <h1 class="text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl text-center mt-0 mb-0 mx-5">{{ page.title}}</h1>
-                <div class="mt-4">
+                <div class="mt-2">
                     {% renderOrganizations page %}
                     {% if page.isCaseStudy%}
                     <span class="badge badge--casestudy">
@@ -30,15 +30,15 @@ eleventyComputed:
                 </div>
             </div>
         </div>
-        <div class="mt-12 flex justify-center {% if page.theme %}bg-split-white-{{ page.theme }}{% endif %} ">
-            <div class="pb-4">
+        <div class="mt-12 flex justify-center {% caseStudyBackgroundClass page %}">
+            <div class="{% if page.imageVerticalAlign === "top" %}pb-4{% else %}pt-4{% endif %}">
                 {% renderImage page.featuredImage %}
             </div>
         </div>
     </section>
     <section>
         <div class="container mx-auto max-w-section py-12 md:py-20">
-            <div class="mx-8 md:mx-0 sm:grid sm:grid-cols-2 sm:gap-16">
+            <div class="mx-8 lg:mx-0 sm:grid sm:grid-cols-2 sm:gap-16">
                 <div class="methods mb-8 md:mb-0">
                     <h3 class="mb-0">My Role</h3>
                     <p class="">{% renderMethods page %}</p>
@@ -125,25 +125,36 @@ eleventyComputed:
     {% endfor %}
     <!-- next project teaser begin -->
     {% if page.relatedCaseStudy %}
-    <section class="{% if page.relatedCaseStudy.fields.theme %}theme-{{ page.relatedCaseStudy.fields.theme }} bg-{{ page.relatedCaseStudy.fields.theme }} {% endif %}" >
-        <div class="container mx-auto max-w-section py-8">
-            <div class="mx-12 lg:mx-0 flex flex-col items-center md:flex-none md:grid md:grid-cols-5 md:gap-12">
+    <section class="" >
+        <div class="container mx-auto max-w-section py-12">
+            <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 md:gap-8 items-start md:items-stretch">
 
-                <div class="teaser-image w-48 md:w-auto mb-6 md:mb-0 justify-center md:justify-self-end md:col-span-2">
-                    <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block lg:max-w-md ">
-                    {% renderTeaserImage page.relatedCaseStudy.fields.featuredImage, page.relatedCaseStudy.fields.teaserImageLeft, '52rem' %}
-                    </a>
+                <div class="teaser-image-wrapper flex justify-center self-stretch items-center mx-8 md:mx-0 {% caseStudyBackgroundClass page.relatedCaseStudy.fields %}">
+                    <div class="teaser-image {% if page.relatedCaseStudy.fields.imageVerticalAlign === "top" %}pb-2 md:pb-4{% else %}pt-2 md:pt-4{% endif %} ">
+                        <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block hover:scale-105 transition-transform">
+                            <!-- teaser image -->
+                            {% renderImage page.relatedCaseStudy.fields.featuredImage %}
+                        </a>
+                    </div>
                 </div>
-                <div class="teaser-text text-center md:text-left md:col-span-3">
-                    <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="teaser-link text-current hover:text-{{ page.relatedCaseStudy.fields.theme }}-dark block">
-                        <p class="my-0">Next project</p>
-                        <h2 class="my-0">{{page.relatedCaseStudy.fields.title}}</h2>
-                    </a>
+
+                <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 {% if page.relatedCaseStudy.fields.imageVerticalAlign === "top" %}md:pt-[8%]{% else %}md:pb-[8%]{% endif %}">
+                    <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center" >
+                        <div class="">
+                            <p class="mb-1 text-base">Next {% if page.relatedCaseStudy.fields.isCaseStudy %}case study{% endif %}</p>
+                            <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block underline decoration-transparent hover:decoration-{{ page.relatedCaseStudy.fields.theme }}-bright transition ease-in duration-300 ">
+                                <h2 class="my-0 text-2xl sm:text-3xl md:text-3xl ">{{page.relatedCaseStudy.fields.title}}</h2>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
     {% endif %}
     <!-- next project teaser end -->
   
 </div>
+<!-- footer section -->
+{% include "_footer.njk" %}

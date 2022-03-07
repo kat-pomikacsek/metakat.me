@@ -138,6 +138,19 @@ const renderOrganizations = function (caseStudy) {
     `;
 }
 
+const caseStudyBackgroundClass = function (caseStudy) {
+    if (!caseStudy.theme) {
+        return ''; 
+    }
+    const theme = caseStudy.theme;
+    const imagePosition = caseStudy.imageVerticalAlign || 'top';
+    const classSuffix = imagePosition === 'top' ? `white-${theme}` : `${theme}-white`;
+    const className = `bg-split-${classSuffix}`;
+    return className;
+}
+
+
+
 module.exports = {
     formatDate: formatDate,
     renderCaseStudyBody: renderCaseStudyBody,
@@ -148,5 +161,6 @@ module.exports = {
     renderOrganizations: renderOrganizations,
     renderImage: renderImage,
     renderTeaserImage: renderTeaserImage,
-    renderPicture: renderPicture
+    renderPicture: renderPicture,
+    caseStudyBackgroundClass: caseStudyBackgroundClass
 };

@@ -38,7 +38,7 @@ module.exports = {
         DEFAULT: '#ADDFE2',
         dark: '#198B92',
         bright: '#5BE2EB',
-        gray: '#FBFBFB'
+        gray: '#F6F6F6'
       },
       sky: {
         light: '#DCEFF8',
@@ -46,7 +46,7 @@ module.exports = {
         DEFAULT: '#C7E3F0',
         dark: '#23789F',
         bright: '#60CFFF',
-        gray: '#FBFBFB'
+        gray: '#F6F6F6'
       },
       mango: {
         light: '#FFFAE9',
@@ -54,7 +54,7 @@ module.exports = {
         DEFAULT: '#FFEAB6',
         dark: '#D49A01',
         bright: '#FFD25E',
-        gray: '#FBFBFB'
+        gray: '#F6F6F6'
       },
       peach: {
         light: '#FFD3B8',
@@ -62,13 +62,13 @@ module.exports = {
         DEFAULT: '#FFC09C',
         dark: '#E05101',
         bright: '#FFA775',
-        gray: '#FBFBFB'
+        gray: '#F6F6F6'
       },
       gray: {
         DEFAULT: '#333333',
         dark: '#333333',
         light: '#7C7979',
-        lightest: '#FBFBFB'
+        lightest: '#F6F6F6'
       }
     },
     fontFamily: {

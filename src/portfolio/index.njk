@@ -8,7 +8,7 @@ layout: default
 {% for caseStudy in casestudies %}
     {% if loop.last %}
         <section class="casestudy-teaser my-16 md:mx-8 xl:mx-0" >
-            <div class="container mx-auto max-w-overview {% if caseStudy.theme %} md:bg-split-{{ caseStudy.theme }}-white {% endif %}">
+            <div class="container mx-auto max-w-overview md:{% caseStudyBackgroundClass caseStudy %}">
                 <div class="flex flex-col md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
 
                     <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:ml-8 xl:ml-16 md:bg-white md:px-8 xl:px-20 md:pb-[8%]">
@@ -30,7 +30,7 @@ layout: default
                         </div>
                     </div>
 
-                    <div class="teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none {% if caseStudy.theme %}bg-split-{{ caseStudy.theme }}-white {% endif %}">
+                    <div class="teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none {% caseStudyBackgroundClass caseStudy %}">
                         <div class="teaser-image pt-4 xl:pt-8">
                             <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block hover:scale-105 transition-transform">
                                 <!-- teaser image -->
@@ -52,10 +52,10 @@ layout: default
 {% for caseStudy in casestudies %}
     {% if loop.last === false %}
         <section class="casestudy-teaser mb-24 md:mx-8 xl:mx-0" >
-            <div class="container mx-auto max-w-overview {% if caseStudy.theme %} md:bg-split-white-{{ caseStudy.theme }} {% endif %}">
+            <div class="container mx-auto max-w-overview md:{% caseStudyBackgroundClass caseStudy %}">
                 <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
 
-                    <div class="teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none {% if caseStudy.theme %}bg-split-white-{{ caseStudy.theme }} {% endif %}">
+                    <div class="teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none {% caseStudyBackgroundClass caseStudy %}">
                         <div class="teaser-image pb-4 xl:pb-8">
                             <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block hover:scale-105 transition-transform">
                                 <!-- teaser image -->
@@ -67,7 +67,7 @@ layout: default
                         <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center" >
                             <div class="">
                                 <div class="casestudy-date m-0 text-base">{% renderCaseStudyDate caseStudy %}</div>
-                                <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block underline decoration-{{ caseStudy.theme }}-bright transition ease-in duration-300 ">
+                                <a href="/portfolio/{{ caseStudy.slug }}" class="text-current block underline decoration-transparent hover:decoration-{{ caseStudy.theme }}-bright transition ease-in duration-300 ">
                                     <h2 class="my-0 text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl">{{caseStudy.title}}</h2>
                                 </a>
                                 <div class="mt-2">
