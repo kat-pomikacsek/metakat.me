@@ -138,7 +138,7 @@ eleventyComputed:
                     </div>
                 </div>
 
-                <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 {% if page.relatedCaseStudy.fields.imageVerticalAlign === "top" %}md:pt-[8%]{% else %}md:pb-[8%]{% endif %}">
+                <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 {% if page.relatedCaseStudy.fields.imageVerticalAlign === "top" %}md:pt-teaser-top{% else %}md:pb-teaser-bottom{% endif %}">
                     <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center" >
                         <div class="">
                             <p class="mb-1 text-base">Next {% if page.relatedCaseStudy.fields.isCaseStudy %}Case Study{% endif %}</p>

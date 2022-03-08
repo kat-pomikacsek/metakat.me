@@ -114,7 +114,9 @@ module.exports = {
 
       },
       padding: {
-        '13': '3.25rem' // 52px
+        '13': '3.25rem', // 52px,
+        'teaser-top': '8%',
+        'teaser-bottom': '9%'
       },
       margin: {
         '13': '3.25rem', // 52px
