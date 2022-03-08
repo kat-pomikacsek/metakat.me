@@ -115,10 +115,11 @@ module.exports = {
       },
       padding: {
         '13': '3.25rem', // 52px,
-        'teaser-top': '8%',
-        'teaser-bottom': '9%'
+        'teaser-top': '14%',
+        'teaser-bottom': '13%'
       },
       margin: {
+        '3.5': '0.625rem', //10px
         '13': '3.25rem', // 52px
         '1/10': '10%',
       },
@@ -126,14 +127,24 @@ module.exports = {
         '13': '3.25rem' // 52px
        },
       backgroundImage: {
-        'split-white-petrol': "linear-gradient(to bottom, white 16%, rgba(255,255,255,0) 16%), radial-gradient(60% 97% at 30% 0%, #ADDFE2 0%, #5BE2EB 100%);",
-        'split-white-sky': "linear-gradient(to bottom, white 16%, rgba(255,255,255,0) 16%), radial-gradient(60% 97% at 72% 0%, #C7E3F0 0%, #60CFFF 84%);",
-        'split-white-mango': "linear-gradient(to bottom, white 16%, rgba(255,255,255,0) 16%), radial-gradient(60% 97% at 72% 0%, #FFEAB6 0%, #FFD25E 100%);",
-        'split-white-peach': "linear-gradient(to bottom, white 16%, rgba(255,255,255,0) 16%), radial-gradient(60% 97% at 36% 0%, #FFC09C 0%, #FFA775 100%);",
-        'split-petrol-white': "linear-gradient(0deg, #FFFFFF 16%, rgba(255, 255, 255, 0) 16%), radial-gradient(60% 97% at 30% 0%, #ADDFE2 0%, #5BE2EB 100%);",
-        'split-sky-white': "radial-gradient(60% 97% at 72% 0%, #C7E3F0 0%, #60CFFF 100%), linear-gradient(to bottom, white 84%, rgba(255,255,255,0) 84%);",
+        'split-white-petrol': "linear-gradient(to bottom, white 28%, rgba(255,255,255,0) 28%), radial-gradient(60% 97% at 30% 0%, #ADDFE2 0%, #5BE2EB 100%);",
+        'split-white-sky': "linear-gradient(to bottom, white 28%, rgba(255,255,255,0) 28%), radial-gradient(60% 97% at 72% 0%, #C7E3F0 0%, #60CFFF 84%);",
+        'split-white-mango': "linear-gradient(to bottom, white 28%, rgba(255,255,255,0) 28%), radial-gradient(60% 97% at 72% 0%, #FFEAB6 0%, #FFD25E 100%);",
+        'split-white-peach': "linear-gradient(to bottom, white 28%, rgba(255,255,255,0) 28%), radial-gradient(60% 97% at 36% 0%, #FFC09C 0%, #FFA775 100%);",
+        'split-petrol-white': "linear-gradient(0deg, #FFFFFF 26%, rgba(255, 255, 255, 0) 26%), radial-gradient(60% 97% at 30% 0%, #ADDFE2 0%, #5BE2EB 100%);",
+        'split-sky-white': "radial-gradient(60% 97% at 72% 0%, #C7E3F0 0%, #60CFFF 100%), linear-gradient(to bottom, white 14%, rgba(255,255,255,0) 14%);",
         'split-mango-white': "linear-gradient(to bottom, #FFEAB6 80%, white 80%);",
         'split-mango-white': "linear-gradient(to bottom, #FFC09C 80%, white 80%);"
+      },
+      width: {
+        'devloop-sm': '75px',
+        'devloop-md': '90px',
+        'devloop-lg': '110px',
+      },
+      height: {
+        'devloop-sm': '75px',
+        'devloop-md': '90px',
+        'devloop-lg': '110px',
       },      
     },
   },

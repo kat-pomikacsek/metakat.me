@@ -208,6 +208,10 @@
 .casestudy-date {
     /* @apply uppercase; */
     @apply font-medium;
+    @apply text-base;
+    @apply mb-1; 
+    @apply xl:mb-2; 
+    @apply 2xl:mb-3.5;
 }
 
 
