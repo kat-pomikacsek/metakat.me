@@ -160,25 +160,29 @@
 
 .theme-petrol {
     .prose a {
-        @apply text-petrol-dark;
+        @apply decoration-petrol-dark;
+        @apply underline;
     }
 }
 
 .theme-sky {
     .prose a {
-        @apply text-sky-dark;
+        @apply decoration-sky-dark;
+        @apply underline;
     }
 }
 
 .theme-mango {
     .prose a {
-        @apply text-mango-dark;
+        @apply decoration-mango-dark;
+        @apply underline;
     }   
 }
 
 .theme-peach {
     .prose a {
-        @apply text-peach-dark;
+        @apply decoration-peach-dark;
+        @apply underline;
     }
 }
 
