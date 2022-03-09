@@ -125,30 +125,29 @@ eleventyComputed:
     {% endfor %}
     <!-- next project teaser begin -->
     {% if page.relatedCaseStudy %}
-    <section class="" >
+    <section class="next-project" >
         <div class="container mx-auto max-w-section py-12">
-            <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 md:gap-8 items-start md:items-stretch">
+            <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="group text-current block">
+                <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 md:gap-8 items-start md:items-stretch">
 
-                <div class="teaser-image-wrapper flex justify-center self-stretch items-center mx-8 md:mx-0 {% caseStudyBackgroundClass page.relatedCaseStudy.fields %}">
-                    <div class="teaser-image">
-                        <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block hover:scale-105 transition-transform">
+                    <div class="teaser-image-wrapper flex justify-center self-stretch items-center mx-8 md:mx-0 {% caseStudyBackgroundClass page.relatedCaseStudy.fields %}">
+                        <div class="teaser-image group-hover:scale-105 transition-transform">
                             <!-- teaser image -->
                             {% renderImage page.relatedCaseStudy.fields.featuredImage %}
-                        </a>
-                    </div>
-                </div>
-
-                <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 {% if page.relatedCaseStudy.fields.imageVerticalAlign === "top" %}md:pt-teaser-top{% else %}md:pb-teaser-bottom{% endif %}">
-                    <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center" >
-                        <div class="">
-                            <p class="mb-0 sm:mb-1 text-base">Next {% if page.relatedCaseStudy.fields.isCaseStudy %}Case Study{% endif %}</p>
-                            <a href="/portfolio/{{ page.relatedCaseStudy.fields.slug }}" class="text-current block underline decoration-transparent hover:decoration-{{ page.relatedCaseStudy.fields.theme }}-bright transition ease-in duration-300 ">
-                                <h2 class="my-0 text-2xl sm:text-3xl md:text-3xl">{{page.relatedCaseStudy.fields.title}}</h2>
-                            </a>
                         </div>
                     </div>
+
+                    <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 {% if page.relatedCaseStudy.fields.imageVerticalAlign === "top" %}md:pt-teaser-top{% else %}md:pb-teaser-bottom{% endif %}">
+                        <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center" >
+                            <div class="">
+                                <p class="mb-0 sm:mb-1 text-base">Next</p>
+                                <h2 class="my-0 text-2xl sm:text-3xl md:text-3xl underline decoration-transparent group-hover:decoration-{{ page.relatedCaseStudy.fields.theme }}-bright transition ease-in duration-300 ">{{page.relatedCaseStudy.fields.title}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 

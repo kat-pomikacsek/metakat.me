@@ -5,11 +5,11 @@ module.exports = {
   safelist: [
     {
       pattern: /(text|decoration|bg|border)-(petrol|sky|mango|peach)/,
-      variants: ['sm', 'md', 'lg', 'hover']
+      variants: ['sm', 'md', 'lg', 'hover', 'group-hover']
     },
     {
       pattern: /(text|decoration|bg|border)-(petrol|sky|mango|peach)-(light|lightest|gray|dark|bright)/,
-      variants: ['sm', 'md', 'lg', 'hover']
+      variants: ['sm', 'md', 'lg', 'hover', 'group-hover']
     },
     // theme background gradients
     {
@@ -121,7 +121,7 @@ module.exports = {
       margin: {
         '3.5': '0.625rem', //10px
         '13': '3.25rem', // 52px
-        '1/10': '10%',
+        '1/10': '10%' 
       },
       gap: {
         '13': '3.25rem' // 52px
