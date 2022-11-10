@@ -50,7 +50,7 @@
     "postcss-nested": "^5.0.6",
     "query-string": "^7.0.0",
     "rimraf": "3.0.2",
-    "serve": "^11.3.2",
+    "serve": "^14.1.1",
     "tailwindcss": "^3.0.23",
     "webpack": "^5.30.0",
     "webpack-cli": "^4.6.0",
