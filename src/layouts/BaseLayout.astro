@@ -1,5 +1,6 @@
 ---
 import '../assets/css/index.css';
+import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import { site } from '../site';
 
@@ -40,12 +41,7 @@ const ogTitle = title ? `${title} | ${site.title}` : site.title;
 
     <link rel="icon" type="image/png" href="/images/favicon.png" />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <Font cssVariable="--font-overpass" preload />
   </head>
 
   <body class="">

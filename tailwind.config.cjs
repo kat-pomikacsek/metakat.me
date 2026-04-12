@@ -77,7 +77,7 @@ module.exports = {
       }
     },
     fontFamily: {
-      sans: ['Overpass', 'sans-serif']
+      sans: ['var(--font-overpass)', 'sans-serif']
     },
     extend: {
       maxWidth: {
