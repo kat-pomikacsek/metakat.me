@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import type { ContentfulAsset } from '../../lib/contentful/images';
+import { getBaseUrl, getAssetDimensions, isSvg, LAYOUT_FULL_WIDTH } from '../../lib/contentful/images';
+import ContentfulPicture from './ContentfulPicture.astro';
+
+interface Props {
+  image: ContentfulAsset;
+  breakpoint?: string;
+  mobileWidth?: number;
+  desktopWidth?: number;
+  class?: string;
+  layout?: string;
+  loading?: 'lazy' | 'eager';
+}
+
+const {
+  image,
+  breakpoint,
+  mobileWidth,
+  desktopWidth,
+  class: className,
+  layout = LAYOUT_FULL_WIDTH,
+  loading = 'lazy',
+} = Astro.props;
+
+const isSvgImage = isSvg(image);
+const svgDimensions = isSvgImage ? getAssetDimensions(image) : undefined;
+---
+
+{isSvgImage ? (
+  <Image
+    class={`image-svg ${layout}`}
+    src={getBaseUrl(image)}
+    alt={image.fields.title}
+    width={svgDimensions?.width ?? 800}
+    height={svgDimensions?.height ?? 600}
+    loading={loading}
+  />
+) : (
+  <ContentfulPicture
+    image={image}
+    breakpoint={breakpoint}
+    mobileWidth={mobileWidth}
+    desktopWidth={desktopWidth}
+    class={className}
+    loading={loading}
+  />
+)}

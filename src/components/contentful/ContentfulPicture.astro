@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import type { ContentfulAsset } from '../../lib/contentful/images';
+import { buildWebpUrl, buildPngUrl, getAssetDimensions } from '../../lib/contentful/images';
+
+interface Props {
+  image: ContentfulAsset;
+  breakpoint?: string;
+  mobileWidth?: number;
+  desktopWidth?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+}
+
+const {
+  image,
+  breakpoint = '52rem',
+  mobileWidth = 480,
+  desktopWidth = 820,
+  class: className,
+  loading = 'lazy',
+} = Astro.props;
+
+const alt = image.fields.title;
+const dimensions = getAssetDimensions(image);
+
+const fallbackUrl = buildPngUrl(image, desktopWidth);
+const fallbackRetinaUrl = buildPngUrl(image, desktopWidth * 2);
+const mobileUrl = buildWebpUrl(image, mobileWidth);
+const mobileRetinaUrl = buildWebpUrl(image, mobileWidth * 2);
+const desktopUrl = buildWebpUrl(image, desktopWidth);
+const desktopRetinaUrl = buildWebpUrl(image, desktopWidth * 2);
+
+let width = desktopWidth;
+let height = desktopWidth;
+if (dimensions) {
+  height = Math.round((desktopWidth / dimensions.width) * dimensions.height);
+}
+---
+
+<picture class:list={['responsive-picture', className]}>
+  <source
+    srcset={`${desktopUrl}, ${desktopRetinaUrl} 2x`}
+    media={`(min-width: ${breakpoint})`}
+    type="image/webp"
+  />
+  <source
+    srcset={`${mobileUrl}, ${mobileRetinaUrl} 2x`}
+    type="image/webp"
+  />
+  <source
+    srcset={`${fallbackUrl}, ${fallbackRetinaUrl} 2x`}
+    type="image/png"
+  />
+  <Image src={fallbackUrl} alt={alt} width={width} height={height} loading={loading} />
+</picture>
