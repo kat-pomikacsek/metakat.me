@@ -1,11 +1,9 @@
 ---
-import {
-  renderCaseStudyBody,
-  renderImage,
-  renderImageBlocks,
-  renderPicture,
-} from '../../lib/contentful/render';
+import { renderCaseStudyBody } from '../../lib/contentful/render';
 import type { CaseStudyData } from '../../lib/contentful/render';
+import ContentfulImage from '../contentful/ContentfulImage.astro';
+import ContentfulPicture from '../contentful/ContentfulPicture.astro';
+import ImageBlocks from '../contentful/ImageBlocks.astro';
 
 interface Props {
   section: {
@@ -60,7 +58,7 @@ type TitleIcon = { fields: { file: { url: string }; title: string } };
             <h2 class="mt-0 text-center">{(section.fields.title as string)}</h2>
           )}
           {section.fields.imageBlocks && (
-            <div set:html={renderImageBlocks(section.fields.imageBlocks as never)} />
+            <ImageBlocks blocks={section.fields.imageBlocks as never} />
           )}
         </div>
       </div>
@@ -83,7 +81,9 @@ type TitleIcon = { fields: { file: { url: string }; title: string } };
           <div class="md:flex md:justify-center">
             {section.fields.desktopImage && (
               <div class="flex md:block justify-center md:justify-start pb-13 md:mr-13">
-                <div class="shadow-lg max-w-screen-desktop" set:html={renderImage(section.fields.desktopImage as never)} />
+                <div class="shadow-lg max-w-screen-desktop">
+                  <ContentfulImage image={section.fields.desktopImage as never} />
+                </div>
               </div>
             )}
             {section.fields.mobileImage && (
@@ -93,8 +93,11 @@ type TitleIcon = { fields: { file: { url: string }; title: string } };
                     'max-h-80 overflow-y-auto overscroll-contain max-w-screen-mobile shadow-lg',
                     `md:max-h-screen-mobile-${String(section.fields.mobileScreenSize)}`,
                   ]}>
-                  <span
-                    set:html={renderPicture(section.fields.mobileImage as never, '52rem', 152, 152)}
+                  <ContentfulPicture
+                    image={section.fields.mobileImage as never}
+                    breakpoint="52rem"
+                    mobileWidth={152}
+                    desktopWidth={152}
                   />
                 </div>
               </div>

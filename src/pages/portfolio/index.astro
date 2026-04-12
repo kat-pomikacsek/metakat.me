@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
+import ContentfulImage from '../../components/contentful/ContentfulImage.astro';
+import type { ContentfulAsset } from '../../lib/contentful/images';
 import { getCollection } from 'astro:content';
 import {
   caseStudyBackgroundClass,
   renderCaseStudyDate,
-  renderImage,
   renderOrganizations,
 } from '../../lib/contentful/render';
 
@@ -54,7 +55,7 @@ const older = sorted.length > 1 ? sorted.slice(0, -1) : [];
                   caseStudyBackgroundClass(newest.data),
                 ]}>
                 <div class="teaser-image group-hover:scale-105 transition-transform">
-                  <span set:html={renderImage(newest.data.featuredImage)} />
+                  <ContentfulImage image={newest.data.featuredImage as ContentfulAsset} />
                 </div>
               </div>
             </div>
@@ -76,7 +77,7 @@ const older = sorted.length > 1 ? sorted.slice(0, -1) : [];
                   caseStudyBackgroundClass(entry.data),
                 ]}>
                 <div class="teaser-image group-hover:scale-105 transition-transform">
-                  <span set:html={renderImage(entry.data.featuredImage)} />
+                  <ContentfulImage image={entry.data.featuredImage as ContentfulAsset} />
                 </div>
               </div>
               <div class="group teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:mr-8 xl:mr-16 md:bg-white md:px-8 xl:px-20 md:pt-teaser-top">

@@ -4,7 +4,7 @@ const autoprefixer = require('autoprefixer');
 const isProd = process.env.NODE_ENV === 'production';
 
 const plugins = [
-  require('postcss-nested'),
+  require('tailwindcss/nesting')(require('postcss-nested')),
   tailwindcss('tailwind.config.cjs'),
   require('postcss-custom-properties'),
   require('postcss-custom-media'),

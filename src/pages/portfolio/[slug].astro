@@ -3,11 +3,12 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
 import CaseStudySection from '../../components/case-study/CaseStudySection.astro';
+import ContentfulImage from '../../components/contentful/ContentfulImage.astro';
+import type { ContentfulAsset } from '../../lib/contentful/images';
 import { getCollection } from 'astro:content';
 import {
   caseStudyBackgroundClass,
   renderCaseStudyDate,
-  renderImage,
   renderMethods,
   renderOrganizations,
 } from '../../lib/contentful/render';
@@ -47,7 +48,7 @@ const sections = (page.sections ?? []) as SectionEntry[];
       </div>
       <div class:list={['mt-12 flex justify-center', caseStudyBackgroundClass(page)]}>
         <div class={page.imageVerticalAlign === 'top' ? 'pb-4' : 'pt-4'}>
-          <span set:html={renderImage(page.featuredImage)} />
+          <ContentfulImage image={page.featuredImage as ContentfulAsset} />
         </div>
       </div>
     </section>
@@ -81,7 +82,7 @@ const sections = (page.sections ?? []) as SectionEntry[];
                     caseStudyBackgroundClass(page.relatedCaseStudy.fields),
                   ]}>
                   <div class="teaser-image group-hover:scale-105 transition-transform">
-                    <span set:html={renderImage(page.relatedCaseStudy.fields.featuredImage)} />
+                    <ContentfulImage image={page.relatedCaseStudy.fields.featuredImage as ContentfulAsset} />
                   </div>
                 </div>
 
