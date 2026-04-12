@@ -1,0 +1,60 @@
+---
+import '../assets/css/index.css';
+import Header from '../components/Header.astro';
+import { site } from '../site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+}
+
+const { title, description, robots } = Astro.props;
+const pageTitle = title ? `${title} · ${site.title}` : site.title;
+const metaDescription = description ?? site.description;
+const ogTitle = title ? `${title} | ${site.title}` : site.title;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    {robots && <meta name="robots" content={robots} />}
+
+    <meta property="og:url" content={site.url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={`${site.url}/images/share-image.png`} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="metakat.me" />
+    <meta property="twitter:url" content={site.url} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={description ?? ''} />
+    <meta name="twitter:image" content={`${site.url}/images/share-image.png`} />
+
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="">
+    <Header />
+    <section class="section-main pt-16" role="main">
+      <slot />
+    </section>
+    <script>
+      import '../scripts/portfolio-nav.ts';
+    </script>
+  </body>
+</html>

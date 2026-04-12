@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    'src/**/*.{njk,js,css}'
+    'src/**/*.{astro,ts,js,css}',
   ],
   safelist: [
     {

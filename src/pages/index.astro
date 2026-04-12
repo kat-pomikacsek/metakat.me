@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import Tagline from '../components/about/Tagline.astro';
+import Intro from '../components/about/Intro.astro';
+import Skills from '../components/about/Skills.astro';
+import Contact from '../components/about/Contact.astro';
+---
+
+<BaseLayout title="About" description="Berlin based UX Designer">
+  <div class="about-sections">
+    <Tagline />
+    <Intro />
+    <Skills />
+    <Contact />
+    <Footer />
+  </div>
+</BaseLayout>
