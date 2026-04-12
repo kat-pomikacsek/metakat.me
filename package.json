@@ -25,26 +25,22 @@
   },
   "devDependencies": {
     "@contentful/rich-text-html-renderer": "17.2.2",
-    "@fullhuman/postcss-purgecss": "5.0.0",
+    "@eslint/js": "10.0.1",
+    "@tailwindcss/vite": "^4.2.2",
     "@types/node": "~22.19.17",
     "astro": "6.1.5",
-    "autoprefixer": "10.4.27",
     "contentful": "11.12.0",
-    "cssnano": "7.1.4",
     "date-fns": "4.1.0",
     "dotenv": "17.4.1",
-    "@eslint/js": "10.0.1",
     "eslint": "10.2.0",
     "eslint-plugin-astro": "1.5.0",
-    "typescript-eslint": "8.58.1",
-    "postcss": "^8.5.9",
-    "postcss-custom-media": "9.1.5",
-    "postcss-custom-properties": "^12.1.4",
-    "postcss-import": "^15.1.0",
-    "postcss-nested": "6.2.0",
     "serve": "12.0.1",
-    "tailwindcss": "^3.0.23",
-    "typescript": "6.0.2"
+    "tailwindcss": "^4.2.2",
+    "typescript": "6.0.2",
+    "typescript-eslint": "8.58.1"
+  },
+  "overrides": {
+    "vite": "^7"
   },
   "keywords": []
 }
