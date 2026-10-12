@@ -2,13 +2,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import format from 'date-fns/format';
 
-import {
-  type ContentfulAsset,
-  LAYOUT_INLINE,
-  buildImageUrl,
-  getBaseUrl,
-  isSvg,
-} from './images';
+import { type ContentfulAsset, LAYOUT_INLINE, buildImageUrl, getBaseUrl, isSvg } from './images';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type CfEntry = { fields: any; sys: { contentType: { sys: { id: string } } } };

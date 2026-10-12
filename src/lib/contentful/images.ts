@@ -37,21 +37,17 @@ export function buildImageUrl(
   return `${base}?${search.toString()}`;
 }
 
-export function buildWebpUrl(
-  asset: ContentfulAsset,
-  width: number,
-): string {
+export function buildWebpUrl(asset: ContentfulAsset, width: number): string {
   return buildImageUrl(asset, { ...WEBP_PARAMS, w: width });
 }
 
-export function buildPngUrl(
-  asset: ContentfulAsset,
-  width: number,
-): string {
+export function buildPngUrl(asset: ContentfulAsset, width: number): string {
   return buildImageUrl(asset, { fm: 'png', w: width });
 }
 
-export function getAssetDimensions(asset: ContentfulAsset): { width: number; height: number } | undefined {
+export function getAssetDimensions(
+  asset: ContentfulAsset,
+): { width: number; height: number } | undefined {
   return asset.fields.file.details?.image;
 }
 

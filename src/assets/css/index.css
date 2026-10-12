@@ -1,45 +1,45 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-*: initial;
 
   --color-transparent: transparent;
   --color-current: currentColor;
-  --color-orange: #FF6D12;
+  --color-orange: #ff6d12;
   --color-white: #ffffff;
 
-  --color-petrol-light: #ECF7F8;
-  --color-petrol-lightest: #ECF7F8;
-  --color-petrol: #ADDFE2;
-  --color-petrol-dark: #198B92;
-  --color-petrol-bright: #5BE2EB;
-  --color-petrol-gray: #F6F6F6;
+  --color-petrol-light: #ecf7f8;
+  --color-petrol-lightest: #ecf7f8;
+  --color-petrol: #addfe2;
+  --color-petrol-dark: #198b92;
+  --color-petrol-bright: #5be2eb;
+  --color-petrol-gray: #f6f6f6;
 
-  --color-sky-light: #DCEFF8;
-  --color-sky-lightest: #F5FAFD;
-  --color-sky: #C7E3F0;
-  --color-sky-dark: #23789F;
-  --color-sky-bright: #60CFFF;
-  --color-sky-gray: #F6F6F6;
+  --color-sky-light: #dceff8;
+  --color-sky-lightest: #f5fafd;
+  --color-sky: #c7e3f0;
+  --color-sky-dark: #23789f;
+  --color-sky-bright: #60cfff;
+  --color-sky-gray: #f6f6f6;
 
-  --color-mango-light: #FFFAE9;
-  --color-mango-lightest: #FFFAE9;
-  --color-mango: #FFEAB6;
-  --color-mango-dark: #F9B505;
-  --color-mango-bright: #FFD25E;
-  --color-mango-gray: #F6F6F6;
+  --color-mango-light: #fffae9;
+  --color-mango-lightest: #fffae9;
+  --color-mango: #ffeab6;
+  --color-mango-dark: #f9b505;
+  --color-mango-bright: #ffd25e;
+  --color-mango-gray: #f6f6f6;
 
-  --color-peach-light: #FFD3B8;
-  --color-peach-lightest: #FFF0E8;
-  --color-peach: #FFC09C;
-  --color-peach-dark: #E05101;
-  --color-peach-bright: #FFA775;
-  --color-peach-gray: #F6F6F6;
+  --color-peach-light: #ffd3b8;
+  --color-peach-lightest: #fff0e8;
+  --color-peach: #ffc09c;
+  --color-peach-dark: #e05101;
+  --color-peach-bright: #ffa775;
+  --color-peach-gray: #f6f6f6;
 
   --color-gray: #333333;
   --color-gray-dark: #333333;
-  --color-gray-light: #7C7979;
-  --color-gray-lightest: #F6F6F6;
+  --color-gray-light: #7c7979;
+  --color-gray-lightest: #f6f6f6;
 
   --font-sans: var(--font-overpass), sans-serif;
 
@@ -89,13 +89,25 @@
   --height-devloop-md: 90px;
   --height-devloop-lg: 110px;
 
-  --background-image-split-white-petrol: linear-gradient(to bottom, white 28%, rgba(255,255,255,0) 28%), radial-gradient(60% 97% at 30% 0%, #ADDFE2 0%, #5BE2EB 100%);
-  --background-image-split-white-sky: linear-gradient(to bottom, white 28%, rgba(255,255,255,0) 28%), radial-gradient(60% 97% at 72% 0%, #C7E3F0 0%, #60CFFF 84%);
-  --background-image-split-white-mango: linear-gradient(to bottom, white 28%, rgba(255,255,255,0) 28%), radial-gradient(60% 97% at 72% 0%, #FFEAB6 0%, #FFD25E 100%);
-  --background-image-split-white-peach: linear-gradient(to bottom, white 28%, rgba(255,255,255,0) 28%), radial-gradient(60% 97% at 36% 0%, #FFC09C 0%, #FFA775 100%);
-  --background-image-split-petrol-white: linear-gradient(0deg, #FFFFFF 26%, rgba(255, 255, 255, 0) 26%), radial-gradient(60% 97% at 30% 0%, #ADDFE2 0%, #5BE2EB 100%);
-  --background-image-split-sky-white: radial-gradient(60% 97% at 72% 0%, #C7E3F0 0%, #60CFFF 100%), linear-gradient(to bottom, white 14%, rgba(255,255,255,0) 14%);
-  --background-image-split-mango-white: linear-gradient(to bottom, #FFC09C 80%, white 80%);
+  --background-image-split-white-petrol:
+    linear-gradient(to bottom, white 28%, rgba(255, 255, 255, 0) 28%),
+    radial-gradient(60% 97% at 30% 0%, #addfe2 0%, #5be2eb 100%);
+  --background-image-split-white-sky:
+    linear-gradient(to bottom, white 28%, rgba(255, 255, 255, 0) 28%),
+    radial-gradient(60% 97% at 72% 0%, #c7e3f0 0%, #60cfff 84%);
+  --background-image-split-white-mango:
+    linear-gradient(to bottom, white 28%, rgba(255, 255, 255, 0) 28%),
+    radial-gradient(60% 97% at 72% 0%, #ffeab6 0%, #ffd25e 100%);
+  --background-image-split-white-peach:
+    linear-gradient(to bottom, white 28%, rgba(255, 255, 255, 0) 28%),
+    radial-gradient(60% 97% at 36% 0%, #ffc09c 0%, #ffa775 100%);
+  --background-image-split-petrol-white:
+    linear-gradient(0deg, #ffffff 26%, rgba(255, 255, 255, 0) 26%),
+    radial-gradient(60% 97% at 30% 0%, #addfe2 0%, #5be2eb 100%);
+  --background-image-split-sky-white:
+    radial-gradient(60% 97% at 72% 0%, #c7e3f0 0%, #60cfff 100%),
+    linear-gradient(to bottom, white 14%, rgba(255, 255, 255, 0) 14%);
+  --background-image-split-mango-white: linear-gradient(to bottom, #ffc09c 80%, white 80%);
 }
 
 /* CMS-driven dynamic class safelist */
@@ -104,7 +116,6 @@
 @source inline("{sm:,md:,lg:,hover:,}bg-split-white-{petrol,sky,mango,peach}");
 @source inline("{sm:,md:,lg:,hover:,}bg-split-{petrol,sky,mango,peach}-white");
 @source inline("{md:,}max-h-screen-mobile-{short,normal,tall}");
-
 
 @media print {
   body {
@@ -177,7 +188,8 @@
     }
   }
 
-  strong, b {
+  strong,
+  b {
     font-weight: 500;
   }
 
@@ -210,7 +222,6 @@
     }
   }
 }
-
 
 /***************************** Header *****************************/
 
@@ -257,7 +268,45 @@
 /***************************** About page *****************************/
 
 .tagline-bg {
-  background: radial-gradient(60.1% 205.21% at 81.05% 0%, rgba(255, 255, 255, 0.282) 0%, rgba(255, 255, 255, 0.282) 19.27%, rgba(255, 255, 255, 0) 59.38%), radial-gradient(32.49% 59.7% at 32.63% -18.03%, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.94) 79.8%, rgba(255, 255, 255, 0) 100%), radial-gradient(56.02% 146.6% at 44.62% 79.45%, rgba(255, 255, 255, 0.94) 0%, #FFFFFF 47.92%, rgba(255, 255, 255, 0) 100%), radial-gradient(126% 202.69% at 36.94% -104.73%, rgba(255, 255, 255, 0) 5.84%, rgba(255, 255, 255, 0) 92.84%, #FFFFFF 100%), radial-gradient(33.93% 28.47% at 62.83% 2.37%, #FFFFFF 74.06%, rgba(255, 255, 255, 0) 98.96%), radial-gradient(30.8% 99.22% at 86.75% -33.33%, #FFE07B 60.1%, rgba(255, 224, 123, 0) 96.87%), radial-gradient(27.84% 68.03% at 78.26% 23.24%, rgba(255, 136, 38, 0.9) 19.79%, rgba(255, 185, 128, 0) 86.61%), radial-gradient(134.18% 156.59% at -5.64% -56.59%, rgba(255, 255, 255, 0) 74.27%, #FFFFFF 100%), radial-gradient(38.89% 186.5% at 12.85% -82.75%, #FFE07B 0%, rgba(255, 224, 123, 0) 96.87%), radial-gradient(53.66% 114.62% at -2.62% 55.57%, rgba(40, 190, 255, 0.4) 15.1%, rgba(144, 220, 253, 0) 89.96%);
+  background:
+    radial-gradient(
+      60.1% 205.21% at 81.05% 0%,
+      rgba(255, 255, 255, 0.282) 0%,
+      rgba(255, 255, 255, 0.282) 19.27%,
+      rgba(255, 255, 255, 0) 59.38%
+    ),
+    radial-gradient(
+      32.49% 59.7% at 32.63% -18.03%,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(255, 255, 255, 0.94) 79.8%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    radial-gradient(
+      56.02% 146.6% at 44.62% 79.45%,
+      rgba(255, 255, 255, 0.94) 0%,
+      #ffffff 47.92%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    radial-gradient(
+      126% 202.69% at 36.94% -104.73%,
+      rgba(255, 255, 255, 0) 5.84%,
+      rgba(255, 255, 255, 0) 92.84%,
+      #ffffff 100%
+    ),
+    radial-gradient(33.93% 28.47% at 62.83% 2.37%, #ffffff 74.06%, rgba(255, 255, 255, 0) 98.96%),
+    radial-gradient(30.8% 99.22% at 86.75% -33.33%, #ffe07b 60.1%, rgba(255, 224, 123, 0) 96.87%),
+    radial-gradient(
+      27.84% 68.03% at 78.26% 23.24%,
+      rgba(255, 136, 38, 0.9) 19.79%,
+      rgba(255, 185, 128, 0) 86.61%
+    ),
+    radial-gradient(134.18% 156.59% at -5.64% -56.59%, rgba(255, 255, 255, 0) 74.27%, #ffffff 100%),
+    radial-gradient(38.89% 186.5% at 12.85% -82.75%, #ffe07b 0%, rgba(255, 224, 123, 0) 96.87%),
+    radial-gradient(
+      53.66% 114.62% at -2.62% 55.57%,
+      rgba(40, 190, 255, 0.4) 15.1%,
+      rgba(144, 220, 253, 0) 89.96%
+    );
 }
 
 .skill-list {
@@ -277,7 +326,6 @@
     @apply m-0;
   }
 }
-
 
 /***************************** Themes *****************************/
 
@@ -308,7 +356,6 @@
     @apply underline;
   }
 }
-
 
 /***************************** Case studies *****************************/
 

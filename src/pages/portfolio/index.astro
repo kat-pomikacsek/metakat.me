@@ -21,91 +21,109 @@ const newest = sorted.length > 0 ? sorted[sorted.length - 1] : null;
 const older = sorted.length > 1 ? sorted.slice(0, -1) : [];
 ---
 
-<BaseLayout title="Portfolio" description="Current work and case studies" robots="noindex, nofollow">
-  {
-    newest && (
-      <section class="casestudy-teaser mt-24 md:mt-28 mb-16 md:mb-0 xl:mb-0 md:mx-8 2xl:mx-0">
-        <div class:list={['container', 'mx-auto', 'max-w-overview', 'md:' + caseStudyBackgroundClass(newest.data)]}>
-          <a href={`/portfolio/${newest.data.slug}`} class="group text-current block">
-            <div class="flex flex-col md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
-              <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:ml-8 xl:ml-16 md:bg-white md:px-8 xl:px-20 md:pb-teaser-bottom">
-                <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center">
-                  <div class="teaser-text-body">
-                    <div class="casestudy-date">{renderCaseStudyDate(newest.data)}</div>
-                    <h2
-                      class:list={[
-                        'my-0 text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl underline decoration-transparent transition ease-in duration-300',
-                        `group-hover:decoration-${newest.data.theme}-bright`,
-                      ]}>
-                      {newest.data.title}
-                    </h2>
-                    <div class="mt-3 xl:mt-4">
-                      <span set:html={renderOrganizations(newest.data)} />
-                      {newest.data.isCaseStudy && (
-                        <span class="badge badge--casestudy">Case study</span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class:list={[
-                  'teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none',
-                  caseStudyBackgroundClass(newest.data),
-                ]}>
-                <div class="teaser-image group-hover:scale-105 transition-transform">
-                  <ContentfulImage image={newest.data.featuredImage as ContentfulAsset} />
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-    )
-  }
-
-  {
-    older.map((entry) => (
-      <section class="casestudy-teaser mb-20 md:mb-16 xl:mb-28 md:mx-8 2xl:mx-0">
-        <div class:list={['container', 'mx-auto', 'max-w-overview', 'md:' + caseStudyBackgroundClass(entry.data)]}>
-          <a href={`/portfolio/${entry.data.slug}`} class="group text-current block">
-            <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
-              <div
-                class:list={[
-                  'teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none',
-                  caseStudyBackgroundClass(entry.data),
-                ]}>
-                <div class="teaser-image group-hover:scale-105 transition-transform">
-                  <ContentfulImage image={entry.data.featuredImage as ContentfulAsset} />
-                </div>
-              </div>
-              <div class="group teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:mr-8 xl:mr-16 md:bg-white md:px-8 xl:px-20 md:pt-teaser-top">
-                <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center">
-                  <div class="teaser-text-body">
-                    <div class="casestudy-date">{renderCaseStudyDate(entry.data)}</div>
-                    <h2
-                      class:list={[
-                        'my-0 text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl underline decoration-transparent transition ease-in duration-300',
-                        `group-hover:decoration-${entry.data.theme}-bright`,
-                      ]}>
-                      {entry.data.title}
-                    </h2>
-                    <div class="mt-3 xl:mt-4">
-                      <span set:html={renderOrganizations(entry.data)} />
-                      {entry.data.isCaseStudy && (
-                        <span class="badge badge--casestudy">Case study</span>
-                      )}
-                    </div>
+<BaseLayout
+  title="Portfolio"
+  description="Current work and case studies"
+  robots="noindex, nofollow"
+>
+  {newest && (
+    <section class="casestudy-teaser mt-24 md:mt-28 mb-16 md:mb-0 xl:mb-0 md:mx-8 2xl:mx-0">
+      <div
+        class:list={[
+          'container',
+          'mx-auto',
+          'max-w-overview',
+          'md:' + caseStudyBackgroundClass(newest.data),
+        ]}
+      >
+        <a href={`/portfolio/${newest.data.slug}`} class="group text-current block">
+          <div class="flex flex-col md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
+            <div class="teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:ml-8 xl:ml-16 md:bg-white md:px-8 xl:px-20 md:pb-teaser-bottom">
+              <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center">
+                <div class="teaser-text-body">
+                  <div class="casestudy-date">{renderCaseStudyDate(newest.data)}</div>
+                  <h2
+                    class:list={[
+                      'my-0 text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl underline decoration-transparent transition ease-in duration-300',
+                      `group-hover:decoration-${newest.data.theme}-bright`,
+                    ]}
+                  >
+                    {newest.data.title}
+                  </h2>
+                  <div class="mt-3 xl:mt-4">
+                    <span set:html={renderOrganizations(newest.data)} />
+                    {newest.data.isCaseStudy && (
+                      <span class="badge badge--casestudy">Case study</span>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
-          </a>
-        </div>
-      </section>
-    ))
-  }
+
+            <div
+              class:list={[
+                'teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none',
+                caseStudyBackgroundClass(newest.data),
+              ]}
+            >
+              <div class="teaser-image group-hover:scale-105 transition-transform">
+                <ContentfulImage image={newest.data.featuredImage as ContentfulAsset} />
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  {older.map((entry) => (
+    <section class="casestudy-teaser mb-20 md:mb-16 xl:mb-28 md:mx-8 2xl:mx-0">
+      <div
+        class:list={[
+          'container',
+          'mx-auto',
+          'max-w-overview',
+          'md:' + caseStudyBackgroundClass(entry.data),
+        ]}
+      >
+        <a href={`/portfolio/${entry.data.slug}`} class="group text-current block">
+          <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch">
+            <div
+              class:list={[
+                'teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none',
+                caseStudyBackgroundClass(entry.data),
+              ]}
+            >
+              <div class="teaser-image group-hover:scale-105 transition-transform">
+                <ContentfulImage image={entry.data.featuredImage as ContentfulAsset} />
+              </div>
+            </div>
+            <div class="group teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:mr-8 xl:mr-16 md:bg-white md:px-8 xl:px-20 md:pt-teaser-top">
+              <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center">
+                <div class="teaser-text-body">
+                  <div class="casestudy-date">{renderCaseStudyDate(entry.data)}</div>
+                  <h2
+                    class:list={[
+                      'my-0 text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl underline decoration-transparent transition ease-in duration-300',
+                      `group-hover:decoration-${entry.data.theme}-bright`,
+                    ]}
+                  >
+                    {entry.data.title}
+                  </h2>
+                  <div class="mt-3 xl:mt-4">
+                    <span set:html={renderOrganizations(entry.data)} />
+                    {entry.data.isCaseStudy && (
+                      <span class="badge badge--casestudy">Case study</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  ))}
 
   <Footer />
 </BaseLayout>

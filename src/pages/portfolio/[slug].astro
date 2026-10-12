@@ -39,7 +39,9 @@ const sections = (page.sections ?? []) as SectionEntry[];
       <div class="container mx-auto max-w-header 2xl:max-w-screens">
         <div class="mx-8 lg:mx-0 text-center">
           <div class="casestudy-date">{renderCaseStudyDate(page)}</div>
-          <h1 class="text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl text-center mt-0 mb-0">{title}</h1>
+          <h1 class="text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl text-center mt-0 mb-0">
+            {title}
+          </h1>
           <div class="mt-3 xl:mt-4">
             <span set:html={renderOrganizations(page)} />
             {page.isCaseStudy && <span class="badge badge--casestudy">Case study</span>}
@@ -68,50 +70,58 @@ const sections = (page.sections ?? []) as SectionEntry[];
       </div>
     </section>
 
-    {sections.map((section) => <CaseStudySection section={section} page={page} />)}
+    {sections.map((section) => (
+      <CaseStudySection section={section} page={page} />
+    ))}
 
-    {
-      page.relatedCaseStudy && (
-        <section class="next-project">
-          <div class="container mx-auto max-w-section py-12">
-            <a href={`/portfolio/${page.relatedCaseStudy.fields.slug}`} class="group text-current block">
-              <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 md:gap-8 items-start md:items-stretch">
-                <div
-                  class:list={[
-                    'teaser-image-wrapper flex justify-center self-stretch items-center mx-8 md:mx-0',
-                    caseStudyBackgroundClass(page.relatedCaseStudy.fields),
-                  ]}>
-                  <div class="teaser-image group-hover:scale-105 transition-transform">
-                    <ContentfulImage image={page.relatedCaseStudy.fields.featuredImage as ContentfulAsset} />
-                  </div>
+    {page.relatedCaseStudy && (
+      <section class="next-project">
+        <div class="container mx-auto max-w-section py-12">
+          <a
+            href={`/portfolio/${page.relatedCaseStudy.fields.slug}`}
+            class="group text-current block"
+          >
+            <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 md:gap-8 items-start md:items-stretch">
+              <div
+                class:list={[
+                  'teaser-image-wrapper flex justify-center self-stretch items-center mx-8 md:mx-0',
+                  caseStudyBackgroundClass(page.relatedCaseStudy.fields),
+                ]}
+              >
+                <div class="teaser-image group-hover:scale-105 transition-transform">
+                  <ContentfulImage
+                    image={page.relatedCaseStudy.fields.featuredImage as ContentfulAsset}
+                  />
                 </div>
+              </div>
 
-                <div
-                  class:list={[
-                    'teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0',
-                    page.relatedCaseStudy.fields.imageVerticalAlign === 'top'
-                      ? 'md:pt-teaser-top'
-                      : 'md:pb-teaser-bottom',
-                  ]}>
-                  <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center">
-                    <div class="">
-                      <p class="mb-0 sm:mb-1 text-base">Next</p>
-                      <h2
-                        class:list={[
-                          'my-0 text-2xl sm:text-3xl md:text-3xl underline decoration-transparent transition ease-in duration-300',
-                          `group-hover:decoration-${page.relatedCaseStudy.fields.theme}-bright`,
-                        ]}>
-                        {page.relatedCaseStudy.fields.title}
-                      </h2>
-                    </div>
+              <div
+                class:list={[
+                  'teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0',
+                  page.relatedCaseStudy.fields.imageVerticalAlign === 'top'
+                    ? 'md:pt-teaser-top'
+                    : 'md:pb-teaser-bottom',
+                ]}
+              >
+                <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center">
+                  <div class="">
+                    <p class="mb-0 sm:mb-1 text-base">Next</p>
+                    <h2
+                      class:list={[
+                        'my-0 text-2xl sm:text-3xl md:text-3xl underline decoration-transparent transition ease-in duration-300',
+                        `group-hover:decoration-${page.relatedCaseStudy.fields.theme}-bright`,
+                      ]}
+                    >
+                      {page.relatedCaseStudy.fields.title}
+                    </h2>
                   </div>
                 </div>
               </div>
-            </a>
-          </div>
-        </section>
-      )
-    }
+            </div>
+          </a>
+        </div>
+      </section>
+    )}
   </div>
   <Footer />
 </BaseLayout>

@@ -16,6 +16,8 @@ const wrapperClass = hasInlineImages ? 'sm:grid sm:grid-cols-2 sm:gap-8 sm:max-w
 
 <div class="flex items-center justify-center">
   <div class:list={['images-wrapper', wrapperClass]}>
-    {blocks.map((block) => <ImageBlock entry={block} />)}
+    {blocks.map((block) => (
+      <ImageBlock entry={block} />
+    ))}
   </div>
 </div>

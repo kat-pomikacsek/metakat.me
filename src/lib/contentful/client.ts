@@ -20,9 +20,7 @@ export function createContentfulClient() {
   const previewToken = optionalEnv('CONTENTFUL_PREVIEW_TOKEN');
   const usePreview = import.meta.env.DEV && Boolean(previewToken);
 
-  const accessToken = usePreview
-    ? previewToken!
-    : requiredEnv('CONTENTFUL_ACCESS_TOKEN');
+  const accessToken = usePreview ? previewToken! : requiredEnv('CONTENTFUL_ACCESS_TOKEN');
 
   return createClient({
     space,

@@ -19,92 +19,83 @@ const typeId = section.sys.contentType.sys.id;
 type TitleIcon = { fields: { file: { url: string }; title: string } };
 ---
 
-{
-  typeId === 'caseStudySection' && (
-    <section
-      class:list={[
-        'casestudy-section',
-        section.fields.theme && `bg-${page.theme}-${section.fields.theme}`,
-      ]}>
-      <div class="container mx-auto max-w-section py-8 lg:py-20">
-        <div class="mx-8 lg:mx-0">
-          {section.fields.titleIcons && (
-            <div class="flex">
-              {(section.fields.titleIcons as TitleIcon[]).map((icon) => (
-                <img
-                  class="pr-5 mb-5 max-h-20"
-                  src={`https:${icon.fields.file.url}`}
-                  alt={icon.fields.title}
-                />
-              ))}
+{typeId === 'caseStudySection' && (
+  <section
+    class:list={[
+      'casestudy-section',
+      section.fields.theme && `bg-${page.theme}-${section.fields.theme}`,
+    ]}
+  >
+    <div class="container mx-auto max-w-section py-8 lg:py-20">
+      <div class="mx-8 lg:mx-0">
+        {section.fields.titleIcons && (
+          <div class="flex">
+            {(section.fields.titleIcons as TitleIcon[]).map((icon) => (
+              <img
+                class="pr-5 mb-5 max-h-20"
+                src={`https:${icon.fields.file.url}`}
+                alt={icon.fields.title}
+              />
+            ))}
+          </div>
+        )}
+        {section.fields.title && <h2 class="mt-0">{section.fields.title as string}</h2>}
+        {section.fields.body && (
+          <div class="prose" set:html={renderCaseStudyBody(section.fields.body as never)} />
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+{typeId === 'caseStudyImages' && (
+  <section class:list={[section.fields.theme && `bg-${page.theme}-${section.fields.theme}`]}>
+    <div class="container mx-auto max-w-screens py-13">
+      <div class="mx-8 lg:mx-0">
+        {section.fields.title && <h2 class="mt-0 text-center">{section.fields.title as string}</h2>}
+        {section.fields.imageBlocks && <ImageBlocks blocks={section.fields.imageBlocks as never} />}
+      </div>
+    </div>
+  </section>
+)}
+
+{typeId === 'caseStudyScreens' && (
+  <section
+    class:list={[
+      section.fields.theme && `bg-${page.theme}-${section.fields.theme}`,
+      'overflow-hidden',
+    ]}
+  >
+    <div class="container mx-auto max-w-screens pt-13 pb-13 md:pb-0">
+      <div class="mx-8 md:mx-0">
+        {section.fields.title && <h2 class="mt-0 text-center">{section.fields.title as string}</h2>}
+        <div class="md:flex md:justify-center">
+          {section.fields.desktopImage && (
+            <div class="flex md:block justify-center md:justify-start pb-13 md:mr-13">
+              <div class="shadow-lg max-w-screen-desktop">
+                <ContentfulImage image={section.fields.desktopImage as never} />
+              </div>
             </div>
           )}
-          {section.fields.title && <h2 class="mt-0">{(section.fields.title as string)}</h2>}
-          {section.fields.body && (
-            <div class="prose" set:html={renderCaseStudyBody(section.fields.body as never)} />
-          )}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-{
-  typeId === 'caseStudyImages' && (
-    <section class:list={[section.fields.theme && `bg-${page.theme}-${section.fields.theme}`]}>
-      <div class="container mx-auto max-w-screens py-13">
-        <div class="mx-8 lg:mx-0">
-          {section.fields.title && (
-            <h2 class="mt-0 text-center">{(section.fields.title as string)}</h2>
-          )}
-          {section.fields.imageBlocks && (
-            <ImageBlocks blocks={section.fields.imageBlocks as never} />
-          )}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-{
-  typeId === 'caseStudyScreens' && (
-    <section
-      class:list={[
-        section.fields.theme && `bg-${page.theme}-${section.fields.theme}`,
-        'overflow-hidden',
-      ]}>
-      <div class="container mx-auto max-w-screens pt-13 pb-13 md:pb-0">
-        <div class="mx-8 md:mx-0">
-          {section.fields.title && (
-            <h2 class="mt-0 text-center">{(section.fields.title as string)}</h2>
-          )}
-          <div class="md:flex md:justify-center">
-            {section.fields.desktopImage && (
-              <div class="flex md:block justify-center md:justify-start pb-13 md:mr-13">
-                <div class="shadow-lg max-w-screen-desktop">
-                  <ContentfulImage image={section.fields.desktopImage as never} />
-                </div>
+          {section.fields.mobileImage && (
+            <div class="flex justify-center md:justify-start">
+              <div
+                class:list={[
+                  'max-h-80 overflow-y-auto overscroll-contain max-w-screen-mobile shadow-lg',
+                  `md:max-h-screen-mobile-${String(section.fields.mobileScreenSize)}`,
+                ]}
+              >
+                <ContentfulPicture
+                  image={section.fields.mobileImage as never}
+                  breakpoint="52rem"
+                  mobileWidth={152}
+                  desktopWidth={152}
+                />
               </div>
-            )}
-            {section.fields.mobileImage && (
-              <div class="flex justify-center md:justify-start">
-                <div
-                  class:list={[
-                    'max-h-80 overflow-y-auto overscroll-contain max-w-screen-mobile shadow-lg',
-                    `md:max-h-screen-mobile-${String(section.fields.mobileScreenSize)}`,
-                  ]}>
-                  <ContentfulPicture
-                    image={section.fields.mobileImage as never}
-                    breakpoint="52rem"
-                    mobileWidth={152}
-                    desktopWidth={152}
-                  />
-                </div>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
-    </section>
-  )
-}
+    </div>
+  </section>
+)}
