@@ -8,6 +8,7 @@ import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 
 import { createContentfulClient } from './lib/contentful/client';
+import { toPlain } from './lib/contentful/plain';
 
 /** Content runs outside Vite; load the same env files as Astro (root + local overrides). */
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -39,7 +40,7 @@ export const collections = {
       }
 
       return response.items.map((item: Entry) => {
-        const fields = item.fields as Record<string, unknown>;
+        const fields = toPlain(item.fields, new Set([item])) as Record<string, unknown>;
         const slug = fields.slug as string | undefined;
         if (!slug) {
           throw new Error(`caseStudy ${item.sys.id} is missing a slug`);

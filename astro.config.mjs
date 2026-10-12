@@ -23,6 +23,7 @@ export default defineConfig({
       name: 'Overpass',
       cssVariable: '--font-overpass',
       weights: [400, 500, 600, 700],
+      styles: ['normal'],
     },
   ],
 });
