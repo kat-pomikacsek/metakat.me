@@ -1,0 +1,20 @@
+---
+import type { ImageBlockEntry } from '../../lib/contentful/types';
+import ImageBlock from './ImageBlock.astro';
+
+interface Props {
+  blocks: ImageBlockEntry[];
+}
+
+const { blocks } = Astro.props;
+const hasInlineImages = blocks.some((block) => block.fields.layout === 'inline');
+const wrapperClass = hasInlineImages ? 'sm:grid sm:grid-cols-2 sm:gap-8 sm:max-w-2xl' : '';
+---
+
+<div class="flex items-center justify-center">
+  <div class:list={['images-wrapper', wrapperClass]}>
+    {blocks.map((block) => (
+      <ImageBlock entry={block} />
+    ))}
+  </div>
+</div>

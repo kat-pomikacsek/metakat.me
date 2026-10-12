@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import CaseStudyTeaser from '../../components/case-study/CaseStudyTeaser.astro';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('caseStudies');
+const sorted = [...entries].sort((a, b) => {
+  const da = a.data.startDate ? new Date(a.data.startDate).getTime() : 0;
+  const db = b.data.startDate ? new Date(b.data.startDate).getTime() : 0;
+  return da - db;
+});
+
+const newest = sorted.length > 0 ? sorted[sorted.length - 1] : null;
+const older = sorted.length > 1 ? sorted.slice(0, -1) : [];
+---
+
+<BaseLayout
+  title="Portfolio"
+  description="Current work and case studies"
+  robots="noindex, nofollow"
+>
+  {newest && <CaseStudyTeaser caseStudy={newest.data} variant="featured" />}
+
+  {older.map((entry) => (
+    <CaseStudyTeaser caseStudy={entry.data} variant="list" />
+  ))}
+
+  <Footer />
+</BaseLayout>

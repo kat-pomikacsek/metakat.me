@@ -1,0 +1,27 @@
+---
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import type { ImageBlockEntry } from '../../lib/contentful/types';
+import ContentfulImage from './ContentfulImage.astro';
+
+interface Props {
+  entry: ImageBlockEntry;
+}
+
+const { entry } = Astro.props;
+const { theme = '', layout, caption, images = [] } = entry.fields;
+const figureClass = layout === 'inline' ? 'sm:max-w-xs' : '';
+const captionHtml = caption ? documentToHtmlString(caption) : '';
+---
+
+<div class:list={['block-image', layout ?? '', theme]}>
+  <figure class={figureClass}>
+    <div class="flex flex-wrap justify-center">
+      {images.map((image) => (
+        <div class="block-image--image">
+          <ContentfulImage image={image} layout={layout} />
+        </div>
+      ))}
+    </div>
+    {captionHtml && <figcaption set:html={captionHtml} />}
+  </figure>
+</div>

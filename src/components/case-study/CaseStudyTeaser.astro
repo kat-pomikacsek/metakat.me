@@ -1,0 +1,95 @@
+---
+import { caseStudyBackgroundClass, formatDateRange } from '../../lib/contentful/case-study';
+import type { CaseStudyData } from '../../lib/contentful/case-study';
+import type { RelatedCaseStudy } from '../../lib/contentful/types';
+import ContentfulImage from '../contentful/ContentfulImage.astro';
+import CaseStudyBadges from './CaseStudyBadges.astro';
+
+type Variant = 'featured' | 'list' | 'next';
+
+interface Props {
+  caseStudy: RelatedCaseStudy['fields'] &
+    Partial<Pick<CaseStudyData, 'startDate' | 'endDate' | 'organizations' | 'isCaseStudy'>>;
+  variant: Variant;
+}
+
+const { caseStudy, variant } = Astro.props;
+const background = caseStudyBackgroundClass(caseStudy);
+
+const overviewHeading =
+  'my-0 text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl underline decoration-transparent transition ease-in duration-300';
+
+const variants = {
+  featured: {
+    section: 'casestudy-teaser mt-24 md:mt-28 mb-16 md:mb-0 xl:mb-0 md:mx-8 2xl:mx-0',
+    container: ['container', 'mx-auto', 'max-w-overview', `md:${background}`],
+    grid: 'flex flex-col md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch',
+    imageFirst: false,
+    imageWrapper: 'teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none',
+    textWrapper:
+      'teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:ml-8 xl:ml-16 md:bg-white md:px-8 xl:px-20 md:pb-teaser-bottom',
+    heading: overviewHeading,
+  },
+  list: {
+    section: 'casestudy-teaser mb-20 md:mb-16 xl:mb-28 md:mx-8 2xl:mx-0',
+    container: ['container', 'mx-auto', 'max-w-overview', `md:${background}`],
+    grid: 'flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 items-start md:items-stretch',
+    imageFirst: true,
+    imageWrapper: 'teaser-image-wrapper flex justify-center self-stretch items-center md:bg-none',
+    textWrapper:
+      'group teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:mr-8 xl:mr-16 md:bg-white md:px-8 xl:px-20 md:pt-teaser-top',
+    heading: overviewHeading,
+  },
+  next: {
+    section: 'next-project',
+    container: ['container mx-auto max-w-section py-12'],
+    grid: 'flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 md:gap-8 items-start md:items-stretch',
+    imageFirst: true,
+    imageWrapper: 'teaser-image-wrapper flex justify-center self-stretch items-center mx-8 md:mx-0',
+    textWrapper: `teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 ${
+      caseStudy.imageVerticalAlign === 'top' ? 'md:pt-teaser-top' : 'md:pb-teaser-bottom'
+    }`,
+    heading:
+      'my-0 text-2xl sm:text-3xl md:text-3xl underline decoration-transparent transition ease-in duration-300',
+  },
+} satisfies Record<Variant, unknown>;
+
+const styles = variants[variant];
+const parts = styles.imageFirst ? (['image', 'text'] as const) : (['text', 'image'] as const);
+const headingClass = [styles.heading, `group-hover:decoration-${caseStudy.theme}-bright`];
+---
+
+<section class={styles.section}>
+  <div class:list={styles.container}>
+    <a href={`/portfolio/${caseStudy.slug}`} class="group text-current block">
+      <div class={styles.grid}>
+        {parts.map((part) =>
+          part === 'image' ? (
+            <div class:list={[styles.imageWrapper, background]}>
+              <div class="teaser-image group-hover:scale-105 transition-transform">
+                <ContentfulImage image={caseStudy.featuredImage} />
+              </div>
+            </div>
+          ) : (
+            <div class={styles.textWrapper}>
+              <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center">
+                {variant === 'next' ? (
+                  <div>
+                    <p class="mb-0 sm:mb-1 text-base">Next</p>
+                    <h2 class:list={headingClass}>{caseStudy.title}</h2>
+                  </div>
+                ) : (
+                  <div class="teaser-text-body">
+                    <div class="casestudy-date">{formatDateRange(caseStudy)}</div>
+                    <h2 class:list={headingClass}>{caseStudy.title}</h2>
+                    <CaseStudyBadges caseStudy={caseStudy} />
+                  </div>
+                )}
+              </div>
+            </div>
+          ),
+        )}
+      </div>
+    </a>
+  </div>
+</section>

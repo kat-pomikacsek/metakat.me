@@ -1,0 +1,49 @@
+---
+import { sectionBackgroundClass } from '../../lib/contentful/case-study';
+import type { CaseStudyScreensSection, Theme } from '../../lib/contentful/types';
+import ContentfulImage from '../contentful/ContentfulImage.astro';
+import ContentfulPicture from '../contentful/ContentfulPicture.astro';
+
+interface Props {
+  section: CaseStudyScreensSection;
+  pageTheme: Theme;
+}
+
+const { section, pageTheme } = Astro.props;
+const { title, desktopImage, mobileImage, mobileScreenSize, theme } = section.fields;
+const screenSize = mobileScreenSize?.[0];
+---
+
+<section class:list={[sectionBackgroundClass(pageTheme, theme), 'overflow-hidden']}>
+  <div class="container mx-auto max-w-screens pt-13 pb-13 md:pb-0">
+    <div class="mx-8 md:mx-0">
+      {title && <h2 class="mt-0 text-center">{title}</h2>}
+      <div class="md:flex md:justify-center">
+        {desktopImage && (
+          <div class="flex md:block justify-center md:justify-start pb-13 md:mr-13">
+            <div class="shadow-lg max-w-screen-desktop">
+              <ContentfulImage image={desktopImage} />
+            </div>
+          </div>
+        )}
+        {mobileImage && (
+          <div class="flex justify-center md:justify-start">
+            <div
+              class:list={[
+                'max-h-80 overflow-y-auto overscroll-contain max-w-screen-mobile shadow-lg',
+                screenSize && `md:max-h-screen-mobile-${screenSize}`,
+              ]}
+            >
+              <ContentfulPicture
+                image={mobileImage}
+                breakpoint="52rem"
+                mobileWidth={152}
+                desktopWidth={152}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

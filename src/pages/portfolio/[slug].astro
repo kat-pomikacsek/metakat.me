@@ -1,0 +1,76 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import CaseStudyBadges from '../../components/case-study/CaseStudyBadges.astro';
+import CaseStudySection from '../../components/case-study/CaseStudySection.astro';
+import CaseStudyTeaser from '../../components/case-study/CaseStudyTeaser.astro';
+import ContentfulImage from '../../components/contentful/ContentfulImage.astro';
+import { getCollection } from 'astro:content';
+import {
+  caseStudyBackgroundClass,
+  methodNames,
+  formatDateRange,
+} from '../../lib/contentful/case-study';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('caseStudies');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { entry } = Astro.props;
+const page = entry.data;
+const title = page.title;
+const description = `Case study: ${title}`;
+const sections = page.sections ?? [];
+---
+
+<BaseLayout title={title} description={description} robots="noindex, nofollow">
+  <div class:list={['case-study', `theme-${page.theme}`]}>
+    <section class="case-study-header pt-12 md:pt-16">
+      <div class="container mx-auto max-w-header 2xl:max-w-screens">
+        <div class="mx-8 lg:mx-0 text-center">
+          <div class="casestudy-date">{formatDateRange(page)}</div>
+          <h1 class="text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl text-center mt-0 mb-0">
+            {title}
+          </h1>
+          <CaseStudyBadges caseStudy={page} />
+        </div>
+      </div>
+      <div class:list={['mt-12 flex justify-center', caseStudyBackgroundClass(page)]}>
+        <div class={page.imageVerticalAlign === 'top' ? 'pb-4' : 'pt-4'}>
+          <ContentfulImage image={page.featuredImage} />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container mx-auto max-w-section py-12 md:py-20">
+        <div class="mx-8 lg:mx-0 sm:grid sm:grid-cols-2 sm:gap-16">
+          <div class="methods mb-8 md:mb-0">
+            <h3 class="mt-0 mb-2">My Role</h3>
+            <p class="mb-0">{methodNames(page)}</p>
+          </div>
+          <div class="team">
+            <h3 class="mt-0 mb-2">Team &amp; Partners</h3>
+            <p class="mb-0">{page.partners}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {sections.map((section) => (
+      <CaseStudySection section={section} pageTheme={page.theme} />
+    ))}
+
+    {page.relatedCaseStudy && (
+      <CaseStudyTeaser caseStudy={page.relatedCaseStudy.fields} variant="next" />
+    )}
+  </div>
+  <Footer />
+</BaseLayout>

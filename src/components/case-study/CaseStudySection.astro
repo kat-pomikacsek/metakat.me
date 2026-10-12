@@ -1,0 +1,29 @@
+---
+import type { SectionEntry, SectionType, Theme } from '../../lib/contentful/types';
+import ImagesSection from './ImagesSection.astro';
+import ScreensSection from './ScreensSection.astro';
+import TextSection from './TextSection.astro';
+
+interface Props {
+  section: SectionEntry;
+  pageTheme: Theme;
+}
+
+type SectionComponent = (props: { section: SectionEntry; pageTheme: Theme }) => unknown;
+
+const sectionComponents: Record<SectionType, unknown> = {
+  caseStudySection: TextSection,
+  caseStudyImages: ImagesSection,
+  caseStudyScreens: ScreensSection,
+};
+
+const { section, pageTheme } = Astro.props;
+const sectionType = section.sys.contentType.sys.id;
+// TypeScript can't relate the looked-up component to the matching member of the section union.
+const Component = sectionComponents[sectionType] as SectionComponent | undefined;
+if (!Component) {
+  console.warn('Unsupported case study section type:', sectionType);
+}
+---
+
+{Component && <Component section={section} pageTheme={pageTheme} />}

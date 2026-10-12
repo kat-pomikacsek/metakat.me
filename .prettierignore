@@ -1,0 +1,9 @@
+.agents/
+.astro/
+dist/
+node_modules/
+package-lock.json
+skills-lock.json
+
+# prettier-plugin-astro wraps inline links onto their own lines, adding visible spaces
+src/components/about/Contact.astro
