@@ -1,6 +1,8 @@
 # metakat.me
 
-Portfolio of Katalin Pomikacsek, a Berlin-based UX designer. Built with [Astro](https://astro.build), Tailwind CSS, and content from Contentful. Deployed to Netlify.
+Portfolio of Katalin Pomikacsek, a Berlin-based Product UX designer.
+
+Built with [Astro](https://astro.build), Tailwind CSS, and content from Contentful. Deployed to Netlify.
 
 ## Setup
 
