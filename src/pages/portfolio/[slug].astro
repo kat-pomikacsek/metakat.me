@@ -2,15 +2,15 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
+import CaseStudyBadges from '../../components/case-study/CaseStudyBadges.astro';
 import CaseStudySection from '../../components/case-study/CaseStudySection.astro';
 import ContentfulImage from '../../components/contentful/ContentfulImage.astro';
 import type { ContentfulAsset } from '../../lib/contentful/images';
 import { getCollection } from 'astro:content';
 import {
   caseStudyBackgroundClass,
+  methodNames,
   renderCaseStudyDate,
-  renderMethods,
-  renderOrganizations,
 } from '../../lib/contentful/render';
 
 export async function getStaticPaths() {
@@ -42,10 +42,7 @@ const sections = (page.sections ?? []) as SectionEntry[];
           <h1 class="text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl text-center mt-0 mb-0">
             {title}
           </h1>
-          <div class="mt-3 xl:mt-4">
-            <span set:html={renderOrganizations(page)} />
-            {page.isCaseStudy && <span class="badge badge--casestudy">Case study</span>}
-          </div>
+          <CaseStudyBadges caseStudy={page} />
         </div>
       </div>
       <div class:list={['mt-12 flex justify-center', caseStudyBackgroundClass(page)]}>
@@ -60,7 +57,7 @@ const sections = (page.sections ?? []) as SectionEntry[];
         <div class="mx-8 lg:mx-0 sm:grid sm:grid-cols-2 sm:gap-16">
           <div class="methods mb-8 md:mb-0">
             <h3 class="mt-0 mb-2">My Role</h3>
-            <p class="mb-0">{renderMethods(page)}</p>
+            <p class="mb-0">{methodNames(page)}</p>
           </div>
           <div class="team">
             <h3 class="mt-0 mb-2">Team &amp; Partners</h3>

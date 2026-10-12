@@ -1,0 +1,56 @@
+---
+import { documentToHtmlString, type Options } from '@contentful/rich-text-html-renderer';
+import { BLOCKS, INLINES, type Document, type TopLevelBlock } from '@contentful/rich-text-types';
+import ImageBlock from './ImageBlock.astro';
+
+interface Props {
+  document: Document;
+}
+
+const { document } = Astro.props;
+
+const options: Partial<Options> = {
+  renderNode: {
+    [INLINES.ENTRY_HYPERLINK]: (node, next) => {
+      const target = node.data.target;
+      const contentType = target?.sys?.contentType?.sys?.id;
+      if (contentType === 'caseStudy') {
+        return `<a href="/portfolio/${encodeURIComponent(target.fields.slug)}">${next(node.content)}</a>`;
+      }
+      console.warn('Unsupported content type in rich text link:', contentType);
+      return next(node.content);
+    },
+  },
+};
+
+function toHtml(node: TopLevelBlock) {
+  return documentToHtmlString({ nodeType: BLOCKS.DOCUMENT, data: {}, content: [node] }, options);
+}
+
+function embeddedImageBlock(node: TopLevelBlock) {
+  if (node.nodeType !== BLOCKS.EMBEDDED_ENTRY) {
+    return undefined;
+  }
+  const target = node.data.target;
+  const contentType = target?.sys?.contentType?.sys?.id;
+  if (contentType !== 'blockImage') {
+    console.warn('Unsupported content type in rich text:', contentType);
+    return undefined;
+  }
+  return target;
+}
+---
+
+{document.content.map((node) => {
+  if (node.nodeType === BLOCKS.EMBEDDED_ENTRY) {
+    const imageBlock = embeddedImageBlock(node);
+    return (
+      imageBlock && (
+        <div class="embed">
+          <ImageBlock entry={imageBlock} />
+        </div>
+      )
+    );
+  }
+  return <Fragment set:html={toHtml(node)} />;
+})}

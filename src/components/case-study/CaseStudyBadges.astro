@@ -1,0 +1,16 @@
+---
+import { organizationNames } from '../../lib/contentful/render';
+import type { CaseStudyData } from '../../lib/contentful/render';
+
+interface Props {
+  caseStudy: CaseStudyData;
+}
+
+const { caseStudy } = Astro.props;
+const organizations = organizationNames(caseStudy);
+---
+
+<div class="mt-3 xl:mt-4">
+  {organizations && <span class="badge badge--org">{organizations}</span>}
+  {caseStudy.isCaseStudy && <span class="badge badge--casestudy">Case study</span>}
+</div>

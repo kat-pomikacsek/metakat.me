@@ -1,14 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
+import CaseStudyBadges from '../../components/case-study/CaseStudyBadges.astro';
 import ContentfulImage from '../../components/contentful/ContentfulImage.astro';
 import type { ContentfulAsset } from '../../lib/contentful/images';
 import { getCollection } from 'astro:content';
-import {
-  caseStudyBackgroundClass,
-  renderCaseStudyDate,
-  renderOrganizations,
-} from '../../lib/contentful/render';
+import { caseStudyBackgroundClass, renderCaseStudyDate } from '../../lib/contentful/render';
 
 const entries = await getCollection('caseStudies');
 const sorted = [...entries].sort((a, b) => {
@@ -50,12 +47,7 @@ const older = sorted.length > 1 ? sorted.slice(0, -1) : [];
                   >
                     {newest.data.title}
                   </h2>
-                  <div class="mt-3 xl:mt-4">
-                    <span set:html={renderOrganizations(newest.data)} />
-                    {newest.data.isCaseStudy && (
-                      <span class="badge badge--casestudy">Case study</span>
-                    )}
-                  </div>
+                  <CaseStudyBadges caseStudy={newest.data} />
                 </div>
               </div>
             </div>
@@ -110,12 +102,7 @@ const older = sorted.length > 1 ? sorted.slice(0, -1) : [];
                   >
                     {entry.data.title}
                   </h2>
-                  <div class="mt-3 xl:mt-4">
-                    <span set:html={renderOrganizations(entry.data)} />
-                    {entry.data.isCaseStudy && (
-                      <span class="badge badge--casestudy">Case study</span>
-                    )}
-                  </div>
+                  <CaseStudyBadges caseStudy={entry.data} />
                 </div>
               </div>
             </div>

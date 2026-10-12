@@ -1,9 +1,9 @@
 ---
-import { renderCaseStudyBody } from '../../lib/contentful/render';
 import type { CaseStudyData } from '../../lib/contentful/render';
 import ContentfulImage from '../contentful/ContentfulImage.astro';
 import ContentfulPicture from '../contentful/ContentfulPicture.astro';
 import ImageBlocks from '../contentful/ImageBlocks.astro';
+import RichText from '../contentful/RichText.astro';
 
 interface Props {
   section: {
@@ -41,7 +41,9 @@ type TitleIcon = { fields: { file: { url: string }; title: string } };
         )}
         {section.fields.title && <h2 class="mt-0">{section.fields.title as string}</h2>}
         {section.fields.body && (
-          <div class="prose" set:html={renderCaseStudyBody(section.fields.body as never)} />
+          <div class="prose">
+            <RichText document={section.fields.body as never} />
+          </div>
         )}
       </div>
     </div>
