@@ -1,0 +1,34 @@
+---
+import { sectionBackgroundClass } from '../../lib/contentful/render';
+import { getBaseUrl } from '../../lib/contentful/images';
+import type { CaseStudyTextSection, Theme } from '../../lib/contentful/types';
+import RichText from '../contentful/RichText.astro';
+
+interface Props {
+  section: CaseStudyTextSection;
+  pageTheme: Theme;
+}
+
+const { section, pageTheme } = Astro.props;
+const { title, body, theme, titleIcons } = section.fields;
+---
+
+<section class:list={['casestudy-section', sectionBackgroundClass(pageTheme, theme)]}>
+  <div class="container mx-auto max-w-section py-8 lg:py-20">
+    <div class="mx-8 lg:mx-0">
+      {titleIcons && (
+        <div class="flex">
+          {titleIcons.map((icon) => (
+            <img class="pr-5 mb-5 max-h-20" src={getBaseUrl(icon)} alt={icon.fields.title} />
+          ))}
+        </div>
+      )}
+      {title && <h2 class="mt-0">{title}</h2>}
+      {body && (
+        <div class="prose">
+          <RichText document={body} />
+        </div>
+      )}
+    </div>
+  </div>
+</section>

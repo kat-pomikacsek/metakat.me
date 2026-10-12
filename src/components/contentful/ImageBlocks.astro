@@ -1,16 +1,13 @@
 ---
+import type { ImageBlockEntry } from '../../lib/contentful/types';
 import ImageBlock from './ImageBlock.astro';
-import { LAYOUT_INLINE } from '../../lib/contentful/images';
 
 interface Props {
-  blocks: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    fields: Record<string, any>;
-  }[];
+  blocks: ImageBlockEntry[];
 }
 
 const { blocks } = Astro.props;
-const hasInlineImages = blocks.some((block) => block.fields.layout === LAYOUT_INLINE);
+const hasInlineImages = blocks.some((block) => block.fields.layout === 'inline');
 const wrapperClass = hasInlineImages ? 'sm:grid sm:grid-cols-2 sm:gap-8 sm:max-w-2xl' : '';
 ---
 

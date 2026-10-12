@@ -1,19 +1,17 @@
+import type { CollectionEntry } from 'astro:content';
 import { format } from 'date-fns';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type CfEntry = { fields: any; sys: { contentType: { sys: { id: string } } } };
+import type { ImageVerticalAlign, SectionTheme, Theme } from './types';
 
-/** Case study fields shape as used by templates (from Contentful + derived `date`). */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type CaseStudyData = Record<string, any>;
+export type CaseStudyData = CollectionEntry<'caseStudies'>['data'];
 
 export function formatDate(date: Date, dateFormat: string) {
   return format(date, dateFormat);
 }
 
-export function renderCaseStudyDate(caseStudy: CaseStudyData) {
-  const startDate = (caseStudy && caseStudy.startDate) || '';
-  const endDate = (caseStudy && caseStudy.endDate) || '';
+export function renderCaseStudyDate(caseStudy: Pick<CaseStudyData, 'startDate' | 'endDate'>) {
+  const startDate = caseStudy.startDate || '';
+  const endDate = caseStudy.endDate || '';
   if (!startDate && !endDate) {
     return '';
   }
@@ -27,17 +25,18 @@ export function renderCaseStudyDate(caseStudy: CaseStudyData) {
   return `${startDateString} – ${endDateString}`;
 }
 
-export function methodNames(caseStudy: CaseStudyData) {
-  const methods = caseStudy.methods || [];
-  return methods.map((method: CfEntry) => method.fields.title).join(', ');
+export function methodNames(caseStudy: Pick<CaseStudyData, 'methods'>) {
+  return (caseStudy.methods ?? []).map((method) => method.fields.title).join(', ');
 }
 
-export function organizationNames(caseStudy: CaseStudyData) {
-  const orgs = caseStudy.organizations || [];
-  return orgs.map((org: CfEntry) => org.fields.name).join(', ');
+export function organizationNames(caseStudy: Pick<CaseStudyData, 'organizations'>) {
+  return (caseStudy.organizations ?? []).map((org) => org.fields.name).join(', ');
 }
 
-export function caseStudyBackgroundClass(caseStudy: CaseStudyData) {
+export function caseStudyBackgroundClass(caseStudy: {
+  theme?: Theme;
+  imageVerticalAlign?: ImageVerticalAlign;
+}) {
   if (!caseStudy.theme) {
     return '';
   }
@@ -45,4 +44,8 @@ export function caseStudyBackgroundClass(caseStudy: CaseStudyData) {
   const imagePosition = caseStudy.imageVerticalAlign || 'top';
   const classSuffix = imagePosition === 'top' ? `white-${theme}` : `${theme}-white`;
   return `bg-split-${classSuffix}`;
+}
+
+export function sectionBackgroundClass(pageTheme: Theme, sectionTheme?: SectionTheme) {
+  return sectionTheme ? `bg-${pageTheme}-${sectionTheme}` : undefined;
 }

@@ -1,0 +1,22 @@
+---
+import { sectionBackgroundClass } from '../../lib/contentful/render';
+import type { CaseStudyImagesSection, Theme } from '../../lib/contentful/types';
+import ImageBlocks from '../contentful/ImageBlocks.astro';
+
+interface Props {
+  section: CaseStudyImagesSection;
+  pageTheme: Theme;
+}
+
+const { section, pageTheme } = Astro.props;
+const { title, imageBlocks, theme } = section.fields;
+---
+
+<section class:list={[sectionBackgroundClass(pageTheme, theme)]}>
+  <div class="container mx-auto max-w-screens py-13">
+    <div class="mx-8 lg:mx-0">
+      {title && <h2 class="mt-0 text-center">{title}</h2>}
+      {imageBlocks && <ImageBlocks blocks={imageBlocks} />}
+    </div>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 ---
-import type { ContentfulAsset } from '../../lib/contentful/images';
-import { getBaseUrl, isSvg, LAYOUT_FULL_WIDTH } from '../../lib/contentful/images';
+import { getBaseUrl, isSvg } from '../../lib/contentful/images';
+import type { ContentfulAsset, ImageLayout } from '../../lib/contentful/types';
 import ContentfulPicture from './ContentfulPicture.astro';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   mobileWidth?: number;
   desktopWidth?: number;
   class?: string;
-  layout?: string;
+  layout?: ImageLayout;
   loading?: 'lazy' | 'eager';
 }
 
@@ -19,7 +19,7 @@ const {
   mobileWidth,
   desktopWidth,
   class: className,
-  layout = LAYOUT_FULL_WIDTH,
+  layout = 'full-width',
   loading = 'lazy',
 } = Astro.props;
 

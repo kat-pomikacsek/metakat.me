@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import type { ContentfulAsset } from '../../lib/contentful/images';
 import { buildWebpUrl, buildPngUrl, getAssetDimensions } from '../../lib/contentful/images';
+import type { ContentfulAsset } from '../../lib/contentful/types';
 
 interface Props {
   image: ContentfulAsset;

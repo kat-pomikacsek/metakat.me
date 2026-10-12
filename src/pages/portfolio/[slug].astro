@@ -1,11 +1,10 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { InferGetStaticPropsType } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
 import CaseStudyBadges from '../../components/case-study/CaseStudyBadges.astro';
 import CaseStudySection from '../../components/case-study/CaseStudySection.astro';
 import ContentfulImage from '../../components/contentful/ContentfulImage.astro';
-import type { ContentfulAsset } from '../../lib/contentful/images';
 import { getCollection } from 'astro:content';
 import {
   caseStudyBackgroundClass,
@@ -15,22 +14,19 @@ import {
 
 export async function getStaticPaths() {
   const entries = await getCollection('caseStudies');
-  return entries.map((entry: CollectionEntry<'caseStudies'>) => ({
+  return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
   }));
 }
 
-const { entry } = Astro.props as { entry: CollectionEntry<'caseStudies'> };
-const page = entry.data;
-const title = page.title as string;
-const description = `Case study: ${title}`;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-type SectionEntry = {
-  sys: { contentType: { sys: { id: string } } };
-  fields: Record<string, unknown>;
-};
-const sections = (page.sections ?? []) as SectionEntry[];
+const { entry } = Astro.props;
+const page = entry.data;
+const title = page.title;
+const description = `Case study: ${title}`;
+const sections = page.sections ?? [];
 ---
 
 <BaseLayout title={title} description={description} robots="noindex, nofollow">
@@ -47,7 +43,7 @@ const sections = (page.sections ?? []) as SectionEntry[];
       </div>
       <div class:list={['mt-12 flex justify-center', caseStudyBackgroundClass(page)]}>
         <div class={page.imageVerticalAlign === 'top' ? 'pb-4' : 'pt-4'}>
-          <ContentfulImage image={page.featuredImage as ContentfulAsset} />
+          <ContentfulImage image={page.featuredImage} />
         </div>
       </div>
     </section>
@@ -68,7 +64,7 @@ const sections = (page.sections ?? []) as SectionEntry[];
     </section>
 
     {sections.map((section) => (
-      <CaseStudySection section={section} page={page} />
+      <CaseStudySection section={section} pageTheme={page.theme} />
     ))}
 
     {page.relatedCaseStudy && (
@@ -86,9 +82,7 @@ const sections = (page.sections ?? []) as SectionEntry[];
                 ]}
               >
                 <div class="teaser-image group-hover:scale-105 transition-transform">
-                  <ContentfulImage
-                    image={page.relatedCaseStudy.fields.featuredImage as ContentfulAsset}
-                  />
+                  <ContentfulImage image={page.relatedCaseStudy.fields.featuredImage} />
                 </div>
               </div>
 

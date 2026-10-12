@@ -3,14 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
 import CaseStudyBadges from '../../components/case-study/CaseStudyBadges.astro';
 import ContentfulImage from '../../components/contentful/ContentfulImage.astro';
-import type { ContentfulAsset } from '../../lib/contentful/images';
 import { getCollection } from 'astro:content';
 import { caseStudyBackgroundClass, renderCaseStudyDate } from '../../lib/contentful/render';
 
 const entries = await getCollection('caseStudies');
 const sorted = [...entries].sort((a, b) => {
-  const da = a.data.startDate ? new Date(a.data.startDate as string).getTime() : 0;
-  const db = b.data.startDate ? new Date(b.data.startDate as string).getTime() : 0;
+  const da = a.data.startDate ? new Date(a.data.startDate).getTime() : 0;
+  const db = b.data.startDate ? new Date(b.data.startDate).getTime() : 0;
   return da - db;
 });
 
@@ -59,7 +58,7 @@ const older = sorted.length > 1 ? sorted.slice(0, -1) : [];
               ]}
             >
               <div class="teaser-image group-hover:scale-105 transition-transform">
-                <ContentfulImage image={newest.data.featuredImage as ContentfulAsset} />
+                <ContentfulImage image={newest.data.featuredImage} />
               </div>
             </div>
           </div>
@@ -87,7 +86,7 @@ const older = sorted.length > 1 ? sorted.slice(0, -1) : [];
               ]}
             >
               <div class="teaser-image group-hover:scale-105 transition-transform">
-                <ContentfulImage image={entry.data.featuredImage as ContentfulAsset} />
+                <ContentfulImage image={entry.data.featuredImage} />
               </div>
             </div>
             <div class="group teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0 md:mr-8 xl:mr-16 md:bg-white md:px-8 xl:px-20 md:pt-teaser-top">

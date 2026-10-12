@@ -9,6 +9,15 @@ import { z } from 'astro/zod';
 
 import { createContentfulClient } from './lib/contentful/client';
 import { toPlain } from './lib/contentful/plain';
+import {
+  IMAGE_VERTICAL_ALIGNS,
+  THEMES,
+  type ContentfulAsset,
+  type DesignMethod,
+  type Organization,
+  type RelatedCaseStudy,
+  type SectionEntry,
+} from './lib/contentful/types';
 
 /** Content runs outside Vite; load the same env files as Astro (root + local overrides). */
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -19,8 +28,27 @@ for (const file of ['.env', '.env.local'] as const) {
   }
 }
 
-const caseStudyDataSchema = z.looseObject({
+function linked<T>(name: string) {
+  return z.custom<T>((value) => typeof value === 'object' && value !== null && 'fields' in value, {
+    message: `${name} must be a resolved Contentful link`,
+  });
+}
+
+const caseStudyDataSchema = z.object({
   slug: z.string(),
+  title: z.string(),
+  theme: z.enum(THEMES),
+  imageVerticalAlign: z.enum(IMAGE_VERTICAL_ALIGNS).optional(),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
+  isCaseStudy: z.boolean().optional(),
+  partners: z.string().optional(),
+  date: z.date(),
+  featuredImage: linked<ContentfulAsset>('featuredImage'),
+  organizations: z.array(linked<Organization>('organizations')).optional(),
+  methods: z.array(linked<DesignMethod>('methods')).optional(),
+  sections: z.array(linked<SectionEntry>('sections')).optional(),
+  relatedCaseStudy: linked<RelatedCaseStudy>('relatedCaseStudy').optional(),
 });
 
 export const collections = {
@@ -41,7 +69,7 @@ export const collections = {
 
       return response.items.map((item: Entry) => {
         const fields = toPlain(item.fields, new Set([item])) as Record<string, unknown>;
-        const slug = fields.slug as string | undefined;
+        const slug = typeof fields.slug === 'string' ? fields.slug : undefined;
         if (!slug) {
           throw new Error(`caseStudy ${item.sys.id} is missing a slug`);
         }
