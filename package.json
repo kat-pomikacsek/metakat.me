@@ -10,8 +10,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "clean": "rm -rf ./dist",
-    "serve:prod": "serve ./dist/",
-    "lint": "eslint ."
+    "check": "astro check",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
