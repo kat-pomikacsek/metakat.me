@@ -1,9 +1,9 @@
 ---
-import { organizationNames } from '../../lib/contentful/render';
-import type { CaseStudyData } from '../../lib/contentful/render';
+import { organizationNames } from '../../lib/contentful/case-study';
+import type { CaseStudyData } from '../../lib/contentful/case-study';
 
 interface Props {
-  caseStudy: CaseStudyData;
+  caseStudy: Partial<Pick<CaseStudyData, 'organizations' | 'isCaseStudy'>>;
 }
 
 const { caseStudy } = Astro.props;

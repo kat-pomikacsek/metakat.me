@@ -5,11 +5,7 @@ import type { ImageVerticalAlign, SectionTheme, Theme } from './types';
 
 export type CaseStudyData = CollectionEntry<'caseStudies'>['data'];
 
-export function formatDate(date: Date, dateFormat: string) {
-  return format(date, dateFormat);
-}
-
-export function renderCaseStudyDate(caseStudy: Pick<CaseStudyData, 'startDate' | 'endDate'>) {
+export function formatDateRange(caseStudy: Pick<CaseStudyData, 'startDate' | 'endDate'>) {
   const startDate = caseStudy.startDate || '';
   const endDate = caseStudy.endDate || '';
   if (!startDate && !endDate) {
@@ -20,8 +16,8 @@ export function renderCaseStudyDate(caseStudy: Pick<CaseStudyData, 'startDate' |
     endDate &&
     new Date(startDate).getUTCFullYear() === new Date(endDate).getUTCFullYear();
   const startDateFormat = sameYear ? 'MMM' : 'MMM yyyy';
-  const startDateString = formatDate(new Date(startDate), startDateFormat);
-  const endDateString = endDate ? formatDate(new Date(endDate), 'MMM yyyy') : 'Present';
+  const startDateString = format(new Date(startDate), startDateFormat);
+  const endDateString = endDate ? format(new Date(endDate), 'MMM yyyy') : 'Present';
   return `${startDateString} – ${endDateString}`;
 }
 

@@ -4,13 +4,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
 import CaseStudyBadges from '../../components/case-study/CaseStudyBadges.astro';
 import CaseStudySection from '../../components/case-study/CaseStudySection.astro';
+import CaseStudyTeaser from '../../components/case-study/CaseStudyTeaser.astro';
 import ContentfulImage from '../../components/contentful/ContentfulImage.astro';
 import { getCollection } from 'astro:content';
 import {
   caseStudyBackgroundClass,
   methodNames,
-  renderCaseStudyDate,
-} from '../../lib/contentful/render';
+  formatDateRange,
+} from '../../lib/contentful/case-study';
 
 export async function getStaticPaths() {
   const entries = await getCollection('caseStudies');
@@ -34,7 +35,7 @@ const sections = page.sections ?? [];
     <section class="case-study-header pt-12 md:pt-16">
       <div class="container mx-auto max-w-header 2xl:max-w-screens">
         <div class="mx-8 lg:mx-0 text-center">
-          <div class="casestudy-date">{renderCaseStudyDate(page)}</div>
+          <div class="casestudy-date">{formatDateRange(page)}</div>
           <h1 class="text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl text-center mt-0 mb-0">
             {title}
           </h1>
@@ -68,50 +69,7 @@ const sections = page.sections ?? [];
     ))}
 
     {page.relatedCaseStudy && (
-      <section class="next-project">
-        <div class="container mx-auto max-w-section py-12">
-          <a
-            href={`/portfolio/${page.relatedCaseStudy.fields.slug}`}
-            class="group text-current block"
-          >
-            <div class="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 md:gap-8 items-start md:items-stretch">
-              <div
-                class:list={[
-                  'teaser-image-wrapper flex justify-center self-stretch items-center mx-8 md:mx-0',
-                  caseStudyBackgroundClass(page.relatedCaseStudy.fields),
-                ]}
-              >
-                <div class="teaser-image group-hover:scale-105 transition-transform">
-                  <ContentfulImage image={page.relatedCaseStudy.fields.featuredImage} />
-                </div>
-              </div>
-
-              <div
-                class:list={[
-                  'teaser-text-wrapper self-stretch md:flex md:flex-row md:items-center mx-8 md:mx-0',
-                  page.relatedCaseStudy.fields.imageVerticalAlign === 'top'
-                    ? 'md:pt-teaser-top'
-                    : 'md:pb-teaser-bottom',
-                ]}
-              >
-                <div class="teaser-text mb-8 md:mb-0 text-center md:text-left md:self-stretch md:flex md:items-center">
-                  <div class="">
-                    <p class="mb-0 sm:mb-1 text-base">Next</p>
-                    <h2
-                      class:list={[
-                        'my-0 text-2xl sm:text-3xl md:text-3xl underline decoration-transparent transition ease-in duration-300',
-                        `group-hover:decoration-${page.relatedCaseStudy.fields.theme}-bright`,
-                      ]}
-                    >
-                      {page.relatedCaseStudy.fields.title}
-                    </h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
+      <CaseStudyTeaser caseStudy={page.relatedCaseStudy.fields} variant="next" />
     )}
   </div>
   <Footer />
